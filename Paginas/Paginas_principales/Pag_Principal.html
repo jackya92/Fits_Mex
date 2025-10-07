@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>FitLife - Home</title>
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+        <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+        <div class="flex flex-col h-screen">
+            <header
+                class="md:hidden sticky top-0 bg-background-light dark:bg-background-dark z-10 border-b border-primary/20 dark:border-primary/10">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex-shrink-0">
+                            <h1
+                                class="text-xl font-bold text-gray-900 dark:text-white">FitLife</h1>
+                        </div>
+                        <button
+                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                            id="mobile-menu-button">
+                            <span class="sr-only">Open main menu</span>
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div class="flex flex-1">
+                <aside
+                    class="w-64 flex-col p-6 bg-background-light dark:bg-background-dark border-r border-primary/20 dark:border-primary/10 hidden md:flex">
+                    <div class="mb-10">
+                        <h1
+                            class="text-2xl font-bold text-gray-900 dark:text-white">FitLife</h1>
+                        <p
+                            class="text-sm text-gray-500 dark:text-gray-400">Level
+                            Up Your Fitness</p>
+                    </div>
+                    <nav class="flex flex-col space-y-2">
+                        <a
+                            class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-gray-900 dark:hover:text-white transition-colors"
+                            href="#">
+                            <span
+                                class="material-symbols-outlined">search</span>
+                            <span>Explorar</span>
+                        </a>
+                        <a
+                            class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/20 dark:bg-primary/30 text-gray-900 dark:text-white font-semibold"
+                            href="#">
+                            <span
+                                class="material-symbols-outlined filled">home</span>
+                            <span>Inicio</span>
+                        </a>
+                        <a
+                            class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-gray-900 dark:hover:text-white transition-colors"
+                            href="#">
+                            <span
+                                class="material-symbols-outlined">list_alt</span>
+                            <span>Mis Rutinas</span>
+                        </a>
+                    </nav>
+                </aside>
+                <main class="flex-1 p-4 sm:p-8 overflow-y-auto pb-24 md:pb-8">
+                    <header class="mb-12 hidden md:block">
+                        <h2
+                            class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Welcome
+                            back, Alex!</h2>
+                        <p class="text-gray-500 dark:text-gray-400 mt-1">Ready
+                            to crush your goals today?</p>
+                    </header>
+                    <header class="mb-12 md:hidden">
+                        <h2
+                            class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Home</h2>
+                    </header>
+                    <section class="mb-12">
+                        <div
+                            class="bg-background-light dark:bg-background-dark/50 rounded-xl overflow-hidden shadow-lg border border-primary/20 dark:border-primary/10 @container">
+                            <div class="flex flex-col @lg:flex-row">
+                                <div
+                                    class="w-full @lg:w-1/2 h-64 @lg:h-auto bg-cover bg-center"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5kgX2qNlwzP7k-BXN0uxz7ixJaG3mNzCRQYRv0uG6FqY_j6-3DCPbhE-8xRBpwflaTfwyLO61rarVnRRarjnxYGWMWnZPIq2gHD6D_RYzHYIGvJifPvB0IaYg39n4L99G1qnpDodc_-nrKb3qHw3iZpY7PgPMhpMNTmCF8PTFuUBmkkutiCgv9s-cV4O7igmDK3KgPsc9dCK4PNNx8E2snV26jSdQcN-9LkMwBwkkOxN_qUXGIWwcPHwcX32TeSU-vZtBlP1_rWZF");'></div>
+                                <div
+                                    class="w-full @lg:w-1/2 p-6 sm:p-8 flex flex-col justify-center">
+                                    <p
+                                        class="text-sm font-semibold text-primary">ROUTINE
+                                        OF THE DAY</p>
+                                    <h3
+                                        class="text-2xl sm:text-3xl font-bold mt-2 text-gray-900 dark:text-white">Full
+                                        Body Blast</h3>
+                                    <p
+                                        class="mt-4 text-gray-600 dark:text-gray-300">A
+                                        high-intensity workout to get your heart
+                                        pumping and muscles working. Perfect for
+                                        building strength and endurance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h3
+                            class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Quick
+                            Actions</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <button
+                                class="w-full h-16 px-6 flex items-center justify-center rounded-lg bg-primary text-background-dark font-bold text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
+                                <span>Start a Workout</span>
+                            </button>
+                            <button
+                                class="w-full h-16 px-6 flex items-center justify-center rounded-lg bg-primary/20 dark:bg-primary/30 text-gray-900 dark:text-white font-bold text-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-all duration-300 transform hover:scale-105">
+                                <span>Discover New Exercises</span>
+                            </button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <nav
+                class="md:hidden fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/10 shadow-[0_-2px_10px_rgba(0,0,0,0.1)] dark:shadow-[0_-2px_10px_rgba(56,224,123,0.1)]">
+                <div class="flex justify-around h-20">
+                    <a
+                        class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 w-full"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-3xl">search</span>
+                        <span class="text-xs font-medium">Explorar</span>
+                    </a>
+                    <a
+                        class="flex flex-col items-center justify-center gap-1 text-primary w-full bg-primary/10 dark:bg-primary/20"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined filled text-3xl">home</span>
+                        <span class="text-xs font-bold">Inicio</span>
+                    </a>
+                    <a
+                        class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 w-full"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-3xl">list_alt</span>
+                        <span class="text-xs font-medium">Mis rutinas</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </body></html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class lang="en"><head>
+    <meta charset="utf-8" />
+    <title>FitTrack - Rutina de Cuerpo Completo</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet" />
+    <script
+      src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+    <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div class="flex flex-col min-h-screen">
+      <header
+        class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10 border-b border-primary/20 dark:border-primary/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex items-center gap-8">
+              <div class="flex items-center gap-2 text-primary">
+                <span
+                  class="material-symbols-outlined text-3xl">fitness_center</span>
+                <h1
+                  class="text-xl font-bold text-gray-900 dark:text-white">FitTrack</h1>
+              </div>
+              <nav class="hidden md:flex items-center gap-6">
+                <a
+                  class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  href="#">Inicio</a>
+                <a
+                  class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  href="#">Entrenamientos</a>
+                <a class="text-sm font-medium text-primary dark:text-primary"
+                  href="#">Rutinas</a>
+                <a
+                  class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  href="#">Comunidad</a>
+              </nav>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="relative hidden sm:block">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
+                <input
+                  class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/10 focus:ring-2 focus:ring-primary focus:outline-none text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder="Buscar..." type="text" />
+              </div>
+              <button
+                class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-primary/10 hover:text-primary dark:hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">notifications</span>
+              </button>
+              <div class="w-10 h-10 rounded-full bg-cover bg-center"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1e1pUhfgLCxj5U2fVw6kzYH1TQXaqgW9kFIQcdO6aWpwgyAoimZJ4Ato69_QoPMGQxCwtkV8_dEGbXUrp2u032jQivbPfk1oVCvCbfEK7G_GATwRWI_-dZHlFDFxIagC7CeUaqLhKK4L1pQMjECxZiOLqIKv4s0m3g7uMycdK5ue-9gf6jfUktsJhj_tMIYKX8YrnbkJDaQgT0Q9BaAK32HuEJ0H1sPPSpZK4HN-Hq9nNfNPy69g7yf3SGkeDLev-zMTJuAlLIplP");'></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
+            <div class="flex-1">
+              <h2
+                class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Rutina
+                de cuerpo completo</h2>
+              <p class="text-gray-600 dark:text-gray-400">Esta rutina está
+                diseñada para trabajar todos los grupos musculares principales,
+                mejorando la fuerza y la resistencia general.</p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span
+                  class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Espalda</span>
+                <span
+                  class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Pecho</span>
+                <span
+                  class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Piernas</span>
+                <span
+                  class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Abdomen</span>
+                <span
+                  class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Brazos</span>
+              </div>
+            </div>
+            <a
+              class="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background-dark font-bold shadow-lg hover:bg-primary/90 transition-transform transform hover:scale-105"
+              href="#">
+              <span class="material-symbols-outlined">play_arrow</span>
+              Empezar entrenamiento
+            </a>
+          </div>
+          <div
+            class="bg-background-light dark:bg-background-dark/50 rounded-xl shadow-md overflow-hidden border border-primary/20 dark:border-primary/10">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm text-left">
+                <thead class="bg-primary/10 dark:bg-primary/20">
+                  <tr>
+                    <th
+                      class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider"
+                      scope="col">Nombre de ejercicio</th>
+                    <th
+                      class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider text-center"
+                      scope="col">Sets</th>
+                    <th
+                      class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider text-center"
+                      scope="col">Segundos</th>
+                    <th class="px-6 py-3" scope="col">
+                      <span class="sr-only">Acciones</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-primary/10 dark:divide-primary/5">
+                  <tr>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">Sentadillas</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">3</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">60</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                        <span
+                          class="material-symbols-outlined text-base">more_horiz</span>
+                      </button>
+                      <button
+                        class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                        <span
+                          class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">Flexiones</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">3</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">45</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                        <span
+                          class="material-symbols-outlined text-base">more_horiz</span>
+                      </button>
+                      <button
+                        class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                        <span
+                          class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">Plancha</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">3</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">60</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                        <span
+                          class="material-symbols-outlined text-base">more_horiz</span>
+                      </button>
+                      <button
+                        class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                        <span
+                          class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">Dominadas</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">3</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">30</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                        <span
+                          class="material-symbols-outlined text-base">more_horiz</span>
+                      </button>
+                      <button
+                        class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                        <span
+                          class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">Burpees</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">3</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-400 text-center">45</td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                        <span
+                          class="material-symbols-outlined text-base">more_horiz</span>
+                      </button>
+                      <button
+                        class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                        <span
+                          class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer
+        class="bg-background-light dark:bg-background-dark mt-auto border-t border-primary/20 dark:border-primary/10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <p class="text-center text-sm text-gray-500 dark:text-gray-400">© 2024
+            FitTrack. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+  </body></html>

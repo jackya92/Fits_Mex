@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Fit Mex - Inicia Sesión</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    .form-input::placeholder {
+      color: #6b7280;
+    }
+    .dark .form-input::placeholder {
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+<header class="w-full">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between py-6 border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Fit Mex</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Ejercicios</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Planes</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="px-4 py-2 text-sm font-bold rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors" href="#">
+              Regístrate
+            </a>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center">
+<div class="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-lg m-4">
+<div class="text-center">
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white">
+            Inicia sesión en Fit Mex
+          </h2>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            ¡Bienvenido de nuevo!
+          </p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">
+              Correo electrónico
+            </label>
+<div class="mt-1">
+<input autocomplete="email" class="form-input w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-transparent focus:border-primary focus:bg-white dark:focus:bg-gray-900 focus:ring-0 transition" id="email" name="email" placeholder="tu@ejemplo.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">
+              Contraseña
+            </label>
+<div class="mt-1">
+<input autocomplete="current-password" class="form-input w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-transparent focus:border-primary focus:bg-white dark:focus:bg-gray-900 focus:ring-0 transition" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-end">
+<div class="text-sm">
+<a class="font-medium text-primary hover:text-primary/80" href="#">
+                ¿Olvidaste tu contraseña?
+              </a>
+</div>
+</div>
+<div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-black bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 transition-all" type="submit">
+              Iniciar sesión
+            </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+</body></html>
