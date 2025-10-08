@@ -1,130 +1,231 @@
 <!DOCTYPE html>
 
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fit Mex - Seleccionar Ejercicios</title>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex min-h-screen w-full flex-col">
-<header class="sticky top-0 z-10 border-b border-gray-200/10 dark:border-gray-800/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-2 text-gray-900 dark:text-white">
-<svg class="h-6 w-6 text-primary" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-<h2 class="text-lg font-bold">Fit Mex</h2>
-</div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Inicio</a>
-<a class="text-sm font-medium text-primary" href="#">Rutinas</a>
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Ejercicios</a>
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Comunidad</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-<span class="material-symbols-outlined"> notifications </span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgEXcDGCTpBG7Ota-AteWvZkhydL-LF_ZxP4WeHwUwDkYdsDdi5fyjTe37sWJhEAk-VGNQA2vEjzuQa6PEDVDfWcdIiXjc0ppjmEvv2RxiST06x0S1yULewb9iHOCi-aDiRQ4o9T-b78UTeNMw8Edam68Y46AoghR_5eSUYiPyuXNE3Gy2qjis9BB7iIMAWdYIL4P4_fM5zOUeMF0pUwu4SgVXWccv_DYK9AfUtFVXAb_gnyjzY6J6864HsCsOSjlgtd7OEopFDzI");'></div>
-</div>
-</div>
-</header>
-<main class="flex-grow">
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
-<div class="flex flex-col gap-8">
-<div class="text-center">
-<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selecciona Ejercicios</h1>
-<p class="mt-2 text-lg text-gray-600 dark:text-gray-400">Busca y filtra para encontrar los mejores ejercicios para tu rutina.</p>
-</div>
-<div class="sticky top-[65px] z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm py-4">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"> search </span>
-<input class="form-input w-full rounded-lg border bg-gray-50 dark:bg-gray-900/50 border-gray-200/50 dark:border-gray-800/50 focus:ring-primary focus:border-primary pl-10 pr-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" placeholder="Buscar ejercicios por nombre..." type="text"/>
-</div>
-<div class="mt-4 flex flex-wrap items-center gap-2">
-<button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                  Categoría
-                  <span class="material-symbols-outlined text-base"> expand_more </span>
-</button>
-<button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                  Dificultad
-                  <span class="material-symbols-outlined text-base"> expand_more </span>
-</button>
-<button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                  Músculo
-                  <span class="material-symbols-outlined text-base"> expand_more </span>
-</button>
-</div>
-</div>
-<div class="flow-root">
-<ul class="-my-4 divide-y divide-gray-200/50 dark:divide-gray-800/50" role="list">
-<li class="flex items-center gap-4 py-4 cursor-pointer group">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjT_5jdSijoTqiI1KQIXd5jrcAEb0ZlPm3617FXBjNUSK2lXGFtC48P_cIhV9SbZkPJ6EjLl0kNic2DpHxQaNoWWYLmy472CXeCFhuX-dl1FyaryoOZkgAfFhGhNb_nBHSuZ1D3lbI5sYeDTidsrscYAPXlutWQ3Pxe9Dk54AZNxuT7JkkUaTafgZcJz7MHiV_lHwVMY3_Nfkkru08oYKYwVWwO9OOpb8SKt-23HDZEtGYeb4nI694qeziicOl6PBB4LipydZQjso");'></div>
-<div class="flex-1">
-<p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Press de Banca</p>
-<p class="text-sm text-gray-600 dark:text-gray-400">Ejercicio para fortalecer los músculos del pecho.</p>
-</div>
-<div class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
-<span class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors"> check </span>
-</div>
-</li>
-<li class="flex items-center gap-4 py-4 cursor-pointer group bg-primary/10 dark:bg-primary/20 rounded-lg -mx-4 px-4">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4UkjXkJjvuVN9VzrG8pkcQ_1_9n7x181y3I0P5bU8KUr9uuQKZ-VMY47MFDQflJFoEIhaV1nqdL8W1vIIRp8CWkW9rh7lynC3Fr3O1TlIZF7GgLQTdOUZ2TBxwWBpVitcGfqziyscO16HDP_9Px3ET9_RMwNzLifP5UHUPpHVu3fiiGvevYZX5ZhD5SOABbY1yeDuvSgGguVJp3R32Crj-6-lP6XV4KI6_u2OJEnNJErQz4zvasclXeK2gVuFwu72hEZk0IWz6I0");'></div>
-<div class="flex-1">
-<p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Dominadas</p>
-<p class="text-sm text-gray-600 dark:text-gray-400">Ejercicio para fortalecer los músculos de la espalda.</p>
-</div>
-<div class="size-6 rounded-full border border-primary bg-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-lg text-black"> check </span>
-</div>
-</li>
-<li class="flex items-center gap-4 py-4 cursor-pointer group">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXxoTrbQFdEocpEdSbP1Bla-VznKZIulqNYgIZcu9jhTTSnjmkFGemZrHDJvEqwwMsAql3hnxcc4MQ3dGj0j9-oOrkK017O_HU_jBsAzMKseVWT2sVXDnjJsYuQs70VwWHJUWROUOZGgj6zXmKrWpigoSghM_contb2gurGkEWeRWRtQvLKIqSnCBz_hfvxnOcZ3lYCjL-P8SvJ9nFVAL464cYfTcBZ2AOOMo9RP6Zb7mTQrh7oSzkgGF79nyVgzfla_N3Fv2Wk-E");'></div>
-<div class="flex-1">
-<p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Sentadillas</p>
-<p class="text-sm text-gray-600 dark:text-gray-400">Ejercicio para fortalecer los músculos de las piernas.</p>
-</div>
-<div class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
-<span class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors"> check </span>
-</div>
-</li>
-<li class="flex items-center gap-4 py-4 cursor-pointer group">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArDJ5nvkO_0AF-xTUnp5NmLEW8p_Zgt-IIupMKbLcUJXIBBwTFgbzA0t5xdkuzFnqXUT_wzquRtcZkrGHNPahHPcvULzf1Ni4Woqs9pzhP6bDO7bI_Os4U7JU9Y7ByueRoHZlYKCfaxtBhEJ0bacIIEpgzOa8PwRCbRjw6KFaIRtsCPNoxpbioyLnUinIfhCA1eOywtm4kCKQ340kTNoowCCrINBq8bCCLTK7TfrjYYtDdaLuSqdDNVCu9BsjA4K57t_pkh2DfAvs");'></div>
-<div class="flex-1">
-<p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Press de Hombros</p>
-<p class="text-sm text-gray-600 dark:text-gray-400">Ejercicio para fortalecer los músculos de los hombros.</p>
-</div>
-<div class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
-<span class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors"> check </span>
-</div>
-</li>
-<li class="flex items-center gap-4 py-4 cursor-pointer group">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmlJwAqQeB6Gqgp7F1qCCbqPACL-SlaWOZG2geABbTDJVcm-lnOJygjNr7KoMJNOh_hDpR7M6PNY8ay9wEFrTSfJPfMu8NBfrNcoG5CtHsQDXZqXTAUICiF_zwXLDU-C3DG1R9pzgJUx7_45WBRohIUD1QLFFmbkz4GvzbJIIY6ipWeyRhAmSSE0rTSDVM3BUDrfabq-W06kOAza0Y4RxlIqtw_ZkM_JnliSWVfm6bCvbYrhy83B1U5tL_2FppJjBHuumPm2SMeF4");'></div>
-<div class="flex-1">
-<p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Plancha</p>
-<p class="text-sm text-gray-600 dark:text-gray-400">Ejercicio para fortalecer los músculos del abdomen.</p>
-</div>
-<div class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
-<span class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors"> check </span>
-</div>
-</li>
-</ul>
-</div>
-<div class="flex justify-end pt-6 border-t border-gray-200/50 dark:border-gray-800/50">
-<button class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-bold text-black shadow-lg shadow-primary/30 hover:bg-opacity-90 transition-all">
-<span>Agregar 1 Ejercicio</span>
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+<html class lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Ejercicios</title>
+        <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect" />
+        <link as="style"
+            href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900"
+            onload="this.rel='stylesheet'" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+        <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+        <div class="flex min-h-screen w-full flex-col">
+            <header
+                class="sticky top-0 z-10 border-b border-gray-200/10 dark:border-gray-800/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+                <div
+                    class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+                    <div class="flex items-center gap-8">
+                        <div
+                            class="flex items-center gap-2 text-gray-900 dark:text-white">
+                            <svg class="h-6 w-6 text-primary" fill="none"
+                                viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <h2 class="text-lg font-bold">Fit Mex</h2>
+                        </div>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a
+                                class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                                href="#">Inicio</a>
+                            <a class="text-sm font-medium text-primary"
+                                href="#">Rutinas</a>
+                            <a
+                                class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                                href="#">Ejercicios</a>
+                            <a
+                                class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                                href="#">Comunidad</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">
+                                notifications </span>
+                        </button>
+                        <div
+                            class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgEXcDGCTpBG7Ota-AteWvZkhydL-LF_ZxP4WeHwUwDkYdsDdi5fyjTe37sWJhEAk-VGNQA2vEjzuQa6PEDVDfWcdIiXjc0ppjmEvv2RxiST06x0S1yULewb9iHOCi-aDiRQ4o9T-b78UTeNMw8Edam68Y46AoghR_5eSUYiPyuXNE3Gy2qjis9BB7iIMAWdYIL4P4_fM5zOUeMF0pUwu4SgVXWccv_DYK9AfUtFVXAb_gnyjzY6J6864HsCsOSjlgtd7OEopFDzI");'></div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-grow">
+                <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
+                    <div class="flex flex-col gap-8">
+                        <div class="text-center">
+                            <h1
+                                class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selecciona
+                                Ejercicios</h1>
+                            <p
+                                class="mt-2 text-lg text-gray-600 dark:text-gray-400">Busca
+                                y filtra para encontrar los mejores ejercicios
+                                para tu rutina.</p>
+                        </div>
+                        <div
+                            class="sticky top-[65px] z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm py-4">
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">
+                                    search </span>
+                                <input
+                                    class="form-input w-full rounded-lg border bg-gray-50 dark:bg-gray-900/50 border-gray-200/50 dark:border-gray-800/50 focus:ring-primary focus:border-primary pl-10 pr-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                                    placeholder="Buscar ejercicios por nombre..."
+                                    type="text" />
+                            </div>
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <button
+                                    class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                                    Categoría
+                                    <span
+                                        class="material-symbols-outlined text-base">
+                                        expand_more </span>
+                                </button>
+                                <button
+                                    class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                                    Dificultad
+                                    <span
+                                        class="material-symbols-outlined text-base">
+                                        expand_more </span>
+                                </button>
+                                <button
+                                    class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                                    Músculo
+                                    <span
+                                        class="material-symbols-outlined text-base">
+                                        expand_more </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flow-root">
+                            <ul
+                                class="-my-4 divide-y divide-gray-200/50 dark:divide-gray-800/50"
+                                role="list">
+                                <li
+                                    class="flex items-center gap-4 py-4 cursor-pointer group">
+                                    <div
+                                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjT_5jdSijoTqiI1KQIXd5jrcAEb0ZlPm3617FXBjNUSK2lXGFtC48P_cIhV9SbZkPJ6EjLl0kNic2DpHxQaNoWWYLmy472CXeCFhuX-dl1FyaryoOZkgAfFhGhNb_nBHSuZ1D3lbI5sYeDTidsrscYAPXlutWQ3Pxe9Dk54AZNxuT7JkkUaTafgZcJz7MHiV_lHwVMY3_Nfkkru08oYKYwVWwO9OOpb8SKt-23HDZEtGYeb4nI694qeziicOl6PBB4LipydZQjso");'></div>
+                                    <div class="flex-1">
+                                        <p
+                                            class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Press
+                                            de Banca</p>
+                                        <p
+                                            class="text-sm text-gray-600 dark:text-gray-400">Ejercicio
+                                            para fortalecer los músculos del
+                                            pecho.</p>
+                                    </div>
+                                    <div
+                                        class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors">
+                                            check </span>
+                                    </div>
+                                </li>
+                                <li
+                                    class="flex items-center gap-4 py-4 cursor-pointer group bg-primary/10 dark:bg-primary/20 rounded-lg -mx-4 px-4">
+                                    <div
+                                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4UkjXkJjvuVN9VzrG8pkcQ_1_9n7x181y3I0P5bU8KUr9uuQKZ-VMY47MFDQflJFoEIhaV1nqdL8W1vIIRp8CWkW9rh7lynC3Fr3O1TlIZF7GgLQTdOUZ2TBxwWBpVitcGfqziyscO16HDP_9Px3ET9_RMwNzLifP5UHUPpHVu3fiiGvevYZX5ZhD5SOABbY1yeDuvSgGguVJp3R32Crj-6-lP6XV4KI6_u2OJEnNJErQz4zvasclXeK2gVuFwu72hEZk0IWz6I0");'></div>
+                                    <div class="flex-1">
+                                        <p
+                                            class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Dominadas</p>
+                                        <p
+                                            class="text-sm text-gray-600 dark:text-gray-400">Ejercicio
+                                            para fortalecer los músculos de la
+                                            espalda.</p>
+                                    </div>
+                                    <div
+                                        class="size-6 rounded-full border border-primary bg-primary flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-lg text-black">
+                                            check </span>
+                                    </div>
+                                </li>
+                                <li
+                                    class="flex items-center gap-4 py-4 cursor-pointer group">
+                                    <div
+                                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXxoTrbQFdEocpEdSbP1Bla-VznKZIulqNYgIZcu9jhTTSnjmkFGemZrHDJvEqwwMsAql3hnxcc4MQ3dGj0j9-oOrkK017O_HU_jBsAzMKseVWT2sVXDnjJsYuQs70VwWHJUWROUOZGgj6zXmKrWpigoSghM_contb2gurGkEWeRWRtQvLKIqSnCBz_hfvxnOcZ3lYCjL-P8SvJ9nFVAL464cYfTcBZ2AOOMo9RP6Zb7mTQrh7oSzkgGF79nyVgzfla_N3Fv2Wk-E");'></div>
+                                    <div class="flex-1">
+                                        <p
+                                            class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Sentadillas</p>
+                                        <p
+                                            class="text-sm text-gray-600 dark:text-gray-400">Ejercicio
+                                            para fortalecer los músculos de las
+                                            piernas.</p>
+                                    </div>
+                                    <div
+                                        class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors">
+                                            check </span>
+                                    </div>
+                                </li>
+                                <li
+                                    class="flex items-center gap-4 py-4 cursor-pointer group">
+                                    <div
+                                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArDJ5nvkO_0AF-xTUnp5NmLEW8p_Zgt-IIupMKbLcUJXIBBwTFgbzA0t5xdkuzFnqXUT_wzquRtcZkrGHNPahHPcvULzf1Ni4Woqs9pzhP6bDO7bI_Os4U7JU9Y7ByueRoHZlYKCfaxtBhEJ0bacIIEpgzOa8PwRCbRjw6KFaIRtsCPNoxpbioyLnUinIfhCA1eOywtm4kCKQ340kTNoowCCrINBq8bCCLTK7TfrjYYtDdaLuSqdDNVCu9BsjA4K57t_pkh2DfAvs");'></div>
+                                    <div class="flex-1">
+                                        <p
+                                            class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Press
+                                            de Hombros</p>
+                                        <p
+                                            class="text-sm text-gray-600 dark:text-gray-400">Ejercicio
+                                            para fortalecer los músculos de los
+                                            hombros.</p>
+                                    </div>
+                                    <div
+                                        class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors">
+                                            check </span>
+                                    </div>
+                                </li>
+                                <li
+                                    class="flex items-center gap-4 py-4 cursor-pointer group">
+                                    <div
+                                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmlJwAqQeB6Gqgp7F1qCCbqPACL-SlaWOZG2geABbTDJVcm-lnOJygjNr7KoMJNOh_hDpR7M6PNY8ay9wEFrTSfJPfMu8NBfrNcoG5CtHsQDXZqXTAUICiF_zwXLDU-C3DG1R9pzgJUx7_45WBRohIUD1QLFFmbkz4GvzbJIIY6ipWeyRhAmSSE0rTSDVM3BUDrfabq-W06kOAza0Y4RxlIqtw_ZkM_JnliSWVfm6bCvbYrhy83B1U5tL_2FppJjBHuumPm2SMeF4");'></div>
+                                    <div class="flex-1">
+                                        <p
+                                            class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Plancha</p>
+                                        <p
+                                            class="text-sm text-gray-600 dark:text-gray-400">Ejercicio
+                                            para fortalecer los músculos del
+                                            abdomen.</p>
+                                    </div>
+                                    <div
+                                        class="size-6 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark group-hover:border-primary transition-all flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-lg text-transparent group-hover:text-primary transition-colors">
+                                            check </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="flex justify-end pt-6 border-t border-gray-200/50 dark:border-gray-800/50">
+                            <button
+                                class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-bold text-black shadow-lg shadow-primary/30 hover:bg-opacity-90 transition-all">
+                                <span>Agregar 1 Ejercicio</span>
+                                <span
+                                    class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body></html>

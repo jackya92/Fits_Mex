@@ -1,108 +1,173 @@
 <!DOCTYPE html>
 
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<title>Fit Mex - Seleccionar Músculos</title>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-<style>
+<html class lang="en"><head>
+    <meta charset="utf-8" />
+    <title>Fit Mex - Seleccionar Músculos</title>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet" />
+    <script
+      src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+    <style>
     body {
       font-family: 'Lexend', sans-serif;
     }
   </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display">
-<div class="flex flex-col min-h-screen">
-<header class="flex items-center justify-between px-10 py-3 border-b border-primary/20 dark:border-primary/30">
-<div class="flex items-center gap-4 text-background-dark dark:text-background-light">
-<div class="w-6 h-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-</div>
-<h2 class="text-lg font-bold">Fit Mex</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-background-dark/80 dark:text-background-light/80">
-<a class="hover:text-primary transition-colors" href="#">Inicio</a>
-<a class="text-primary font-semibold" href="#">Ejercicios</a>
-<a class="hover:text-primary transition-colors" href="#">Rutinas</a>
-<a class="hover:text-primary transition-colors" href="#">Comunidad</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-background-dark dark:text-background-light">
-<svg fill="currentColor" height="24" viewbox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
-</svg>
-</button>
-<div class="w-10 h-10 bg-center bg-no-repeat bg-cover rounded-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDM2tkPGayzQso5dWHiptJcX1IveYWaPzWx8bZAGUyt4mWiS3LrgCh7s4lC0wUfYjKDO8LE7bhWq-UKgKBb1bAdBjcVKzfLOXuwa7XzvLdm7YhyYrOVFqG7CRAHXHQ_hEBNU6UYJMQk4Gtp_ovJ561BGPDwbSjIWe5xAQJwdiZQGUi2v-z84VexyFATxd2NfUFePPKHp6heo0n6rSxKahODhWo3XqJdgBlUUkHasWQqhKwpTS6sRlj4WxVRnzFk1CvSh_K3WC1fEXI");'></div>
-</div>
-</header>
-<main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="space-y-8">
-<div>
-<h1 class="text-3xl font-bold text-background-dark dark:text-background-light">Selecciona los Músculos a Entrenar</h1>
-<p class="mt-2 text-background-dark/70 dark:text-background-light/70">Elige los grupos musculares que deseas incluir en tu rutina.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="space-y-4">
-<h2 class="text-xl font-bold text-background-dark dark:text-background-light">Selección Visual</h2>
-<div class="relative w-full aspect-[4/3] rounded-lg bg-center bg-no-repeat bg-contain" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCin3HsWAZoX0-gW9aEk6UR4zAtaqpC5yGg86K8m-5iNxfWsCjIWQ4o9CJDHDWR65bfjsX1uX-gnFS-EIvQ6KRaP8yPoqfpVMfZoli7VMHfR_gj1JZAuGBxMO0uKu6_7CXVEEr7wL2syb8r7iodIBFbOBSOVtckGWdYmwiPDZiLAISSYZ9yP0XGWassqoIhc0K_zM8GCuz5ekDhCebRWpe8e6La5-9a8vaV2_ROUadIWD3msDlJk2XOLh4Hht3TEYK4_IsQ3DU85xc");'>
-</div>
-</div>
-<div class="space-y-4">
-<h2 class="text-xl font-bold text-background-dark dark:text-background-light">Selección por Lista</h2>
-<div class="space-y-2">
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Pectorales</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Dorsales</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Hombros</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Bíceps</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Tríceps</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Cuádriceps</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Isquiotibiales</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Glúteos</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Abdominales</span>
-</label>
-<label class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
-<input class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="checkbox"/>
-<span class="ml-3 text-base text-background-dark dark:text-background-light">Gemelos</span>
-</label>
-</div>
-</div>
-</div>
-<div class="flex justify-end pt-8">
-<button class="px-6 py-2 rounded-lg bg-primary text-background-dark font-bold text-base hover:bg-primary/90 transition-all">
-            Guardar Selección
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="flex flex-col min-h-screen">
+      <header
+        class="flex items-center justify-between px-10 py-3 border-b border-primary/20 dark:border-primary/30">
+        <div
+          class="flex items-center gap-4 text-background-dark dark:text-background-light">
+          <div class="w-6 h-6 text-primary">
+            <svg fill="none" viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                fill="currentColor"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold">Fit Mex</h2>
+        </div>
+        <nav
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-background-dark/80 dark:text-background-light/80">
+          <a class="hover:text-primary transition-colors" href="#">Inicio</a>
+          <a class="text-primary font-semibold" href="#">Ejercicios</a>
+          <a class="hover:text-primary transition-colors" href="#">Rutinas</a>
+          <a class="hover:text-primary transition-colors" href="#">Comunidad</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-background-dark dark:text-background-light">
+            <svg fill="currentColor" height="24" viewbox="0 0 256 256"
+              width="24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+            </svg>
           </button>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+          <div class="w-10 h-10 bg-center bg-no-repeat bg-cover rounded-full"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDM2tkPGayzQso5dWHiptJcX1IveYWaPzWx8bZAGUyt4mWiS3LrgCh7s4lC0wUfYjKDO8LE7bhWq-UKgKBb1bAdBjcVKzfLOXuwa7XzvLdm7YhyYrOVFqG7CRAHXHQ_hEBNU6UYJMQk4Gtp_ovJ561BGPDwbSjIWe5xAQJwdiZQGUi2v-z84VexyFATxd2NfUFePPKHp6heo0n6rSxKahODhWo3XqJdgBlUUkHasWQqhKwpTS6sRlj4WxVRnzFk1CvSh_K3WC1fEXI");'></div>
+        </div>
+      </header>
+      <main
+        class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="space-y-8">
+          <div>
+            <h1
+              class="text-3xl font-bold text-background-dark dark:text-background-light">Selecciona
+              los Músculos a Entrenar</h1>
+            <p
+              class="mt-2 text-background-dark/70 dark:text-background-light/70">Elige
+              los grupos musculares que deseas incluir en tu rutina.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <h2
+                class="text-xl font-bold text-background-dark dark:text-background-light">Selección
+                Visual</h2>
+              <div
+                class="relative w-full aspect-[4/3] rounded-lg bg-center bg-no-repeat bg-contain"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCin3HsWAZoX0-gW9aEk6UR4zAtaqpC5yGg86K8m-5iNxfWsCjIWQ4o9CJDHDWR65bfjsX1uX-gnFS-EIvQ6KRaP8yPoqfpVMfZoli7VMHfR_gj1JZAuGBxMO0uKu6_7CXVEEr7wL2syb8r7iodIBFbOBSOVtckGWdYmwiPDZiLAISSYZ9yP0XGWassqoIhc0K_zM8GCuz5ekDhCebRWpe8e6La5-9a8vaV2_ROUadIWD3msDlJk2XOLh4Hht3TEYK4_IsQ3DU85xc");'>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <h2
+                class="text-xl font-bold text-background-dark dark:text-background-light">Selección
+                por Lista</h2>
+              <div class="space-y-2">
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Pectorales</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Dorsales</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Hombros</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Bíceps</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Tríceps</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Cuádriceps</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Isquiotibiales</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Glúteos</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Abdominales</span>
+                </label>
+                <label
+                  class="flex items-center p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+                  <input
+                    class="h-5 w-5 rounded border-primary/50 text-primary bg-transparent focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                    type="checkbox" />
+                  <span
+                    class="ml-3 text-base text-background-dark dark:text-background-light">Gemelos</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end pt-8">
+            <button
+              class="px-6 py-2 rounded-lg bg-primary text-background-dark font-bold text-base hover:bg-primary/90 transition-all">
+              Guardar Selección
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body></html>

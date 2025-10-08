@@ -1,159 +1,280 @@
 <!DOCTYPE html>
 
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<title>Fit Mex</title>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-</head>
-<body class="font-display bg-background-light dark:bg-background-dark">
-<div class="relative flex min-h-screen w-full flex-col">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-10 py-4">
-<div class="flex items-center gap-4">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-</div>
-<h1 class="text-xl font-bold text-black dark:text-white">Fit Mex</h1>
-</div>
-<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-black/60 dark:text-white/60">
-<a class="text-primary" href="#">Inicio</a>
-<a class="hover:text-primary transition-colors" href="#">Ejercicios</a>
-<a class="hover:text-primary transition-colors" href="#">Rutinas</a>
-<a class="hover:text-primary transition-colors" href="#">Progreso</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-black/80 dark:text-white/80 transition-colors">
-<span class="material-symbols-outlined text-2xl">notifications</span>
-</button>
-<div class="size-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuq2FUox6Q0Q6G4naL3jPXCZMkSRf8zLQBSqRedO8kRG9v1LJpNcWDz4-UNfvMILxW45TAelTTb36CCiui_BqHHQGl5Dncjn436NywziD0-CccEBGvnvnkJQi8HtAS93CRlqJ2vcewBoN3IhWVQ64j9DLO5Gkepz2vXCWfyQo6KXNqTM-eLSZijqduPVQ_QY-En5v2LUHMio7o6abcRkHYb8H-QMmjMnBbkxCV6RmtsMn_AcjkVg5OlrMiSxJMqu0QbQVYQddPUEQ");'></div>
-</div>
-</header>
-<main class="flex-1 px-4 sm:px-6 lg:px-8 xl:px-40 py-10">
-<div class="mx-auto max-w-5xl">
-<div class="mb-8">
-<h2 class="text-4xl font-bold text-black dark:text-white">Hola, Sofia</h2>
-</div>
-<div class="mb-12">
-<h3 class="text-2xl font-bold text-black dark:text-white mb-4">Tu rutina de hoy</h3>
-<div class="flex flex-col md:flex-row items-stretch gap-6 rounded-xl bg-background-light dark:bg-background-dark border border-primary/20 p-6 shadow-sm">
-<div class="flex flex-[2_2_0px] flex-col justify-center gap-2">
-<p class="text-sm font-medium text-primary">Rutina de cuerpo completo</p>
-<p class="text-lg font-bold text-black dark:text-white">Entrenamiento de fuerza</p>
-<p class="text-sm text-black/60 dark:text-white/60">30 minutos</p>
-</div>
-<div class="w-full aspect-video md:aspect-auto md:w-64 rounded-lg bg-cover bg-center flex-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxN19W5GbuoX5iK_LHbJhLerP19LL7_bqfnpZ2dDTZyN51EH5ZN1MxKV5r_B1yV2d-E3Pu14SFWQpsK2LepwPoRIt4QfLOrSkRq9obLOBIMwpoCabP1H2rHCkkTo_uZfmoiBn6WHrJU0hUugcM6FIfWGaoWzXTICICuEZiPcFhPST4yWPW9aJ1AvqakBk_JqagmLz7MLS0x4W9bhquJf1ScSHL7kx0z96PdKibgujFBivJPXaYYiXNQtf2KuKercmGSTOU9ofvSrA");'></div>
-</div>
-</div>
-<div>
-<h3 class="text-2xl font-bold text-black dark:text-white mb-4">Calendario de cumplimiento</h3>
-<div class="flex flex-col lg:flex-row items-start justify-center gap-8">
-<div class="w-full max-w-sm">
-<div class="flex items-center justify-between mb-2">
-<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-black/60 dark:text-white/60 transition-colors">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<p class="text-base font-bold text-black dark:text-white">Mayo 2024</p>
-<div class="w-10"></div>
-</div>
-<div class="grid grid-cols-7 gap-1 text-center text-sm">
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">D</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">L</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">M</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">X</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">J</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">V</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">S</div>
-<div class="col-start-4"></div>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">1</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">2</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">3</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">4</button>
-<button class="h-12 w-full text-black dark:text-background-dark font-bold rounded-full bg-primary">5</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">6</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">7</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">8</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">9</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">10</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">11</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">12</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">13</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">14</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">15</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">16</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">17</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">18</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">19</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">20</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">21</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">22</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">23</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">24</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">25</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">26</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">27</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">28</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">29</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">30</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">31</button>
-</div>
-</div>
-<div class="w-full max-w-sm">
-<div class="flex items-center justify-between mb-2">
-<div class="w-10"></div>
-<p class="text-base font-bold text-black dark:text-white">Junio 2024</p>
-<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-black/60 dark:text-white/60 transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-<div class="grid grid-cols-7 gap-1 text-center text-sm">
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">D</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">L</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">M</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">X</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">J</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">V</div>
-<div class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">S</div>
-<div class="col-start-7"></div>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">1</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">2</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">3</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">4</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">5</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">6</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">7</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">8</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">9</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">10</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">11</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">12</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">13</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">14</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">15</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">16</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">17</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">18</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">19</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">20</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">21</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">22</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">23</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">24</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">25</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">26</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">27</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">28</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">29</button>
-<button class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">30</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+<html class lang="en"><head>
+        <meta charset="utf-8" />
+        <title>Fit Mex</title>
+        <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect" />
+        <link as="style"
+            href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900"
+            onload="this.rel='stylesheet'" rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+    </head>
+    <body class="font-display bg-background-light dark:bg-background-dark">
+        <div class="relative flex min-h-screen w-full flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-10 py-4">
+                <div class="flex items-center gap-4">
+                    <div class="size-6 text-primary">
+                        <svg fill="none" viewbox="0 0 48 48"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-bold text-black dark:text-white">Fit
+                        Mex</h1>
+                </div>
+                <nav
+                    class="hidden md:flex items-center gap-8 text-sm font-medium text-black/60 dark:text-white/60">
+                    <a class="text-primary" href="#">Inicio</a>
+                    <a class="hover:text-primary transition-colors"
+                        href="#">Ejercicios</a>
+                    <a class="hover:text-primary transition-colors"
+                        href="#">Rutinas</a>
+                    <a class="hover:text-primary transition-colors"
+                        href="#">Progreso</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-black/80 dark:text-white/80 transition-colors">
+                        <span
+                            class="material-symbols-outlined text-2xl">notifications</span>
+                    </button>
+                    <div class="size-10 rounded-full bg-cover bg-center"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuq2FUox6Q0Q6G4naL3jPXCZMkSRf8zLQBSqRedO8kRG9v1LJpNcWDz4-UNfvMILxW45TAelTTb36CCiui_BqHHQGl5Dncjn436NywziD0-CccEBGvnvnkJQi8HtAS93CRlqJ2vcewBoN3IhWVQ64j9DLO5Gkepz2vXCWfyQo6KXNqTM-eLSZijqduPVQ_QY-En5v2LUHMio7o6abcRkHYb8H-QMmjMnBbkxCV6RmtsMn_AcjkVg5OlrMiSxJMqu0QbQVYQddPUEQ");'></div>
+                </div>
+            </header>
+            <main class="flex-1 px-4 sm:px-6 lg:px-8 xl:px-40 py-10">
+                <div class="mx-auto max-w-5xl">
+                    <div class="mb-8">
+                        <h2
+                            class="text-4xl font-bold text-black dark:text-white">Hola,
+                            Sofia</h2>
+                    </div>
+                    <div class="mb-12">
+                        <h3
+                            class="text-2xl font-bold text-black dark:text-white mb-4">Tu
+                            rutina de hoy</h3>
+                        <div
+                            class="flex flex-col md:flex-row items-stretch gap-6 rounded-xl bg-background-light dark:bg-background-dark border border-primary/20 p-6 shadow-sm">
+                            <div
+                                class="flex flex-[2_2_0px] flex-col justify-center gap-2">
+                                <p
+                                    class="text-sm font-medium text-primary">Rutina
+                                    de cuerpo completo</p>
+                                <p
+                                    class="text-lg font-bold text-black dark:text-white">Entrenamiento
+                                    de fuerza</p>
+                                <p
+                                    class="text-sm text-black/60 dark:text-white/60">30
+                                    minutos</p>
+                            </div>
+                            <div
+                                class="w-full aspect-video md:aspect-auto md:w-64 rounded-lg bg-cover bg-center flex-1"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxN19W5GbuoX5iK_LHbJhLerP19LL7_bqfnpZ2dDTZyN51EH5ZN1MxKV5r_B1yV2d-E3Pu14SFWQpsK2LepwPoRIt4QfLOrSkRq9obLOBIMwpoCabP1H2rHCkkTo_uZfmoiBn6WHrJU0hUugcM6FIfWGaoWzXTICICuEZiPcFhPST4yWPW9aJ1AvqakBk_JqagmLz7MLS0x4W9bhquJf1ScSHL7kx0z96PdKibgujFBivJPXaYYiXNQtf2KuKercmGSTOU9ofvSrA");'></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3
+                            class="text-2xl font-bold text-black dark:text-white mb-4">Calendario
+                            de cumplimiento</h3>
+                        <div
+                            class="flex flex-col lg:flex-row items-start justify-center gap-8">
+                            <div class="w-full max-w-sm">
+                                <div
+                                    class="flex items-center justify-between mb-2">
+                                    <button
+                                        class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-black/60 dark:text-white/60 transition-colors">
+                                        <span
+                                            class="material-symbols-outlined">chevron_left</span>
+                                    </button>
+                                    <p
+                                        class="text-base font-bold text-black dark:text-white">Mayo
+                                        2024</p>
+                                    <div class="w-10"></div>
+                                </div>
+                                <div
+                                    class="grid grid-cols-7 gap-1 text-center text-sm">
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">D</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">L</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">M</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">X</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">J</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">V</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">S</div>
+                                    <div class="col-start-4"></div>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">1</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">2</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">3</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">4</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-background-dark font-bold rounded-full bg-primary">5</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">6</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">7</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">8</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">9</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">10</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">11</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">12</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">13</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">14</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">15</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">16</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">17</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">18</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">19</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">20</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">21</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">22</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">23</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">24</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">25</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">26</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">27</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">28</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">29</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">30</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">31</button>
+                                </div>
+                            </div>
+                            <div class="w-full max-w-sm">
+                                <div
+                                    class="flex items-center justify-between mb-2">
+                                    <div class="w-10"></div>
+                                    <p
+                                        class="text-base font-bold text-black dark:text-white">Junio
+                                        2024</p>
+                                    <button
+                                        class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 text-black/60 dark:text-white/60 transition-colors">
+                                        <span
+                                            class="material-symbols-outlined">chevron_right</span>
+                                    </button>
+                                </div>
+                                <div
+                                    class="grid grid-cols-7 gap-1 text-center text-sm">
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">D</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">L</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">M</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">X</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">J</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">V</div>
+                                    <div
+                                        class="h-12 flex items-center justify-center font-bold text-black/40 dark:text-white/40">S</div>
+                                    <div class="col-start-7"></div>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">1</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">2</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">3</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">4</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">5</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">6</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">7</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">8</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">9</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">10</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">11</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">12</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">13</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">14</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">15</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">16</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">17</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">18</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">19</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">20</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">21</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">22</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">23</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">24</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">25</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">26</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">27</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">28</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">29</button>
+                                    <button
+                                        class="h-12 w-full text-black dark:text-white/80 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">30</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body></html>

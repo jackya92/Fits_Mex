@@ -1,109 +1,188 @@
 <!DOCTYPE html>
 
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fit Mex - Personaliza tu Entrenamiento</title>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex flex-col min-h-screen">
-<header class="border-b border-primary/20 dark:border-primary/30 px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16 max-w-7xl mx-auto">
-<div class="flex items-center gap-4">
-<div class="w-8 h-8 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-</div>
-<h1 class="text-xl font-bold text-gray-900 dark:text-white">Fit Mex</h1>
-</div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Inicio</a>
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Ejercicios</a>
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Planes</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span class="material-symbols-outlined text-gray-600 dark:text-gray-400">notifications</span>
-</button>
-<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrHGBr8P28LAWNT3o56nwNuCgLhu5bfuc9aWsgP68fqpSvy-9CcFGzpaSy6UP6N1kwgW1R5g4nM3t2-g3yUIZ67MYY02kwDjhjYFTFgipyG-nllCfwgrrKB8hoV3vvDu9T9aO_FzjjT5rZLQ1iGiFXaCPZS7KtivChIfQS9z9QimKea5lvfxXDf_DtKPcT2rSA4GeNia7dFOWwhNKfRUu5re7XxGGpNeGjDmRHJk6giYLGRUepHI66u4EVzNnZV5o6kotfC6S28uc");'></div>
-</div>
-</div>
-</header>
-<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="max-w-2xl mx-auto">
-<div class="text-center mb-12">
-<h2 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">Personaliza tu Entrenamiento</h2>
-<p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Ajusta tus preferencias para crear un plan a tu medida.</p>
-</div>
-<div class="space-y-10">
-<div>
-<h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Nivel de Intensidad</h3>
-<div class="grid grid-cols-3 gap-4">
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="intensity" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Principiante</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input checked="" class="absolute h-full w-full opacity-0 cursor-pointer" name="intensity" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Intermedio</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="intensity" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Atleta</span>
-</label>
-</div>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Tipo de Entrenamiento</h3>
-<div class="grid grid-cols-3 gap-4">
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="training-type" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Músculo</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="training-type" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Flexibilidad</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input checked="" class="absolute h-full w-full opacity-0 cursor-pointer" name="training-type" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Cardio</span>
-</label>
-</div>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Días de Entrenamiento a la Semana</h3>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="days" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">2 días</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input checked="" class="absolute h-full w-full opacity-0 cursor-pointer" name="days" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">3 días</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="days" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">4 días</span>
-</label>
-<label class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
-<input class="absolute h-full w-full opacity-0 cursor-pointer" name="days" type="radio"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">5 días</span>
-</label>
-</div>
-</div>
-<div class="flex justify-end pt-6">
-<button class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-background-dark bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark transition-all">
-                    Guardar Cambios
-                </button>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+<html class lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Fit Mex - Personaliza tu Entrenamiento</title>
+        <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect" />
+        <link as="style"
+            href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend:wght@400;500;700;900"
+            onload="this.rel='stylesheet'" rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script
+            id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+        <div class="flex flex-col min-h-screen">
+            <header
+                class="border-b border-primary/20 dark:border-primary/30 px-4 sm:px-6 lg:px-8">
+                <div
+                    class="flex items-center justify-between h-16 max-w-7xl mx-auto">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 text-primary">
+                            <svg fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h1
+                            class="text-xl font-bold text-gray-900 dark:text-white">Fit
+                            Mex</h1>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#">Inicio</a>
+                        <a
+                            class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#">Ejercicios</a>
+                        <a
+                            class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#">Planes</a>
+                    </nav>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+                            <span
+                                class="material-symbols-outlined text-gray-600 dark:text-gray-400">notifications</span>
+                        </button>
+                        <div class="w-10 h-10 rounded-full bg-cover bg-center"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrHGBr8P28LAWNT3o56nwNuCgLhu5bfuc9aWsgP68fqpSvy-9CcFGzpaSy6UP6N1kwgW1R5g4nM3t2-g3yUIZ67MYY02kwDjhjYFTFgipyG-nllCfwgrrKB8hoV3vvDu9T9aO_FzjjT5rZLQ1iGiFXaCPZS7KtivChIfQS9z9QimKea5lvfxXDf_DtKPcT2rSA4GeNia7dFOWwhNKfRUu5re7XxGGpNeGjDmRHJk6giYLGRUepHI66u4EVzNnZV5o6kotfC6S28uc");'></div>
+                    </div>
+                </div>
+            </header>
+            <main
+                class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2
+                            class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">Personaliza
+                            tu Entrenamiento</h2>
+                        <p
+                            class="mt-4 text-lg text-gray-600 dark:text-gray-400">Ajusta
+                            tus preferencias para crear un plan a tu medida.</p>
+                    </div>
+                    <div class="space-y-10">
+                        <div>
+                            <h3
+                                class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Nivel
+                                de Intensidad</h3>
+                            <div class="grid grid-cols-3 gap-4">
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="intensity" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Principiante</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input checked
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="intensity" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Intermedio</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="intensity" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Atleta</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Tipo
+                                de Entrenamiento</h3>
+                            <div class="grid grid-cols-3 gap-4">
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="training-type" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Músculo</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="training-type" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Flexibilidad</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input checked
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="training-type" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Cardio</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Días
+                                de Entrenamiento a la Semana</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="days" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">2
+                                        días</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input checked
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="days" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">3
+                                        días</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="days" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">4
+                                        días</span>
+                                </label>
+                                <label
+                                    class="group relative flex items-center justify-center p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer transition-all">
+                                    <input
+                                        class="absolute h-full w-full opacity-0 cursor-pointer"
+                                        name="days" type="radio" />
+                                    <span
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">5
+                                        días</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="flex justify-end pt-6">
+                            <button
+                                class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-background-dark bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark transition-all">
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body></html>
