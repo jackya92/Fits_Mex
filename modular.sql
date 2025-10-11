@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2025 a las 00:03:31
+-- Tiempo de generación: 12-10-2025 a las 01:12:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -100,9 +100,12 @@ CREATE TABLE `rel_usu_herra_ejer` (
 
 CREATE TABLE `rutina` (
   `id_rutina` int(11) NOT NULL,
-  `nivel` decimal(5,0) NOT NULL,
-  `puntuacion` decimal(5,0) NOT NULL,
-  `n_puntuacion` int(5) NOT NULL
+  `nom_rutina` varchar(100) NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `icono` varchar(30) NOT NULL,
+  `nivel` decimal(10,0) NOT NULL DEFAULT 0,
+  `puntuacion` decimal(10,0) NOT NULL DEFAULT 0,
+  `n_puntuacion` int(5) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -143,6 +146,14 @@ ALTER TABLE `herramienta`
 --
 ALTER TABLE `musculo`
   ADD PRIMARY KEY (`id_musculo`);
+
+--
+-- Indices de la tabla `rel_ejer_rutina_musculo`
+--
+ALTER TABLE `rel_ejer_rutina_musculo`
+  ADD KEY `id_rutina` (`id_rutina`),
+  ADD KEY `id_ejercicio` (`id_ejercicio`,`id_musculo`),
+  ADD KEY `id_musculo` (`id_musculo`);
 
 --
 -- Indices de la tabla `rutina`
@@ -189,6 +200,18 @@ ALTER TABLE `rutina`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `rel_ejer_rutina_musculo`
+--
+ALTER TABLE `rel_ejer_rutina_musculo`
+  ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_3` FOREIGN KEY (`id_ejercicio`) REFERENCES `ejercicio` (`id_ejercicio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_4` FOREIGN KEY (`id_musculo`) REFERENCES `musculo` (`id_musculo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_5` FOREIGN KEY (`id_rutina`) REFERENCES `rutina` (`id_rutina`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
