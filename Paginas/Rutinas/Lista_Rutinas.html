@@ -45,98 +45,107 @@
           color: #d1d5db; /* Gris claro para texto de tag */
       }
     </style>
-  </head>
-  <body
+</head>
+<body
     class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    
     <div class="flex">
-      <aside class="hidden md:flex flex-col w-64 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30 min-h-screen">
-        <div class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
-            <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
-                <img alt="Fit Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png"/>
-                <span class="text-2xl font-bold text-white">Fits - Mex</span>
-            </div>
+        <aside
+        class="hidden md:flex flex-col w-64 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30 min-h-screen">
+        <div
+          class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
+          <div
+            class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
+            <img alt="Fit Mex logo" class="h-10 w-10"
+              src="../Logo_FitsMex.png" />
+            <span class="text-2xl font-bold text-white">Fits - Mex</span>
+          </div>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2">
-            <a class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary" href="#">
-                <span class="material-symbols-outlined"> home </span>
-                <span>Inicio</span>
-            </a>
-            
-            <a class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary" href="#">
-                <span class="material-symbols-outlined"> search </span>
-                <span>Explorar</span>
-            </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary"
+            href="/Paginas/Paginas_principales/Pag_Principal.html">
+            <span class="material-symbols-outlined"> home </span>
+            <span>Inicio</span>
+          </a>
 
-            <a class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold" href="#">
-                <span class="material-symbols-outlined"> library_books </span>
-                <span>Mis rutinas</span>
-            </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary"
+            href="/Paginas/Ejercicios/Lista_Ejercicios.html">
+            <span class="material-symbols-outlined"> search </span>
+            <span>Explorar</span>
+          </a>
+
+          <a
+            class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold"
+            href="#">
+            <span class="material-symbols-outlined"> library_books </span>
+            <span>Mis rutinas</span>
+          </a>
         </nav>
+        
+        <div class="p-4 border-t border-primary/20 dark:border-primary/30">
+          <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 cursor-pointer">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0"
+              style='background-image: url("../Img_Usuario.png");'></div>
+            <span class="text-sm font-medium truncate">Mi Perfil</span>
+          </div>
+        </div>
+        
       </aside>
-      
-      <div class="flex-1 flex flex-col min-h-screen">
+
+      <div class="flex-1 flex flex-col min-h-screen md:ml-64">
         <header
           class="md:hidden border-b border-primary/20 dark:border-primary/30">
           <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
               <div class="flex items-center gap-3">
                 <img alt="Fit Mex logo" class="h-8 w-8"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaiVZoik_HzF6tsoA7FSB6mw-_iWHelIXeme_9ouSmcAKxFRUmrfBhUQByvRrrMz0H0R9yOGpV5YZvlTnNN4SUPf63VY7msYpx9shWr5M5lI7-Gxu6nc04n5OoHHCfhBoSQ-FcANh6djX5i8ejYcsk3_5Oa8EGFKRBzhY4-LmhWSV3dIPzg1HgdkyYIu7cixLCgz0WXvqk6bsRGvwHj4Zi2JE6v5Nvev6ZxTU-xRlWPqP_JVqCTdKNIToJVI7MyVPoGwJ6MVuiQdBs" />
+                  src="../Logo_FitsMex.png" />
                 <span
                   class="text-xl font-bold text-gray-900 dark:text-white">Fit
                   Mex</span>
               </div>
               <div class="flex items-center gap-4">
-                <button
-                  class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">
-                  <span class="material-symbols-outlined"> notifications </span>
-                </button>
                 <div class="w-10 h-10 rounded-full bg-cover bg-center"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWtPBzRCLU7G_MZjPRVyk7ke439LRkrpoWpyy6ez7fEiUxMt83ApMnxKO1LRWEiRIRB7CbVFLL9YDFGA3KQVqtGYHm8HCPqxlHYiw1QBSg1ShQcnXBq3yJgMIgGunM8dhg7b2bmZ7zKwF10UoHsiMCAJrByevNarEYkbWoj8ZvCv_xX7iTZeas2kz-RCc9BTxw-VU0J-ATesrHf4quLa4n7FlCXoZpA9mlKgiF5TPFvCb9AueTE5QpvfubCh7PWqDThivY6W2bfsUe");'></div>
+                  style='background-image: url("../Img_Usuario.png");'></div>
               </div>
             </div>
           </div>
         </header>
+        
         <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div class="flex justify-end mb-8 md:hidden">
-            <div class="flex items-center gap-4">
-              <button
-                class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">
-                <span class="material-symbols-outlined"> notifications </span>
-              </button>
-              <div class="w-10 h-10 rounded-full bg-cover bg-center"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWtPBzRCLU7G_MZjPRVyk7ke439LRkrpoWpyy6ez7fEiUxMt83ApMnxKO1LRWEiRIRB7CbVFLL9YDFGA3KQVqtGYHm8HCPqxlHYiw1QBSg1ShQcnXBq3yJgMIgGunM8dhg7b2bmZ7zKwF10UoHsiMCAJrByevNarEYkbWoj8ZvCv_xX7iTZeas2kz-RCc9BTxw-VU0J-ATesrHf4quLa4n7FlCXoZpA9mlKgiF5TPFvCb9AueTE5QpvfubCh7PWqDThivY6W2bfsUe");'></div>
-            </div>
-          </div>
+          
           <div class="max-w-4xl mx-auto">
             <div
               class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Mis
                 Rutinas</h2>
-              <button
-                class="flex items-center justify-center gap-2 bg-primary text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-opacity-90 transition-colors">
-                <span class="material-symbols-outlined"> add </span>
-                <span>Crear Nueva Rutina</span>
-              </button>
+              
+              <a href="Crear_Rutina_1.html">
+                <button
+                  class="flex items-center justify-center gap-2 bg-primary text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-opacity-90 transition-colors">
+                  <span class="material-symbols-outlined"> add </span>
+                  <span>Crear Nueva Rutina</span>
+                </button>
+              </a>
             </div>
-            
+
             <div id="rutinas-list" class="space-y-4">
-                <p class="text-center text-gray-500 mt-8">Cargando rutinas...</p>
+              <p class="text-center text-gray-500 mt-8">Cargando rutinas...</p>
             </div>
-            
+
           </div>
         </main>
 
         <nav
-          class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2">
-          
-          <a
+          class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2 items-center"> <a
             class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
             href="#">
             <span class="material-symbols-outlined"> home </span>
             <span class="text-xs font-medium">Inicio</span>
           </a>
-          
+
           <a
             class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
             href="#">
@@ -150,10 +159,19 @@
             <span class="material-symbols-outlined"> library_books </span>
             <span class="text-xs font-medium">Mis rutinas</span>
           </a>
+          
+          <a
+            class="flex flex-col items-center justify-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            href="#">
+             <div class="w-8 h-8 rounded-full bg-cover bg-center"
+              style='background-image: url("../Img_Usuario.png");'></div>
+            <span class="text-xs font-medium">Perfil</span>
+          </a>
+          
         </nav>
       </div>
     </div>
-    
+
     <script>
         const rutinasList = document.getElementById('rutinas-list');
 
@@ -168,14 +186,12 @@
 
         // Función para crear los iconos de herramientas
         function createToolIcons(herramientasString) {
-            // Nota: El PHP devuelve el nom_herramiena. Si este nombre NO es el nombre del icono de Material, 
-            // necesitarás un mapeo (ej: "Mancuerna" -> "dumbbell").
             if (!herramientasString || herramientasString.trim() === '') return '';
             const tools = herramientasString.split(',');
             return tools.map(tool => {
-                // Limpiamos y usamos el nombre como título/icono.
                 const toolName = tool.trim();
-                return `<span class="material-symbols-outlined tool-icon" title="${toolName}"> ${toolName.toLowerCase().replace(/ /g, '_')} </span>`;
+                const iconName = toolName.toLowerCase().replace(/ /g, '_'); 
+                return `<span class="material-symbols-outlined tool-icon" title="${toolName}"> ${iconName} </span>`;
             }).join('');
         }
 
@@ -184,8 +200,8 @@
             rutinasList.innerHTML = '<p class="text-center text-gray-500 mt-8">Cargando rutinas...</p>';
 
             try {
-                // RUTA A TU ARCHIVO PHP (Ajustar si es necesario)
-                const response = await fetch('./get_rutinas.php');
+                // RUTA A TU ARCHIVO PHP
+                const response = await fetch('php/Mostrar_Rutinas.php');
                 
                 if (!response.ok) {
                     throw new Error(`Error HTTP: ${response.status} - No se pudo conectar al servidor.`);
@@ -193,7 +209,6 @@
 
                 const rutinas = await response.json();
 
-                // Manejo de errores de PHP devueltos como JSON
                 if (rutinas.error) {
                     throw new Error(rutinas.error);
                 }
@@ -203,20 +218,26 @@
                     return;
                 }
                 
-                // Limpiamos el mensaje de "Cargando..."
                 rutinasList.innerHTML = '';
 
                 rutinas.forEach(rutina => {
-                    // 1. Crear las sub-componentes
                     const muscleTagsHtml = createMuscleTags(rutina.musculos);
                     const toolIconsHtml = createToolIcons(rutina.herramientas);
                     
-                    // 2. Construir el HTML completo de la rutina
+                    // Aquí se usa directamente la clase/color de la BD (rutina.color_fondo)
+                    // Si la BD devuelve un HEX (ej: #607AFB) se renderizará con style.
+                    // Si la BD devuelve una clase (ej: bg-primary) se renderizará con class.
+                    const colorAttribute = rutina.color_fondo && rutina.color_fondo.startsWith('#') 
+                        ? `style="background-color: ${rutina.color_fondo}"` 
+                        : `class="${rutina.color_fondo || 'bg-primary'}"`;
+                    
+                    // Construir el HTML completo de la rutina
                     const routineHtml = `
                         <div class="bg-white/5 dark:bg-black/10 p-4 rounded-xl shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-lg hover:bg-white/10 dark:hover:bg-black/20">
                             <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 rounded-lg ${rutina.color_fondo || 'bg-primary'} flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-white text-3xl"> ${rutina.icono_nombre || 'help'} </span>
+                                <div class="w-16 h-16 rounded-lg flex items-center justify-center text-white text-3xl ${rutina.color_fondo && !rutina.color_fondo.startsWith('#') ? rutina.color_fondo : 'bg-primary'}" 
+                                    ${rutina.color_fondo && rutina.color_fondo.startsWith('#') ? 'style="background-color: ' + rutina.color_fondo + '"' : ''}>
+                                    <span class="material-symbols-outlined"> ${rutina.icono_nombre || 'help'} </span>
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-lg text-gray-900 dark:text-white">${rutina.nombre}</h3>
@@ -239,7 +260,6 @@
                         </div>
                     `;
                     
-                    // 3. Insertar el HTML en el contenedor
                     rutinasList.innerHTML += routineHtml;
                 });
 
@@ -252,5 +272,5 @@
         // Llama a la función al cargar la página
         document.addEventListener('DOMContentLoaded', loadRutinas);
     </script>
-  </body>
+</body>
 </html>
