@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Crear Rutina</title>
+        <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#607AFB",
+              "background-light": "#f5f6f8",
+              "background-dark": "#0f1323",
+              // Colores adicionales para la portada
+              'sport-blue': '#007BFF', // Azul vibrante
+              'sport-red': '#DC3545',   // Rojo energía
+              'sport-green': '#28A745', // Verde vitalidad
+              'sport-yellow': '#FFC107',// Amarillo foco
+              'sport-purple': '#6F42C1',// Púrpura fuerza
+              'sport-teal': '#20C997',  // Teal moderno
+              'sport-gray': '#6C757D',  // Gris neutro
+              'primary': '#607AFB'      // Primary ya definido
+            },
+            fontFamily: {
+              display: "Lexend"
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px"
+            }
+          }
+        }
+      };
+    </script>
+        <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+      }
+      /* Estilo para el colorpicker: circulos de color */
+      .color-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 2px solid transparent;
+      }
+      .color-circle:hover {
+        transform: scale(1.1);
+      }
+      .color-circle.selected {
+        border-color: #3b82f6; /* Ring azul de Tailwind (blue-500) */
+        box-shadow: 0 0 0 3px rgba(96, 122, 251, 0.5); /* Sombra primaria */
+      }
+
+      /* Estilo para los selectores de iconos */
+      .icon-selector {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+        border: 2px solid transparent;
+        color: #9ca3af; /* Gris por defecto */
+      }
+      .icon-selector:hover {
+        background-color: #e5e7eb; /* Gris claro en hover */
+        color: #4b5563; /* Gris oscuro en hover */
+      }
+      .dark .icon-selector:hover {
+        background-color: #374151;
+        color: #d1d5db;
+      }
+      .icon-selector.selected {
+        border-color: #607AFB; /* Primary */
+        background-color: #e0e7ff; /* Primary/10 */
+        color: #607AFB; /* Primary */
+        transform: scale(1.05);
+      }
+      .dark .icon-selector.selected {
+        background-color: #1e293b; /* Más oscuro en dark mode */
+      }
+    </style>
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+        <div class="flex">
+            <aside class="hidden md:fixed md:flex flex-col w-64 h-screen top-0 left-0 z-40 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30">
+
+                <div
+                    class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
+                    <div
+                        class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
+                        <img alt="Fit Mex logo" class="h-10 w-10"
+                            src="../Logo_FitsMex.png" />
+                        <span class="text-2xl font-bold text-white">Fits -
+                            Mex</span>
+                    </div>
+                </div>
+                <nav class="flex-1 px-4 py-6 space-y-2">
+                    <a
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary"
+                        href="/Paginas/Paginas_principales/Pag_Principal.html">
+                        <span class="material-symbols-outlined"> home </span>
+                        <span>Inicio</span>
+                    </a>
+
+                    <a
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary"
+                        href="/Paginas/Ejercicios/Lista_Ejercicios.html">
+                        <span class="material-symbols-outlined"> search </span>
+                        <span>Explorar</span>
+                    </a>
+
+                    <a
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold"
+                        href="Lista_Rutinas.html">
+                        <span class="material-symbols-outlined"> library_books
+                        </span>
+                        <span>Mis rutinas</span>
+                    </a>
+                </nav>
+
+                <div class="p-4 border-t border-primary/20 dark:border-primary/30">
+          <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 cursor-pointer">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0"
+              style='background-image: url("../Img_Usuario.png");'></div>
+            <span class="text-sm font-medium truncate">Mi Perfil</span>
+          </div>
+        </div>
+            </aside>
+
+            <div class="flex-1 flex flex-col min-h-screen md:ml-64">
+                <header
+                    class="md:hidden border-b border-primary/20 dark:border-primary/30">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-between h-16">
+                            <div class="flex items-center gap-3">
+                                <img alt="Fit Mex logo" class="h-8 w-8"
+                                    src="../Logo_FitsMex.png" />
+                                <span
+                                    class="text-xl font-bold text-gray-900 dark:text-white">Fit
+                                    Mex</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <main
+                    class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    
+
+                    <div class="max-w-4xl mx-auto">
+                        <div
+                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2
+                                class="text-3xl font-bold text-gray-900 dark:text-white">Crear
+                                una nueva rutina</h2>
+                        </div>
+
+                        <form method="POST"
+                            action="procesar_creacion_rutina.php">
+                            <div
+                                class="bg-white dark:bg-black/10 p-6 sm:p-8 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30 space-y-8">
+
+                                <div class="space-y-6">
+                                    <div
+                                        class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                                        <h3
+                                            class="text-xl font-semibold text-gray-900 dark:text-white">Información
+                                            Básica</h3>
+                                        <p
+                                            class="text-gray-500 dark:text-gray-400 mt-1 text-sm">Define
+                                            el
+                                            nombre de tu rutina y personaliza su
+                                            aspecto.</p>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 gap-6">
+                                        <div class="space-y-2">
+                                            <label
+                                                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                                for="routine-name">Nombre de la
+                                                rutina</label>
+                                            <input
+                                                class="w-full bg-background-light dark:bg-black/20 border-primary/30 dark:border-primary/40 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-primary focus:border-primary block rounded-lg text-base p-3 transition-shadow shadow-sm focus:shadow-md"
+                                                id="routine-name"
+                                                name="nombre_rutina"
+                                                placeholder="Ej: Full Body Blast"
+                                                type="text"
+                                                maxlength="100"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6">
+                                    <div
+                                        class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                                        <h3
+                                            class="text-xl font-semibold text-gray-900 dark:text-white">Diseño
+                                            de Portada</h3>
+                                        <p
+                                            class="text-gray-500 dark:text-gray-400 mt-1 text-sm">Selecciona
+                                            un color y un ícono para identificar
+                                            tu rutina.</p>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <label
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Color de la portada
+                                        </label>
+                                        <div class="flex flex-wrap gap-4">
+                                            <input type="hidden"
+                                                name="color_portada"
+                                                id="color-portada-input"
+                                                value="#607AFB" />
+
+                                            <div
+                                                class="color-circle bg-primary selected"
+                                                data-color="#607AFB"
+                                                title="Primary Blue"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #007BFF;"
+                                                data-color="#007BFF"
+                                                title="Sport Blue"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #DC3545;"
+                                                data-color="#DC3545"
+                                                title="Sport Red"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #28A745;"
+                                                data-color="#28A745"
+                                                title="Sport Green"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #FFC107;"
+                                                data-color="#FFC107"
+                                                title="Sport Yellow"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #6F42C1;"
+                                                data-color="#6F42C1"
+                                                title="Sport Purple"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #20C997;"
+                                                data-color="#20C997"
+                                                title="Sport Teal"></div>
+                                            <div class="color-circle"
+                                                style="background-color: #6C757D;"
+                                                data-color="#6C757D"
+                                                title="Sport Gray"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <label
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Ícono de la rutina
+                                        </label>
+                                        <div class="flex flex-wrap gap-3">
+                                            <input type="hidden"
+                                                name="icono_rutina"
+                                                id="icono-rutina-input"
+                                                value="fitness_center" />
+
+                                            <div class="icon-selector selected"
+                                                data-icon="fitness_center"
+                                                title="Fitness Center">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">fitness_center</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="weight"
+                                                title="Weight">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">weight</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="directions_run"
+                                                title="Run">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">directions_run</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="local_fire_department"
+                                                title="Fire">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">local_fire_department</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="self_improvement"
+                                                title="Yoga">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">self_improvement</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="sports_martial_arts"
+                                                title="Fighter">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">sports_martial_arts</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="sports_baseball"
+                                                title="Sports">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">sports_baseball</span>
+                                            </div>
+                                            <div class="icon-selector"
+                                                data-icon="trophy"
+                                                title="Trophy">
+                                                <span
+                                                    class="material-symbols-outlined text-2xl">trophy</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
+                                    <button type="submit"
+                                        class="w-full md:w-auto bg-primary text-white font-bold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark focus:ring-primary">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+
+                <nav
+                    class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2">
+                    <a
+                        class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                        href="#">
+                        <span class="material-symbols-outlined"> home </span>
+                        <span class="text-xs font-medium">Inicio</span>
+                    </a>
+
+                    <a
+                        class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                        href="#">
+                        <span class="material-symbols-outlined"> search </span>
+                        <span class="text-xs font-medium">Explorar</span>
+                    </a>
+
+                    <a
+                        class="flex flex-col items-center gap-1 text-primary dark:text-primary font-semibold"
+                        href="#">
+                        <span class="material-symbols-outlined"> library_books
+                        </span>
+                        <span class="text-xs font-medium">Mis rutinas</span>
+                    </a>
+
+                     <a
+            class="flex flex-col items-center justify-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            href="#">
+             <div class="w-8 h-8 rounded-full bg-cover bg-center"
+              style='background-image: url("../Img_Usuario.png");'></div>
+            <span class="text-xs font-medium">Perfil</span>
+          </a>
+                </nav>
+            </div>
+        </div>
+
+        <script>
+      // 1. Script para manejar la selección de Color
+      document.querySelectorAll('.color-circle').forEach(circle => {
+        circle.addEventListener('click', function() {
+          // Deseleccionar todos
+          document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+          
+          // Seleccionar el actual y actualizar el input oculto
+          this.classList.add('selected');
+          document.getElementById('color-portada-input').value = this.dataset.color;
+        });
+      });
+
+      // 2. Script para manejar la selección de Icono
+      document.querySelectorAll('.icon-selector').forEach(selector => {
+        selector.addEventListener('click', function() {
+          // Deseleccionar todos
+          document.querySelectorAll('.icon-selector').forEach(s => s.classList.remove('selected'));
+          
+          // Seleccionar el actual y actualizar el input oculto
+          this.classList.add('selected');
+          document.getElementById('icono-rutina-input').value = this.dataset.icon;
+        });
+      });
+    </script>
+    </body>
+</html>
