@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fits-Mex | Ver Rutina</title>
+
+        <!-- Fuentes y estilos -->
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+        <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#607AFB",
+              "background-light": "#f5f6f8",
+              "background-dark": "#0f1323",
+            },
+            fontFamily: {
+              display: "Lexend",
+            },
+            borderRadius: {
+              lg: "0.5rem",
+              xl: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+
+        <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+    </head>
+
+
+
+    <body
+        class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+        <div class="flex">
+            <!-- SIDEBAR -->
+            <aside
+                class="hidden md:fixed md:flex flex-col w-64 h-screen top-0 left-0 z-40 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30">
+                <div
+                    class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
+                    <div
+                        class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
+                        <img
+                            src="../Logo_FitsMex.png"
+                            alt="Fit Mex logo"
+                            class="h-10 w-10" />
+                        <span
+                            class="text-2xl font-bold text-white">Fits-Mex</span>
+                    </div>
+                </div>
+
+                <nav class="flex-1 px-4 py-6 space-y-2">
+                    <a
+                        href="/Paginas/Paginas_principales/Pag_Principal.html"
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
+                        <span class="material-symbols-outlined">home</span>
+                        <span>Inicio</span>
+                    </a>
+
+                    <a
+                        href="/Paginas/Ejercicios/Lista_Ejercicios.html"
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
+                        <span class="material-symbols-outlined">search</span>
+                        <span>Explorar</span>
+                    </a>
+
+                    <a
+                        href="Lista_Rutinas.html"
+                        class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold">
+                        <span
+                            class="material-symbols-outlined">library_books</span>
+                        <span>Mis rutinas</span>
+                    </a>
+                </nav>
+
+                <div
+                    class="p-4 border-t border-primary/20 dark:border-primary/30">
+                    <div
+                        class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0"
+                            style="background-image: url('../Img_Usuario.png');"></div>
+                        <span class="text-sm font-medium truncate">Mi
+                            Perfil</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <div class="flex-1 flex flex-col min-h-screen md:ml-64">
+                <!-- HEADER MOVIL -->
+                <header
+                    class="md:hidden border-b border-primary/20 dark:border-primary/30">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-between h-16">
+                            <div class="flex items-center gap-3">
+                                <img
+                                    src="../Logo_FitsMex.png"
+                                    alt="Fit Mex logo"
+                                    class="h-8 w-8" />
+                                <span
+                                    class="text-xl font-bold text-gray-900 dark:text-white">Fits-Mex</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- MAIN -->
+                <main
+                    class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-4xl">
+                    <!-- Encabezado de rutina -->
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
+                        <div>
+                            <h2
+                                class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                                Rutina de Cuerpo Completo
+                            </h2>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span
+                                    class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Espalda</span>
+                                <span
+                                    class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Pecho</span>
+                                <span
+                                    class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Piernas</span>
+                                <span
+                                    class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Abdomen</span>
+                                <span
+                                    class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Brazos</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <a title="Agregar ejercicio o descanso"
+                                href="#"
+                                class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
+                                <span
+                                    class="material-symbols-outlined text-2xl">add</span>
+                            </a>
+
+                            <a title="Comenzar a ejercitarse"
+                                href="#"
+                                class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
+                                <span
+                                    class="material-symbols-outlined text-2xl">play_arrow</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Tabla de ejercicios -->
+                    <div
+                        class="bg-white dark:bg-black/10 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead class="bg-primary/10 dark:bg-primary/20">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider">
+                                            Nombre de ejercicio
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider text-center">
+                                            Sets
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 font-medium text-gray-700 dark:text-gray-200 uppercase tracking-wider text-center">
+                                            Segundos
+                                        </th>
+                                        <th class="px-6 py-3" scope="col">
+                                            <span
+                                                class="sr-only">Acciones</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="divide-y divide-primary/10 dark:divide-primary/5">
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                            Sentadillas
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center text-gray-600 dark:text-gray-400">
+                                            3
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center text-gray-600 dark:text-gray-400">
+                                            60
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button
+                                                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
+                                                <span
+                                                    class="material-symbols-outlined text-base">more_horiz</span>
+                                            </button>
+                                            <button
+                                                class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
+                                                <span
+                                                    class="material-symbols-outlined text-base">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 font-medium dark:text-white">
+                                            Flexiones
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">3</td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">45</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button
+                                                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary p-1 rounded-full hover:bg-primary/10">
+                                                <span
+                                                    class="material-symbols-outlined text-base">more_horiz</span>
+                                            </button>
+                                            <button
+                                                class="text-red-500/70 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 ml-2">
+                                                <span
+                                                    class="material-symbols-outlined text-base">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 font-medium dark:text-white">
+                                            Plancha
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">3</td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">60</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button
+                                                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary p-1 rounded-full hover:bg-primary/10">
+                                                <span
+                                                    class="material-symbols-outlined text-base">more_horiz</span>
+                                            </button>
+                                            <button
+                                                class="text-red-500/70 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 ml-2">
+                                                <span
+                                                    class="material-symbols-outlined text-base">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 font-medium dark:text-white">
+                                            Dominadas
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">3</td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">30</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button
+                                                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary p-1 rounded-full hover:bg-primary/10">
+                                                <span
+                                                    class="material-symbols-outlined text-base">more_horiz</span>
+                                            </button>
+                                            <button
+                                                class="text-red-500/70 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 ml-2">
+                                                <span
+                                                    class="material-symbols-outlined text-base">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 font-medium dark:text-white">
+                                            Burpees
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">3</td>
+                                        <td
+                                            class="px-6 py-4 text-center dark:text-gray-400">45</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button
+                                                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary p-1 rounded-full hover:bg-primary/10">
+                                                <span
+                                                    class="material-symbols-outlined text-base">more_horiz</span>
+                                            </button>
+                                            <button
+                                                class="text-red-500/70 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 ml-2">
+                                                <span
+                                                    class="material-symbols-outlined text-base">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- NAV INFERIOR MOVIL -->
+                <nav
+                    class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2">
+                    <a
+                        href="#"
+                        class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
+                        <span class="material-symbols-outlined">home</span>
+                        <span class="text-xs font-medium">Inicio</span>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
+                        <span class="material-symbols-outlined">search</span>
+                        <span class="text-xs font-medium">Explorar</span>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="flex flex-col items-center gap-1 text-primary dark:text-primary font-semibold">
+                        <span
+                            class="material-symbols-outlined">library_books</span>
+                        <span class="text-xs font-medium">Mis rutinas</span>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
+                        <div
+                            class="w-8 h-8 rounded-full bg-cover bg-center"
+                            style="background-image: url('../Img_Usuario.png');"></div>
+                        <span class="text-xs font-medium">Perfil</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </body>
+</html>
