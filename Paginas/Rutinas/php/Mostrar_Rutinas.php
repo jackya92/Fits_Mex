@@ -23,27 +23,29 @@ try {
 
     // Consulta SQL avanzada que obtiene nombre, color, icono, músculos y herramientas
     $sql = '
-        SELECT 
-            r.nom_rutina AS nombre, 
-            r.color AS color_fondo, 
-            r.icono AS icono_nombre,
-            GROUP_CONCAT(DISTINCT m.nom_musculo SEPARATOR \',\') AS musculos,
-            GROUP_CONCAT(DISTINCT h.nom_herramiena SEPARATOR \',\') AS herramientas 
-        FROM 
-            rutina r
-        LEFT JOIN
-            rel_ejer_rutina_musculo AS rem ON r.id_rutina = rem.id_rutina
-        LEFT JOIN
-            musculo AS m ON rem.id_musculo = m.id_musculo
-        LEFT JOIN
-            ejercicio AS e ON rem.id_ejercicio = e.id_ejercicio 
-        LEFT JOIN 
-            rel_usu_herra_ejer AS rue ON e.id_ejercicio = rue.fk_ejercicio
-        LEFT JOIN
-            herramienta AS h ON rue.fk_herramienta = h.id_herramienta
-        GROUP BY
-            r.id_rutina, r.nom_rutina, r.color, r.icono
-    ';
+    SELECT 
+        r.id_rutina AS id,
+        r.nom_rutina AS nombre, 
+        r.color AS color_fondo, 
+        r.icono AS icono_nombre,
+        GROUP_CONCAT(DISTINCT m.nom_musculo SEPARATOR \',\') AS musculos,
+        GROUP_CONCAT(DISTINCT h.nom_herramiena SEPARATOR \',\') AS herramientas 
+    FROM 
+        rutina r
+    LEFT JOIN
+        rel_ejer_rutina_musculo AS rem ON r.id_rutina = rem.id_rutina
+    LEFT JOIN
+        musculo AS m ON rem.id_musculo = m.id_musculo
+    LEFT JOIN
+        ejercicio AS e ON rem.id_ejercicio = e.id_ejercicio 
+    LEFT JOIN 
+        rel_usu_herra_ejer AS rue ON e.id_ejercicio = rue.fk_ejercicio
+    LEFT JOIN
+        herramienta AS h ON rue.fk_herramienta = h.id_herramienta
+    GROUP BY
+        r.id_rutina, r.nom_rutina, r.color, r.icono
+';
+
 
     $stmt = $pdo->query($sql);
     $rutinas = $stmt->fetchAll();

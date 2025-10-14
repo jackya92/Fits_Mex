@@ -1,5 +1,4 @@
 <?php
-// procesar_creacion_rutina.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -9,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // ** ATENCIÓN: Reemplaza estos valores con tus credenciales reales **
     $host = 'localhost';          // O la IP de tu servidor de base de datos
-    $db   = 'nombre_de_tu_base_de_datos'; // Nombre de tu DB
-    $user = 'usuario_db';         // Tu usuario de MySQL
-    $pass = 'password_db';        // Tu contraseña de MySQL
+    $db   = 'modular'; // Nombre de tu DB
+    $user = 'root';         // Tu usuario de MySQL
+    $pass = '';        // Tu contraseña de MySQL
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ===================================================================
     
     // El SQL utiliza marcadores de posición (?) para evitar inyección SQL (Prepared Statements)
-    $sql = "INSERT INTO rutinas (nombre_rutina, color_portada, icono_rutina) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO rutina (nom_rutina, color, icono) VALUES (?, ?, ?)";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -66,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($idRutina) {
             // Redirige pasando el ID de la rutina como parámetro GET
-            header("../../Ejercicios/Lista_Ejercicios.html");
+            header("Location: ../../Ejercicios/Lista_Ejercicios.html");
             exit();
         } else {
             // Esto solo ocurre si la inserción en la DB fue exitosa pero no se generó un ID
