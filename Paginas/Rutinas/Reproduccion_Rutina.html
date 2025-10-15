@@ -1,154 +1,232 @@
 <!DOCTYPE html>
-
-<html class lang="en"><head>
+<html lang="es">
+<head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Workout Tracker</title>
-    <script
-      src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Tracker | Fits - Mex</title>
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
-      rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet" />
-    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-  </head>
-  <body
-    class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
-    <div class="flex flex-col min-h-screen">
-      <header
-        class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 dark:border-primary/30 px-10 py-3">
-        <div class="flex items-center gap-4">
-          <div class="size-6 text-primary">
-            <svg fill="none" viewbox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
-                fill="currentColor"></path>
-            </svg>
-          </div>
-          <h2 class="text-lg font-bold">FitTrack</h2>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        // Configuración de Tailwind del primer código, unificada y mejorada para consistencia
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#607AFB",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1323"
+                    },
+                    fontFamily: {
+                        display: "Lexend"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+
+    <div class="flex">
+        <aside class="hidden md:flex flex-col w-64 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30 min-h-screen fixed top-0 left-0 bottom-0 z-40">
+            <div class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
+                <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
+                    <img alt="Fit Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png" />
+                    <span class="text-2xl font-bold text-white">Fits - Mex</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="/Paginas/Paginas_principales/Pag_Principal.html"
+                    class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary">
+                    <span class="material-symbols-outlined">home</span>
+                    <span>Inicio</span>
+                </a>
+
+                <a href="/Paginas/Ejercicios/Lista_Ejercicios.html"
+                    class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary">
+                    <span class="material-symbols-outlined">search</span>
+                    <span>Explorar</span>
+                </a>
+
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold">
+                    <span class="material-symbols-outlined">library_books</span>
+                    <span>Mis rutinas</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-primary/20 dark:border-primary/30">
+                <a href="/Paginas/Perfil/Mi_Perfil.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0"
+                        style='background-image: url("../Img_Usuario.png");'></div>
+                    <span class="text-sm font-medium truncate">Mi Perfil</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col min-h-screen md:ml-64">
+            
+            <header class="md:hidden border-b border-primary/20 dark:border-primary/30">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl font-bold text-gray-900 dark:text-white">Fits Mex</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main
+                class="flex-1 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+                <div
+                    class="w-full max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div
+                        class="lg:col-span-2 bg-white/5 dark:bg-black/10 p-6 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
+                        <div class="text-center mb-6">
+                            <p
+                                class="text-sm uppercase tracking-widest text-primary font-semibold">Ejercicio
+                                Actual</p>
+                            <h1 class="text-5xl font-bold mt-2 text-gray-900 dark:text-white">Push-ups</h1>
+                        </div>
+                        <div class="aspect-[16/9] w-full rounded-xl bg-cover bg-center mb-6"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUBt83Qm3zVf9ybqz_GcHaXGR2EH_saz7t9X0Weq0rDWxCStWnFJUqScYzip7hgWvkyy1RGoHj45pFPc_tDpKk-yfpSVnsWjeEGeV7hREPUcnkJwvCAzrbdBMm26VoRYBcBwwqthzdIMJ2VkPnZ0SGITdQAaL_XyMr5Thjmla3KyJvttX_BWg_fW8KghesdhV0NLU0o2qqAbMdBS1iUTy124cifyMmZV98a1bHceRRtKYk83nefoYzWIfbZfFvL7PTka5mF4k2ceWZ");'></div>
+                        <div class="flex items-center justify-center gap-8 mb-4">
+                            <div class="text-center">
+                                <p class="text-5xl font-bold text-primary">00</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Minutos</p>
+                            </div>
+                            <p class="text-5xl font-bold text-primary">:</p>
+                            <div class="text-center">
+                                <p class="text-5xl font-bold text-primary">30</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Segundos</p>
+                            </div>
+                        </div>
+                        <p
+                            class="text-center text-lg font-medium text-gray-700 dark:text-gray-300 mb-6">Tiempo
+                            de Descanso</p>
+                        <div class="flex justify-center gap-4">
+                            <button
+                                class="flex-1 py-3 px-6 bg-primary text-white font-bold rounded-lg shadow-md hover:bg-opacity-90 transition-colors">
+                                Siguiente Ejercicio
+                            </button>
+                            <button
+                                class="flex-1 py-3 px-6 bg-primary/20 dark:bg-primary/30 text-primary font-bold rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+                                Pausar
+                            </button>
+                            <button
+                                class="flex-1 py-3 px-6 bg-red-500/20 text-red-500 font-bold rounded-lg hover:bg-red-500/30 transition-colors">
+                                Terminar Rutina
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-6">
+                        <div
+                            class="bg-white/5 dark:bg-black/10 p-6 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
+                            <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white">Progreso de la Rutina</h3>
+                            <div class="w-full bg-primary/20 rounded-full h-2.5 mb-2">
+                                <div class="bg-primary h-2.5 rounded-full"
+                                    style="width: 30%"></div>
+                            </div>
+                            <p class="text-right text-sm font-medium text-primary">30%
+                                Completado</p>
+                        </div>
+                        <div
+                            class="bg-white/5 dark:bg-black/10 p-6 rounded-xl shadow-lg flex-1 border border-primary/20 dark:border-primary/30">
+                            <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white">Próximos</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
+                                        <span
+                                            class="material-symbols-outlined text-3xl">fitness_center</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 dark:text-white">Sentadillas</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">3
+                                            series</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
+                                        <span
+                                            class="material-symbols-outlined text-3xl">fitness_center</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 dark:text-white">Desplantes</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">3
+                                            series</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
+                                        <span
+                                            class="material-symbols-outlined text-3xl">timer</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 dark:text-white">Plancha</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">60
+                                            segundos</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2 z-50">
+
+                <a class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                    href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="text-xs font-medium">Dashboard</span>
+                </a>
+
+                <a class="flex flex-col items-center gap-1 text-primary dark:text-primary font-semibold"
+                    href="#">
+                    <span class="material-symbols-outlined">directions_run</span>
+                    <span class="text-xs font-medium">Rutinas</span>
+                </a>
+
+                <a class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                    href="#">
+                    <span class="material-symbols-outlined">fitness_center</span>
+                    <span class="text-xs font-medium">Ejercicios</span>
+                </a>
+                
+                <a class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                    href="/Paginas/Perfil/Mi_Perfil.html">
+                        <span class="material-symbols-outlined">account_circle</span>
+                        <span class="text-xs font-medium">Perfil</span>
+                    
+                </a>
+            </nav>
         </div>
-        <div class="flex flex-1 justify-end items-center gap-6">
-          <nav class="flex items-center gap-6">
-            <a class="text-sm font-medium hover:text-primary transition-colors"
-              href="#">Dashboard</a>
-            <a class="text-sm font-medium hover:text-primary transition-colors"
-              href="#">Workouts</a>
-            <a class="text-sm font-medium hover:text-primary transition-colors"
-              href="#">Exercises</a>
-            <a class="text-sm font-medium hover:text-primary transition-colors"
-              href="#">Progress</a>
-          </nav>
-          <button
-            class="p-2 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-            <span class="material-symbols-outlined">notifications</span>
-          </button>
-          <div class="size-10 rounded-full bg-cover bg-center"
-            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYN92GBSxAjsVNavQmOe0lIFY3tX8yANQTVqyBNqGeEujzVmFTxa34n-3Ftei6oVRC1lLICWNzFcsBIrUZfNroKhoNgzWWki40s7oaVgtsET0Aq-AIoXLn2aO3XM5DhP86YY30Cy4CwgDoqGz_gArrH5aOBF-8YqoQD73S0s6UwkL7URWsFpBujTXPwrIYCDPso3HsnVXEvNT526WwZZEfiK7hbAOh8yOG7RCRlROXBxg-dxb2M4ldHms7Ufkx2O4GwDBQtzRtU-9X");'></div>
-        </div>
-      </header>
-      <main
-        class="flex-1 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
-        <div
-          class="w-full max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div
-            class="lg:col-span-2 bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
-            <div class="text-center mb-6">
-              <p
-                class="text-sm uppercase tracking-widest text-primary font-semibold">Current
-                Exercise</p>
-              <h1 class="text-5xl font-bold mt-2">Push-ups</h1>
-            </div>
-            <div class="aspect-[16/9] w-full rounded-lg bg-cover bg-center mb-6"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUBt83Qm3zVf9ybqz_GcHaXGR2EH_saz7t9X0Weq0rDWxCStWnFJUqScYzip7hgWvkyy1RGoHj45pFPc_tDpKk-yfpSVnsWjeEGeV7hREPUcnkJwvCAzrbdBMm26VoRYBcBwwqthzdIMJ2VkPnZ0SGITdQAaL_XyMr5Thjmla3KyJvttX_BWg_fW8KghesdhV0NLU0o2qqAbMdBS1iUTy124cifyMmZV98a1bHceRRtKYk83nefoYzWIfbZfFvL7PTka5mF4k2ceWZ");'></div>
-            <div class="flex items-center justify-center gap-8 mb-4">
-              <div class="text-center">
-                <p class="text-5xl font-bold text-primary">00</p>
-                <p class="text-sm text-black/60 dark:text-white/60">Minutes</p>
-              </div>
-              <p class="text-5xl font-bold text-primary">:</p>
-              <div class="text-center">
-                <p class="text-5xl font-bold text-primary">30</p>
-                <p class="text-sm text-black/60 dark:text-white/60">Seconds</p>
-              </div>
-            </div>
-            <p
-              class="text-center text-lg font-medium text-black/80 dark:text-white/80 mb-6">Rest
-              Timer</p>
-            <div class="flex justify-center gap-4">
-              <button
-                class="flex-1 py-3 px-6 bg-primary text-background-dark font-bold rounded-lg hover:opacity-90 transition-opacity">
-                Next Exercise
-              </button>
-              <button
-                class="flex-1 py-3 px-6 bg-primary/20 dark:bg-primary/30 text-black dark:text-white font-bold rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
-                Pause
-              </button>
-              <button
-                class="flex-1 py-3 px-6 bg-red-500/20 text-red-500 font-bold rounded-lg hover:bg-red-500/30 transition-colors">
-                End Workout
-              </button>
-            </div>
-          </div>
-          <div class="flex flex-col gap-6">
-            <div
-              class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
-              <h3 class="text-lg font-bold mb-4">Workout Progress</h3>
-              <div class="w-full bg-primary/20 rounded-full h-2.5 mb-2">
-                <div class="bg-primary h-2.5 rounded-full"
-                  style="width: 30%"></div>
-              </div>
-              <p class="text-right text-sm font-medium text-primary">30%
-                Complete</p>
-            </div>
-            <div
-              class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl shadow-lg flex-1 border border-primary/20 dark:border-primary/30">
-              <h3 class="text-lg font-bold mb-4">Upcoming</h3>
-              <ul class="space-y-4">
-                <li class="flex items-center gap-4">
-                  <div
-                    class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
-                    <span
-                      class="material-symbols-outlined text-3xl">fitness_center</span>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Squats</p>
-                    <p class="text-sm text-black/60 dark:text-white/60">3
-                      sets</p>
-                  </div>
-                </li>
-                <li class="flex items-center gap-4">
-                  <div
-                    class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
-                    <span
-                      class="material-symbols-outlined text-3xl">fitness_center</span>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Lunges</p>
-                    <p class="text-sm text-black/60 dark:text-white/60">3
-                      sets</p>
-                  </div>
-                </li>
-                <li class="flex items-center gap-4">
-                  <div
-                    class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
-                    <span
-                      class="material-symbols-outlined text-3xl">timer</span>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Plank</p>
-                    <p class="text-sm text-black/60 dark:text-white/60">60
-                      seconds</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </main>
     </div>
-  </body></html>
+</body>
+</html>
