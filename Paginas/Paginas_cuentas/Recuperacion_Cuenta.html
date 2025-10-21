@@ -11,19 +11,26 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#339cff",
-                        "background-light": "#f5f7f8",
+                        primary: "#359EFF", 
+                        "primary-dark": "#1e70c1",
+                        "background-light": "#f5f7f8", 
                         "background-dark": "#0f1923",
+                        "gradient-start": "#4facfe",
+                        "gradient-end": "#00f2fe"
                     },
                     fontFamily: {
-                        "display": ["Lexend"]
+                        display: "Lexend"
                     },
                     borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                        DEFAULT: "0.5rem", 
+                        lg: "0.75rem", 
+                        xl: "1rem", 
+                        full: "9999px"
                     },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'medium': '0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                    }
                 },
             },
         }
@@ -31,20 +38,23 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet" />
     <style>
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         
-        .logo-container:hover {
-            opacity: 0.8;
-        }
-        
+        /* Estilos para mensajes de error */
         .error-message {
             color: #ef4444;
             font-size: 0.875rem;
@@ -73,6 +83,80 @@
             margin-bottom: 1rem;
         }
         
+        /* Estilos para el logo de Fit Mex */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Efectos de gradiente y sombras */
+        .gradient-bg {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .input-focus {
+            transition: all 0.3s ease;
+        }
+        
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(53, 158, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -3px rgba(53, 158, 255, 0.3);
+        }
+        
+        /* Animaciones suaves */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Estilo para el fondo decorativo */
+        .decorative-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-bottom-left-radius: 30% 20%;
+            border-bottom-right-radius: 30% 20%;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .decorative-bg {
+                border-bottom-left-radius: 20% 10%;
+                border-bottom-right-radius: 20% 10%;
+                height: 30%;
+            }
+        }
+        
+        /* Indicador de pasos */
         .step-indicator {
             display: flex;
             justify-content: center;
@@ -98,7 +182,7 @@
         }
         
         .step.active:not(:last-child):after {
-            background-color: #339cff;
+            background-color: #359EFF;
         }
         
         .step-number {
@@ -116,7 +200,7 @@
         }
         
         .step.active .step-number {
-            background-color: #339cff;
+            background-color: #359EFF;
         }
         
         .step.completed .step-number {
@@ -130,7 +214,7 @@
         }
         
         .step.active .step-label {
-            color: #339cff;
+            color: #359EFF;
             font-weight: 500;
         }
         
@@ -193,201 +277,226 @@
             margin-right: 0.5rem;
             font-size: 0.875rem;
         }
+
+        /* Estilos para el logo personalizado */
+        .logo-image {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo-fallback {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
-    <div class="flex flex-col min-h-screen">
-        <header class="w-full">
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div class="flex min-h-screen flex-col relative overflow-hidden">
+        <!-- Fondo decorativo -->
+        <div class="decorative-bg"></div>
+        
+        <header class="relative z-10 w-full py-6">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between py-6">
+                <div class="flex items-center justify-center">
                     <a href="index.html" class="logo-container">
-                        <div class="w-8 h-8 text-primary">
-                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
-                                    fill="currentColor"></path>
-                            </svg>
+                        <!-- Logo mejorado con imagen y fallback -->
+                        <div class="flex items-center gap-3 bg-white/90 dark:bg-gray-800/90 py-3 px-5 rounded-xl shadow-medium backdrop-blur-sm">
+                            <!-- Logo como imagen -->
+                            <img alt="Fit Mex logo" class="logo-image" src="../Logo_FitsMex.png" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';" />
+                            <!-- Fallback en caso de que la imagen no cargue -->
+                            <div id="logo-fallback" class="logo-fallback" style="display: none;">
+                                FM
+                            </div>
+                            <span class="text-xl font-bold text-gray-800 dark:text-white">Fits - Mex</span>
                         </div>
-                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Fit Mex</h1>
                     </a>
-                    <div class="flex items-center gap-4">
-                        <a class="text-sm font-medium hover:text-primary transition-colors" href="Inicio_Sesion.html">
-                            Iniciar sesión
-                        </a>
-                        <a class="px-4 py-2 text-sm font-bold rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors" href="Crear_Cuenta_1.html">
-                            Regístrate
-                        </a>
-                    </div>
                 </div>
             </div>
         </header>
         
-        <main class="flex-grow flex items-center justify-center py-8">
-            <div class="w-full max-w-md mx-auto p-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-lg m-4">
-                <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">¿Olvidaste tu contraseña?</h2>
-                    <p class="mt-4 text-base text-slate-600 dark:text-slate-400">
-                        Sigue estos pasos para recuperar el acceso a tu cuenta.
-                    </p>
-                </div>
-                
-                <!-- Indicador de pasos -->
-                <div class="step-indicator">
-                    <div class="step active" id="step-1">
-                        <div class="step-number">1</div>
-                        <div class="step-label">Verificar email</div>
-                    </div>
-                    <div class="step" id="step-2">
-                        <div class="step-number">2</div>
-                        <div class="step-label">Código de verificación</div>
-                    </div>
-                    <div class="step" id="step-3">
-                        <div class="step-number">3</div>
-                        <div class="step-label">Nueva contraseña</div>
-                    </div>
-                </div>
-                
-                <!-- Mensajes de estado -->
-                <div id="successMessage" class="success-message hidden"></div>
-                <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <span id="errorText"></span>
-                </div>
-                <div id="infoMessage" class="info-message hidden">
-                    <span id="infoText"></span>
-                </div>
-                
-                <!-- Paso 1: Solicitar recuperación -->
-                <div id="step1-content" class="step-content active">
-                    <form id="recoveryForm" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="email">
-                                Correo electrónico
-                            </label>
-                            <input 
-                                autocomplete="email"
-                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                                id="email" 
-                                name="email"
-                                placeholder="Correo electrónico" 
-                                type="email" 
-                            />
-                            <div id="emailError" class="error-message hidden"></div>
+        <main class="flex flex-1 items-center justify-center py-8 sm:py-12 lg:py-16 relative z-10">
+            <div class="w-full max-w-lg px-4 fade-in">
+                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl card-shadow p-8 sm:p-10">
+                    <div class="text-center mb-8">
+                        <!-- Logo pequeño en el formulario -->
+                        <div class="flex justify-center mb-4">
+                            <div class="flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 py-2 px-4 rounded-lg shadow-soft">
+                                <img alt="Fit Mex logo" class="h-6 w-6" src="../Logo_FitsMex.png" onerror="this.style.display='none'; document.getElementById('small-logo-fallback').style.display='flex';" />
+                                <div id="small-logo-fallback" class="logo-fallback" style="width: 24px; height: 24px; font-size: 10px; display: none;">
+                                    FM
+                                </div>
+                                <span class="text-sm font-bold text-gray-700 dark:text-white">Fits - Mex</span>
+                            </div>
                         </div>
-                        <div>
-                            <button
-                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
-                                type="submit">
-                                Enviar instrucciones
-                            </button>
-                        </div>
-                    </form>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">¿Olvidaste tu contraseña?</h2>
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Sigue estos pasos para recuperar el acceso a tu cuenta.</p>
+                    </div>
                     
-                    <div class="mt-6 text-center">
-                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                    <!-- Indicador de pasos -->
+                    <div class="step-indicator">
+                        <div class="step active" id="step-1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Verificar email</div>
+                        </div>
+                        <div class="step" id="step-2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Código de verificación</div>
+                        </div>
+                        <div class="step" id="step-3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Nueva contraseña</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mensajes de estado -->
+                    <div id="successMessage" class="success-message hidden"></div>
+                    <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        <span id="errorText"></span>
+                    </div>
+                    <div id="infoMessage" class="info-message hidden">
+                        <span id="infoText"></span>
+                    </div>
+                    
+                    <!-- Paso 1: Solicitar recuperación -->
+                    <div id="step1-content" class="step-content active">
+                        <form id="recoveryForm" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="email">
+                                    Correo electrónico
+                                </label>
+                                <input 
+                                    autocomplete="email"
+                                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                                    id="email" 
+                                    name="email"
+                                    placeholder="Ingresa tu correo electrónico" 
+                                    type="email" 
+                                />
+                                <div id="emailError" class="error-message hidden"></div>
+                            </div>
+                            <div class="pt-2">
+                                <button
+                                    class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all"
+                                    type="submit">
+                                    Enviar instrucciones
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
                             ¿Recordaste tu contraseña?
-                            <a class="font-medium text-primary hover:text-primary/80" href="Inicio_Sesion.html">
+                            <a class="font-medium text-primary hover:text-primary-dark transition-colors" href="Inicio_Sesion.html">
                                 Inicia sesión
                             </a>
                         </p>
                     </div>
-                </div>
-                
-                <!-- Paso 2: Ingresar código de verificación -->
-                <div id="step2-content" class="step-content">
-                    <form id="verificationForm" class="space-y-6">
-                        <div>
-                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                                Hemos enviado un código de verificación de 6 dígitos a <span id="userEmail" class="font-medium"></span>. 
-                                Ingresa el código a continuación.
-                            </p>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="code">
-                                Código de verificación
-                            </label>
-                            <input 
-                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm text-center tracking-widest font-mono text-lg"
-                                id="code" 
-                                name="code"
-                                placeholder="000000" 
-                                type="text" 
-                                maxlength="6"
-                                pattern="[0-9]{6}"
-                            />
-                            <div id="codeError" class="error-message hidden"></div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <button type="button" id="resendCode" class="text-sm text-primary hover:text-primary/80 disabled:opacity-50 disabled:cursor-not-allowed">
-                                Reenviar código
-                            </button>
-                            <span id="countdown" class="text-sm text-slate-500"></span>
-                        </div>
-                        <div>
-                            <button
-                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
-                                type="submit">
-                                Verificar código
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Paso 3: Establecer nueva contraseña -->
-                <div id="step3-content" class="step-content">
-                    <form id="newPasswordForm" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="newPassword">
-                                Nueva contraseña
-                            </label>
-                            <input 
-                                autocomplete="new-password"
-                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                                id="newPassword" 
-                                name="newPassword"
-                                placeholder="Nueva contraseña" 
-                                type="password" 
-                            />
-                            <div class="password-strength" id="passwordStrength"></div>
-                            <div class="password-requirements">
-                                <div class="requirement" id="lengthReq">
-                                    <span class="requirement-icon">◯</span>
-                                    <span>Mínimo 8 caracteres</span>
-                                </div>
-                                <div class="requirement" id="uppercaseReq">
-                                    <span class="requirement-icon">◯</span>
-                                    <span>Al menos una mayúscula</span>
-                                </div>
-                                <div class="requirement" id="lowercaseReq">
-                                    <span class="requirement-icon">◯</span>
-                                    <span>Al menos una minúscula</span>
-                                </div>
-                                <div class="requirement" id="numberReq">
-                                    <span class="requirement-icon">◯</span>
-                                    <span>Al menos un número</span>
-                                </div>
+                    
+                    <!-- Paso 2: Ingresar código de verificación -->
+                    <div id="step2-content" class="step-content">
+                        <form id="verificationForm" class="space-y-6">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                    Hemos enviado un código de verificación de 6 dígitos a <span id="userEmail" class="font-medium"></span>. 
+                                    Ingresa el código a continuación.
+                                </p>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="code">
+                                    Código de verificación
+                                </label>
+                                <input 
+                                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border text-center tracking-widest font-mono text-lg"
+                                    id="code" 
+                                    name="code"
+                                    placeholder="000000" 
+                                    type="text" 
+                                    maxlength="6"
+                                    pattern="[0-9]{6}"
+                                />
+                                <div id="codeError" class="error-message hidden"></div>
                             </div>
-                            <div id="newPasswordError" class="error-message hidden"></div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="confirmPassword">
-                                Confirmar contraseña
-                            </label>
-                            <input 
-                                autocomplete="new-password"
-                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                                id="confirmPassword" 
-                                name="confirmPassword"
-                                placeholder="Confirmar contraseña" 
-                                type="password" 
-                            />
-                            <div id="confirmPasswordError" class="error-message hidden"></div>
-                        </div>
-                        <div>
-                            <button
-                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
-                                type="submit">
-                                Restablecer contraseña
-                            </button>
-                        </div>
-                    </form>
+                            <div class="flex justify-between items-center">
+                                <button type="button" id="resendCode" class="text-sm text-primary hover:text-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                                    Reenviar código
+                                </button>
+                                <span id="countdown" class="text-sm text-gray-500"></span>
+                            </div>
+                            <div class="pt-2">
+                                <button
+                                    class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all"
+                                    type="submit">
+                                    Verificar código
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Paso 3: Establecer nueva contraseña -->
+                    <div id="step3-content" class="step-content">
+                        <form id="newPasswordForm" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="newPassword">
+                                    Nueva contraseña
+                                </label>
+                                <input 
+                                    autocomplete="new-password"
+                                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                                    id="newPassword" 
+                                    name="newPassword"
+                                    placeholder="Ingresa tu nueva contraseña" 
+                                    type="password" 
+                                />
+                                <div class="password-strength" id="passwordStrength"></div>
+                                <div class="password-requirements">
+                                    <div class="requirement" id="lengthReq">
+                                        <span class="requirement-icon">◯</span>
+                                        <span>Mínimo 8 caracteres</span>
+                                    </div>
+                                    <div class="requirement" id="uppercaseReq">
+                                        <span class="requirement-icon">◯</span>
+                                        <span>Al menos una mayúscula</span>
+                                    </div>
+                                    <div class="requirement" id="lowercaseReq">
+                                        <span class="requirement-icon">◯</span>
+                                        <span>Al menos una minúscula</span>
+                                    </div>
+                                    <div class="requirement" id="numberReq">
+                                        <span class="requirement-icon">◯</span>
+                                        <span>Al menos un número</span>
+                                    </div>
+                                </div>
+                                <div id="newPasswordError" class="error-message hidden"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="confirmPassword">
+                                    Confirmar contraseña
+                                </label>
+                                <input 
+                                    autocomplete="new-password"
+                                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                                    id="confirmPassword" 
+                                    name="confirmPassword"
+                                    placeholder="Confirma tu contraseña" 
+                                    type="password" 
+                                />
+                                <div id="confirmPasswordError" class="error-message hidden"></div>
+                            </div>
+                            <div class="pt-2">
+                                <button
+                                    class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all"
+                                    type="submit">
+                                    Restablecer contraseña
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>
@@ -733,6 +842,19 @@
                     clearError(this.id);
                     hideGeneralError();
                 });
+            });
+
+            // Manejo de fallback para logos si no se cargan
+            const logoImages = document.querySelectorAll('img[src="../Logo_FitsMex.png"]');
+            logoImages.forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const fallbackId = this.nextElementSibling?.id || 'logo-fallback';
+                    const fallback = document.getElementById(fallbackId);
+                    if (fallback) {
+                        fallback.style.display = 'flex';
+                    }
+                };
             });
         });
     </script>

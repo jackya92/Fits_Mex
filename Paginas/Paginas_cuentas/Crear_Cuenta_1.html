@@ -21,17 +21,24 @@
           extend: {
             colors: {
               primary: "#359EFF", 
+              "primary-dark": "#1e70c1",
               "background-light": "#f5f7f8", 
-              "background-dark": "#0f1923"
+              "background-dark": "#0f1923",
+              "gradient-start": "#4facfe",
+              "gradient-end": "#00f2fe"
             }, 
             fontFamily: {
               display: "Lexend"
             }, 
             borderRadius: {
-              DEFAULT: "0.25rem", 
-              lg: "0.5rem", 
-              xl: "0.75rem", 
+              DEFAULT: "0.5rem", 
+              lg: "0.75rem", 
+              xl: "1rem", 
               full: "9999px"
+            },
+            boxShadow: {
+              'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+              'medium': '0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
             }
           }
         }
@@ -68,16 +75,6 @@
         margin-bottom: 1rem;
       }
       
-      /* Estilos para el menú móvil */
-      .mobile-menu {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-      }
-      
-      .mobile-menu.open {
-        transform: translateX(0);
-      }
-      
       /* Estilos para el logo de Fit Mex */
       .logo-container {
         display: flex;
@@ -92,196 +89,201 @@
         align-items: center;
         justify-content: center;
       }
+      
+      /* Efectos de gradiente y sombras */
+      .gradient-bg {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      
+      .card-shadow {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      
+      .input-focus {
+        transition: all 0.3s ease;
+      }
+      
+      .input-focus:focus {
+        box-shadow: 0 0 0 3px rgba(53, 158, 255, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      .btn-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .btn-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -3px rgba(53, 158, 255, 0.3);
+      }
+      
+      /* Animaciones suaves */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+      
+      /* Estilo para el fondo decorativo */
+      .decorative-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border-bottom-left-radius: 30% 20%;
+        border-bottom-right-radius: 30% 20%;
+        z-index: -1;
+      }
+      
+      @media (max-width: 768px) {
+        .decorative-bg {
+          border-bottom-left-radius: 20% 10%;
+          border-bottom-right-radius: 20% 10%;
+          height: 30%;
+        }
+      }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-    <div class="flex min-h-screen flex-col">
-      <header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-sm">
+    <div class="flex min-h-screen flex-col relative overflow-hidden">
+      <!-- Fondo decorativo -->
+      <div class="decorative-bg"></div>
+      
+      <header class="relative z-10 w-full py-6">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 items-center justify-between">
-            <div class="flex items-center gap-4">
-              <a href="index.html" class="logo-container">
-                <!-- Logo actualizado según el primer código -->
-                <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
-                  <img alt="Fit Mex logo" class="h-8 w-8" src="../Logo_FitsMex.png" />
-                  <span class="text-xl font-bold text-white">Fits - Mex</span>
-                </div>
-              </a>
-            </div>
-            
-            <!-- Menú de navegación para escritorio -->
-            <nav class="hidden items-center gap-8 md:flex">
-              <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html">Inicio</a>
-              <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="ejercicios.html">Ejercicios</a>
-              <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="planes.html">Planes</a>
-              <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="comunidad.html">Comunidad</a>
-            </nav>
-            
-            <div class="flex items-center gap-4">
-              <a href="Inicio_Sesion.html">
-                <button class="px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-700/50 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
-                  Iniciar sesión
-                </button>
-              </a>
-              
-              <!-- Botón del menú móvil -->
-              <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700/50 text-gray-800 dark:text-white">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Menú móvil -->
-        <div id="mobileMenu" class="mobile-menu md:hidden fixed inset-y-0 left-0 z-20 w-64 bg-background-light dark:bg-background-dark shadow-lg p-6">
-          <div class="flex justify-between items-center mb-8">
-            <!-- Logo actualizado según el primer código -->
-            <div class="logo-container">
-              <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
-                <img alt="Fit Mex logo" class="h-8 w-8" src="../Logo_FitsMex.png" />
-                <span class="text-xl font-bold text-white">Fits - Mex</span>
+          <div class="flex items-center justify-center">
+            <a href="index.html" class="logo-container">
+              <!-- Logo mejorado -->
+              <div class="flex items-center gap-3 bg-white/90 dark:bg-gray-800/90 py-3 px-5 rounded-xl shadow-medium backdrop-blur-sm">
+                <img alt="Fits Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png" />
+                <span class="text-xl font-bold text-gray-800 dark:text-white">Fits - Mex</span>
               </div>
-            </div>
-            <button id="closeMobileMenu" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700/50 text-gray-800 dark:text-white">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
+            </a>
           </div>
-          
-          <nav class="flex flex-col space-y-4">
-            <a class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors py-2" href="index.html">Inicio</a>
-            <a class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors py-2" href="ejercicios.html">Ejercicios</a>
-            <a class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors py-2" href="planes.html">Planes</a>
-            <a class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors py-2" href="comunidad.html">Comunidad</a>
-            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <a href="Inicio_Sesion.html" class="block text-center px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-700/50 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
-                Iniciar sesión
-              </a>
-            </div>
-          </nav>
         </div>
-        
-        <!-- Overlay para cerrar el menú móvil -->
-        <div id="mobileMenuOverlay" class="fixed inset-0 z-10 bg-black bg-opacity-50 hidden"></div>
       </header>
       
-      <main class="flex flex-1 items-center justify-center py-12 sm:py-16 lg:py-20">
-        <div class="w-full max-w-md space-y-8 px-4">
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Crea tu cuenta</h2>
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Comienza tu viaje hacia una vida más saludable.</p>
-          </div>
-          
-          <!-- Mensaje de éxito (oculto por defecto) -->
-          <div id="successMessage" class="success-message hidden">
-            ¡Cuenta creada exitosamente! Redirigiendo...
-          </div>
-          
-          <form id="registerForm" class="space-y-6" method="POST">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="name">
-                Nombre
-              </label>
-              <div class="mt-1">
-                <input 
-                  autocomplete="name"
-                  class="w-full rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 focus:border-primary focus:ring-primary"
-                  id="name" 
-                  name="name" 
-                  placeholder="Ingresa tu nombre" 
-                  type="text"
-                />
-                <div id="nameError" class="error-message hidden"></div>
-              </div>
+      <main class="flex flex-1 items-center justify-center py-8 sm:py-12 lg:py-16 relative z-10">
+        <div class="w-full max-w-lg px-4 fade-in">
+          <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl card-shadow p-8 sm:p-10">
+            <div class="text-center mb-8">
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Crea tu cuenta</h2>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Comienza tu viaje hacia una vida más saludable.</p>
             </div>
             
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">
-                Correo electrónico
-              </label>
-              <div class="mt-1">
-                <input 
-                  autocomplete="email"
-                  class="w-full rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 focus:border-primary focus:ring-primary"
-                  id="email" 
-                  name="email"
-                  placeholder="Ingresa tu correo electrónico" 
-                  type="email"
-                />
-                <div id="emailError" class="error-message hidden"></div>
-              </div>
+            <!-- Mensaje de éxito (oculto por defecto) -->
+            <div id="successMessage" class="success-message hidden">
+              ¡Cuenta creada exitosamente! Redirigiendo...
             </div>
             
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">
-                Contraseña
-              </label>
-              <div class="mt-1">
-                <input 
-                  autocomplete="new-password"
-                  class="w-full rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 focus:border-primary focus:ring-primary"
-                  id="password" 
-                  name="password"
-                  placeholder="Ingresa tu contraseña" 
-                  type="password"
-                />
-                <div id="passwordError" class="error-message hidden"></div>
+            <form id="registerForm" class="space-y-6" method="POST">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="name">
+                  Nombre
+                </label>
+                <div>
+                  <input 
+                    autocomplete="name"
+                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                    id="name" 
+                    name="name" 
+                    placeholder="Ingresa tu nombre" 
+                    type="text"
+                  />
+                  <div id="nameError" class="error-message hidden"></div>
+                </div>
               </div>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="birthdate">
-                Fecha de nacimiento
-              </label>
-              <div class="relative mt-1">
-                <input
-                  class="w-full rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 focus:border-primary focus:ring-primary"
-                  id="birthdate" 
-                  name="birthdate" 
-                  type="date"
-                />
-                <div id="birthdateError" class="error-message hidden"></div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="email">
+                  Correo electrónico
+                </label>
+                <div>
+                  <input 
+                    autocomplete="email"
+                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                    id="email" 
+                    name="email"
+                    placeholder="Ingresa tu correo electrónico" 
+                    type="email"
+                  />
+                  <div id="emailError" class="error-message hidden"></div>
+                </div>
               </div>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="gender">
-                Género
-              </label>
-              <div class="mt-1">
-                <select
-                  class="w-full rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary form-select appearance-none"
-                  id="gender" 
-                  name="gender"
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="password">
+                  Contraseña
+                </label>
+                <div>
+                  <input 
+                    autocomplete="new-password"
+                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                    id="password" 
+                    name="password"
+                    placeholder="Ingresa tu contraseña" 
+                    type="password"
+                  />
+                  <div id="passwordError" class="error-message hidden"></div>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="birthdate">
+                  Fecha de nacimiento
+                </label>
+                <div class="relative">
+                  <input
+                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
+                    id="birthdate" 
+                    name="birthdate" 
+                    type="date"
+                  />
+                  <div id="birthdateError" class="error-message hidden"></div>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="gender">
+                  Género
+                </label>
+                <div>
+                  <select
+                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary form-select appearance-none input-focus p-3 border"
+                    id="gender" 
+                    name="gender"
+                  >
+                    <option value="">Selecciona tu género</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                  </select>
+                  <div id="genderError" class="error-message hidden"></div>
+                </div>
+              </div>
+              
+              <div class="pt-2">
+                <button
+                  class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all"
+                  type="submit"
                 >
-                  <option value="">Selecciona tu género</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Femenino</option>
-                  <option value="other">Otro</option>
-                </select>
-                <div id="genderError" class="error-message hidden"></div>
+                  Registrarse
+                </button>
               </div>
-            </div>
+            </form>
             
-            <div>
-              <button
-                class="w-full justify-center rounded-lg bg-primary px-4 py-3 text-sm font-bold text-background-dark shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-colors"
-                type="submit"
-              >
-                Registrarse
-              </button>
-            </div>
-          </form>
-          
-          <p class="text-center text-sm text-gray-600 dark:text-gray-400">
-            ¿Ya tienes una cuenta?
-            <a class="font-medium text-primary hover:text-primary/90" href="Inicio_Sesion.html">
-              Inicia sesión
-            </a>
-          </p>
+            <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+              ¿Ya tienes una cuenta?
+              <a class="font-medium text-primary hover:text-primary-dark transition-colors" href="Inicio_Sesion.html">
+                Inicia sesión
+              </a>
+            </p>
+          </div>
         </div>
       </main>
     </div>
@@ -290,37 +292,6 @@
       document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('registerForm');
         const successMessage = document.getElementById('successMessage');
-        
-        // Elementos del menú móvil
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const closeMobileMenu = document.getElementById('closeMobileMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        
-        // Función para abrir el menú móvil
-        function openMobileMenu() {
-          mobileMenu.classList.add('open');
-          mobileMenuOverlay.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        }
-        
-        // Función para cerrar el menú móvil
-        function closeMobileMenuFunc() {
-          mobileMenu.classList.remove('open');
-          mobileMenuOverlay.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-        }
-        
-        // Event listeners para el menú móvil
-        mobileMenuButton.addEventListener('click', openMobileMenu);
-        closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
-        
-        // Cerrar menú móvil al hacer clic en un enlace
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-          link.addEventListener('click', closeMobileMenuFunc);
-        });
         
         // Función para mostrar errores
         function showError(fieldId, message) {
@@ -433,4 +404,4 @@
       });
     </script>
 </body>
-</html>
+</html> 
