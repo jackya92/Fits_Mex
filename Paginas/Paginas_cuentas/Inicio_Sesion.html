@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-
-<html class lang="en"><head>
+<html lang="es">
+<head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fit Mex - Inicia Sesión</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
@@ -10,59 +11,99 @@
       rel="stylesheet" />
     <script
       src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+    <script>
+      tailwind.config = {
+        darkMode: "class", 
+        theme: {
+          extend: {
+            colors: {
+              primary: "#359EFF", 
+              "background-light": "#f5f7f8", 
+              "background-dark": "#0f1923"
+            }, 
+            fontFamily: {
+              display: "Lexend"
+            }, 
+            borderRadius: {
+              DEFAULT: "0.25rem", 
+              lg: "0.5rem", 
+              xl: "0.75rem", 
+              full: "9999px"
+            }
+          }
+        }
+      };
+    </script>
     <style>
-    .form-input::placeholder {
-      color: #6b7280;
-    }
-    .dark .form-input::placeholder {
-      color: #9ca3af;
-    }
-  </style>
+      .form-input::placeholder {
+        color: #6b7280;
+      }
+      .dark .form-input::placeholder {
+        color: #9ca3af;
+      }
+      
+      .error-message {
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+      
+      .error-field {
+        border-color: #ef4444 !important;
+      }
+      
+      .success-message {
+        background-color: #d1fae5;
+        border: 1px solid #10b981;
+        color: #065f46;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      
+      .logo-container:hover {
+        opacity: 0.8;
+      }
+    </style>
   </head>
-  <body
-    class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
     <div class="flex flex-col min-h-screen">
       <header class="w-full">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            class="flex items-center justify-between py-6 border-b border-gray-200 dark:border-gray-800">
-            <div class="flex items-center gap-3">
+          <div class="flex items-center justify-between py-6 border-b border-gray-200 dark:border-gray-800">
+            <a href="index.html" class="logo-container">
               <div class="w-8 h-8 text-primary">
-                <svg fill="none" viewbox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg">
+                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
                     fill="currentColor"></path>
                 </svg>
               </div>
-              <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Fit
-                Mex</h1>
-            </div>
+              <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Fit Mex</h1>
+            </a>
             <nav class="hidden md:flex items-center gap-8">
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#">Inicio</a>
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#">Ejercicios</a>
-              <a
-                class="text-sm font-medium hover:text-primary transition-colors"
-                href="#">Planes</a>
+              <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Inicio</a>
+              <a class="text-sm font-medium hover:text-primary transition-colors" href="ejercicios.html">Ejercicios</a>
+              <a class="text-sm font-medium hover:text-primary transition-colors" href="planes.html">Planes</a>
             </nav>
             <div class="flex items-center gap-4">
-              <a
-                class="px-4 py-2 text-sm font-bold rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
-                href="Crear_Cuenta_1.html">
+              <a class="px-4 py-2 text-sm font-bold rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors" href="Crear_Cuenta_1.html">
                 Regístrate
               </a>
             </div>
           </div>
         </div>
       </header>
-      <main class="flex-grow flex items-center justify-center">
-        <div
-          class="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-lg m-4">
+      
+      <main class="flex-grow flex items-center justify-center py-8">
+        <div class="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-lg m-4">
           <div class="text-center">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
               Inicia sesión en Fit Mex
@@ -71,41 +112,66 @@
               ¡Bienvenido de nuevo!
             </p>
           </div>
-          <form action="#" class="space-y-6" method="POST">
+          
+          <!-- Mensaje de éxito (oculto por defecto) -->
+          <div id="successMessage" class="success-message hidden">
+            ¡Inicio de sesión exitoso! Redirigiendo...
+          </div>
+          
+          <!-- Mensaje de error (oculto por defecto) -->
+          <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <span id="errorText"></span>
+          </div>
+          
+          <form id="loginForm" class="space-y-6" method="POST">
             <div>
-              <label
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                for="email">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">
                 Correo electrónico
               </label>
               <div class="mt-1">
-                <input autocomplete="email"
+                <input 
+                  autocomplete="email"
                   class="form-input w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-transparent focus:border-primary focus:bg-white dark:focus:bg-gray-900 focus:ring-0 transition"
-                  id="email" name="email" placeholder="tu@ejemplo.com" required
-                  type="email" />
+                  id="email" 
+                  name="email" 
+                  placeholder="tu@ejemplo.com" 
+                  type="email" 
+                />
+                <div id="emailError" class="error-message hidden"></div>
               </div>
             </div>
+            
             <div>
-              <label
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                for="password">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">
                 Contraseña
               </label>
               <div class="mt-1">
-                <input autocomplete="current-password"
+                <input 
+                  autocomplete="current-password"
                   class="form-input w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-transparent focus:border-primary focus:bg-white dark:focus:bg-gray-900 focus:ring-0 transition"
-                  id="password" name="password" placeholder="••••••••" required
-                  type="password" />
+                  id="password" 
+                  name="password" 
+                  placeholder="••••••••" 
+                  type="password" 
+                />
+                <div id="passwordError" class="error-message hidden"></div>
               </div>
             </div>
-            <div class="flex items-center justify-end">
+            
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
+                <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                  Recordarme
+                </label>
+              </div>
               <div class="text-sm">
-                <a class="font-medium text-primary hover:text-primary/80"
-                  href="#">
+                <a class="font-medium text-primary hover:text-primary/80" href="recuperar-contrasena.html">
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
             </div>
+            
             <div>
               <button
                 class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-black bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 transition-all"
@@ -114,7 +180,173 @@
               </button>
             </div>
           </form>
+          
+          <div class="text-center">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              ¿No tienes una cuenta?
+              <a class="font-medium text-primary hover:text-primary/80" href="Crear_Cuenta_1.html">
+                Regístrate ahora
+              </a>
+            </p>
+          </div>
+          
+          <!-- Separador -->
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white dark:bg-gray-900 text-gray-500">O continúa con</span>
+            </div>
+          </div>
+          
+          <!-- Botones de inicio de sesión social -->
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <span class="ml-2">Google</span>
+            </button>
+            
+            <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+              <span class="ml-2">Twitter</span>
+            </button>
+          </div>
         </div>
       </main>
     </div>
-  </body></html>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('loginForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Función para mostrar errores
+        function showError(fieldId, message) {
+          const field = document.getElementById(fieldId);
+          const errorElement = document.getElementById(fieldId + 'Error');
+          
+          field.classList.add('error-field');
+          errorElement.textContent = message;
+          errorElement.classList.remove('hidden');
+        }
+        
+        // Función para limpiar errores
+        function clearError(fieldId) {
+          const field = document.getElementById(fieldId);
+          const errorElement = document.getElementById(fieldId + 'Error');
+          
+          field.classList.remove('error-field');
+          errorElement.textContent = '';
+          errorElement.classList.add('hidden');
+        }
+        
+        // Función para mostrar mensaje de error general
+        function showGeneralError(message) {
+          errorText.textContent = message;
+          errorMessage.classList.remove('hidden');
+        }
+        
+        // Función para ocultar mensaje de error general
+        function hideGeneralError() {
+          errorMessage.classList.add('hidden');
+        }
+        
+        // Validación del formulario
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          hideGeneralError();
+          
+          let isValid = true;
+          
+          // Validar email
+          const email = document.getElementById('email').value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email) {
+            showError('email', 'El correo electrónico es obligatorio');
+            isValid = false;
+          } else if (!emailRegex.test(email)) {
+            showError('email', 'Ingresa un correo electrónico válido');
+            isValid = false;
+          } else {
+            clearError('email');
+          }
+          
+          // Validar contraseña
+          const password = document.getElementById('password').value;
+          if (!password) {
+            showError('password', 'La contraseña es obligatoria');
+            isValid = false;
+          } else {
+            clearError('password');
+          }
+          
+          // Si el formulario es válido, proceder con el envío
+          if (isValid) {
+            // Simular envío de datos al servidor
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Iniciando sesión...';
+            submitButton.disabled = true;
+            
+            // Simular petición al servidor
+            setTimeout(() => {
+              // Simular respuesta del servidor
+              const success = Math.random() > 0.2; // 80% de éxito para la simulación
+              
+              if (success) {
+                // Éxito
+                successMessage.classList.remove('hidden');
+                
+                // Redirigir después de 2 segundos
+                setTimeout(() => {
+                  window.location.href = 'dashboard.html';
+                }, 2000);
+              } else {
+                // Error
+                showGeneralError('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+              }
+            }, 1500);
+          }
+        });
+        
+        // Limpiar errores al escribir en los campos
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.addEventListener('input', function() {
+            clearError(this.id);
+            hideGeneralError();
+          });
+        });
+        
+        // Funcionalidad para los botones de inicio de sesión social
+        const socialButtons = document.querySelectorAll('button[type="button"]');
+        socialButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const provider = this.querySelector('span').textContent;
+            alert(`Iniciando sesión con ${provider}. Esta funcionalidad se implementaría con OAuth en un entorno real.`);
+          });
+        });
+        
+        // Funcionalidad para el enlace de recuperación de contraseña
+        const forgotPasswordLink = document.querySelector('a[href="recuperar-contrasena.html"]');
+        forgotPasswordLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Redirigiendo a la página de recuperación de contraseña. En un entorno real, esto llevaría a un formulario para restablecer la contraseña.');
+          // window.location.href = 'recuperar-contrasena.html'; // Descomentar en implementación real
+        });
+      });
+    </script>
+  </body>
+</html>

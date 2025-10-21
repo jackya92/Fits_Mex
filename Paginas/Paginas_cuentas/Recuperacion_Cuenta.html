@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Fit Mex - Recuperar Contraseña</title>
-        <script
-            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <script>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fit Mex - Recuperar Contraseña</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -28,65 +28,713 @@
             },
         }
     </script>
-        <link href="https://fonts.googleapis.com" rel="preconnect" />
-        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
-            rel="stylesheet" />
-    </head>
-    <body
-        class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
-        <div class="flex flex-col min-h-screen">
-            <header class="w-full">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between py-6">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 text-primary">
-                                <svg fill="none" viewBox="0 0 48 48"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </div>
-                            <h1
-                                class="text-2xl font-bold text-slate-900 dark:text-white">Fit
-                                Mex</h1>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .error-field {
+            border-color: #ef4444 !important;
+        }
+        
+        .success-message {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-message {
+            background-color: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100px;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            right: -50px;
+            width: 100px;
+            height: 2px;
+            background-color: #d1d5db;
+        }
+        
+        .step.active:not(:last-child):after {
+            background-color: #339cff;
+        }
+        
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step.active .step-number {
+            background-color: #339cff;
+        }
+        
+        .step.completed .step-number {
+            background-color: #10b981;
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+        }
+        
+        .step.active .step-label {
+            color: #339cff;
+            font-weight: 500;
+        }
+        
+        .step.completed .step-label {
+            color: #10b981;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+        }
+        
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .password-strength.weak {
+            background-color: #ef4444;
+            width: 25%;
+        }
+        
+        .password-strength.fair {
+            background-color: #f59e0b;
+            width: 50%;
+        }
+        
+        .password-strength.good {
+            background-color: #3b82f6;
+            width: 75%;
+        }
+        
+        .password-strength.strong {
+            background-color: #10b981;
+            width: 100%;
+        }
+        
+        .password-requirements {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+        
+        .requirement.met {
+            color: #10b981;
+        }
+        
+        .requirement-icon {
+            margin-right: 0.5rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+    <div class="flex flex-col min-h-screen">
+        <header class="w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between py-6">
+                    <a href="index.html" class="logo-container">
+                        <div class="w-8 h-8 text-primary">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                    fill="currentColor"></path>
+                            </svg>
                         </div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Fit Mex</h1>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <a class="text-sm font-medium hover:text-primary transition-colors" href="Inicio_Sesion.html">
+                            Iniciar sesión
+                        </a>
+                        <a class="px-4 py-2 text-sm font-bold rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors" href="Crear_Cuenta_1.html">
+                            Regístrate
+                        </a>
                     </div>
                 </div>
-            </header>
-            <main class="flex-grow flex items-center justify-center">
-                <div class="w-full max-w-md mx-auto p-8">
-                    <div class="text-center">
-                        <h2
-                            class="text-3xl font-bold text-slate-900 dark:text-white">¿Olvidaste
-                            tu contraseña?</h2>
-                        <p
-                            class="mt-4 text-base text-slate-600 dark:text-slate-400">Ingresa
-                            el correo electrónico asociado a tu cuenta y te
-                            enviaremos las instrucciones para restablecerla.</p>
+            </div>
+        </header>
+        
+        <main class="flex-grow flex items-center justify-center py-8">
+            <div class="w-full max-w-md mx-auto p-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-lg m-4">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">¿Olvidaste tu contraseña?</h2>
+                    <p class="mt-4 text-base text-slate-600 dark:text-slate-400">
+                        Sigue estos pasos para recuperar el acceso a tu cuenta.
+                    </p>
+                </div>
+                
+                <!-- Indicador de pasos -->
+                <div class="step-indicator">
+                    <div class="step active" id="step-1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Verificar email</div>
                     </div>
-                    <form class="mt-8 space-y-6">
+                    <div class="step" id="step-2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Código de verificación</div>
+                    </div>
+                    <div class="step" id="step-3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Nueva contraseña</div>
+                    </div>
+                </div>
+                
+                <!-- Mensajes de estado -->
+                <div id="successMessage" class="success-message hidden"></div>
+                <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    <span id="errorText"></span>
+                </div>
+                <div id="infoMessage" class="info-message hidden">
+                    <span id="infoText"></span>
+                </div>
+                
+                <!-- Paso 1: Solicitar recuperación -->
+                <div id="step1-content" class="step-content active">
+                    <form id="recoveryForm" class="space-y-6">
                         <div>
-                            <label class="sr-only" for="email">Correo
-                                electrónico</label>
-                            <input autocomplete="email"
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="email">
+                                Correo electrónico
+                            </label>
+                            <input 
+                                autocomplete="email"
                                 class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                                id="email" name="email"
-                                placeholder="Correo electrónico" required
-                                type="email" />
+                                id="email" 
+                                name="email"
+                                placeholder="Correo electrónico" 
+                                type="email" 
+                            />
+                            <div id="emailError" class="error-message hidden"></div>
                         </div>
                         <div>
                             <button
-                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
                                 type="submit">
                                 Enviar instrucciones
                             </button>
                         </div>
                     </form>
+                    
+                    <div class="mt-6 text-center">
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            ¿Recordaste tu contraseña?
+                            <a class="font-medium text-primary hover:text-primary/80" href="Inicio_Sesion.html">
+                                Inicia sesión
+                            </a>
+                        </p>
+                    </div>
                 </div>
-            </main>
-        </div>
+                
+                <!-- Paso 2: Ingresar código de verificación -->
+                <div id="step2-content" class="step-content">
+                    <form id="verificationForm" class="space-y-6">
+                        <div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                                Hemos enviado un código de verificación de 6 dígitos a <span id="userEmail" class="font-medium"></span>. 
+                                Ingresa el código a continuación.
+                            </p>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="code">
+                                Código de verificación
+                            </label>
+                            <input 
+                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm text-center tracking-widest font-mono text-lg"
+                                id="code" 
+                                name="code"
+                                placeholder="000000" 
+                                type="text" 
+                                maxlength="6"
+                                pattern="[0-9]{6}"
+                            />
+                            <div id="codeError" class="error-message hidden"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <button type="button" id="resendCode" class="text-sm text-primary hover:text-primary/80 disabled:opacity-50 disabled:cursor-not-allowed">
+                                Reenviar código
+                            </button>
+                            <span id="countdown" class="text-sm text-slate-500"></span>
+                        </div>
+                        <div>
+                            <button
+                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
+                                type="submit">
+                                Verificar código
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Paso 3: Establecer nueva contraseña -->
+                <div id="step3-content" class="step-content">
+                    <form id="newPasswordForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="newPassword">
+                                Nueva contraseña
+                            </label>
+                            <input 
+                                autocomplete="new-password"
+                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                                id="newPassword" 
+                                name="newPassword"
+                                placeholder="Nueva contraseña" 
+                                type="password" 
+                            />
+                            <div class="password-strength" id="passwordStrength"></div>
+                            <div class="password-requirements">
+                                <div class="requirement" id="lengthReq">
+                                    <span class="requirement-icon">◯</span>
+                                    <span>Mínimo 8 caracteres</span>
+                                </div>
+                                <div class="requirement" id="uppercaseReq">
+                                    <span class="requirement-icon">◯</span>
+                                    <span>Al menos una mayúscula</span>
+                                </div>
+                                <div class="requirement" id="lowercaseReq">
+                                    <span class="requirement-icon">◯</span>
+                                    <span>Al menos una minúscula</span>
+                                </div>
+                                <div class="requirement" id="numberReq">
+                                    <span class="requirement-icon">◯</span>
+                                    <span>Al menos un número</span>
+                                </div>
+                            </div>
+                            <div id="newPasswordError" class="error-message hidden"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="confirmPassword">
+                                Confirmar contraseña
+                            </label>
+                            <input 
+                                autocomplete="new-password"
+                                class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-slate-300 dark:border-slate-700 placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                                id="confirmPassword" 
+                                name="confirmPassword"
+                                placeholder="Confirmar contraseña" 
+                                type="password" 
+                            />
+                            <div id="confirmPasswordError" class="error-message hidden"></div>
+                        </div>
+                        <div>
+                            <button
+                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-colors"
+                                type="submit">
+                                Restablecer contraseña
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
 
-    </body></html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const step1Content = document.getElementById('step1-content');
+            const step2Content = document.getElementById('step2-content');
+            const step3Content = document.getElementById('step3-content');
+            
+            const step1 = document.getElementById('step-1');
+            const step2 = document.getElementById('step-2');
+            const step3 = document.getElementById('step-3');
+            
+            const recoveryForm = document.getElementById('recoveryForm');
+            const verificationForm = document.getElementById('verificationForm');
+            const newPasswordForm = document.getElementById('newPasswordForm');
+            
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            const infoMessage = document.getElementById('infoMessage');
+            const infoText = document.getElementById('infoText');
+            
+            const userEmail = document.getElementById('userEmail');
+            const resendCode = document.getElementById('resendCode');
+            const countdown = document.getElementById('countdown');
+            
+            const passwordStrength = document.getElementById('passwordStrength');
+            const newPasswordInput = document.getElementById('newPassword');
+            
+            let currentStep = 1;
+            let userEmailValue = '';
+            let countdownTimer;
+            let countdownSeconds = 60;
+            
+            // Función para mostrar errores
+            function showError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(fieldId + 'Error');
+                
+                field.classList.add('error-field');
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+            
+            // Función para limpiar errores
+            function clearError(fieldId) {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(fieldId + 'Error');
+                
+                field.classList.remove('error-field');
+                errorElement.textContent = '';
+                errorElement.classList.add('hidden');
+            }
+            
+            // Función para mostrar mensaje de error general
+            function showGeneralError(message) {
+                errorText.textContent = message;
+                errorMessage.classList.remove('hidden');
+            }
+            
+            // Función para ocultar mensaje de error general
+            function hideGeneralError() {
+                errorMessage.classList.add('hidden');
+            }
+            
+            // Función para mostrar mensaje informativo
+            function showInfo(message) {
+                infoText.textContent = message;
+                infoMessage.classList.remove('hidden');
+            }
+            
+            // Función para ocultar mensaje informativo
+            function hideInfo() {
+                infoMessage.classList.add('hidden');
+            }
+            
+            // Función para cambiar de paso
+            function goToStep(step) {
+                // Ocultar todos los pasos
+                step1Content.classList.remove('active');
+                step2Content.classList.remove('active');
+                step3Content.classList.remove('active');
+                
+                step1.classList.remove('active', 'completed');
+                step2.classList.remove('active', 'completed');
+                step3.classList.remove('active', 'completed');
+                
+                // Mostrar el paso actual
+                if (step === 1) {
+                    step1Content.classList.add('active');
+                    step1.classList.add('active');
+                } else if (step === 2) {
+                    step2Content.classList.add('active');
+                    step2.classList.add('active');
+                    step1.classList.add('completed');
+                    
+                    // Iniciar cuenta regresiva para reenvío de código
+                    startCountdown();
+                } else if (step === 3) {
+                    step3Content.classList.add('active');
+                    step3.classList.add('active');
+                    step1.classList.add('completed');
+                    step2.classList.add('completed');
+                }
+                
+                currentStep = step;
+                hideGeneralError();
+                hideInfo();
+            }
+            
+            // Función para iniciar cuenta regresiva
+            function startCountdown() {
+                countdownSeconds = 60;
+                resendCode.disabled = true;
+                updateCountdown();
+                
+                countdownTimer = setInterval(function() {
+                    countdownSeconds--;
+                    updateCountdown();
+                    
+                    if (countdownSeconds <= 0) {
+                        clearInterval(countdownTimer);
+                        resendCode.disabled = false;
+                        countdown.textContent = '';
+                    }
+                }, 1000);
+            }
+            
+            // Función para actualizar cuenta regresiva
+            function updateCountdown() {
+                countdown.textContent = `Reenviar en ${countdownSeconds}s`;
+            }
+            
+            // Función para evaluar fortaleza de contraseña
+            function evaluatePasswordStrength(password) {
+                let strength = 0;
+                const requirements = {
+                    length: password.length >= 8,
+                    uppercase: /[A-Z]/.test(password),
+                    lowercase: /[a-z]/.test(password),
+                    number: /[0-9]/.test(password)
+                };
+                
+                // Actualizar indicadores visuales de requisitos
+                document.getElementById('lengthReq').className = requirements.length ? 
+                    'requirement met' : 'requirement';
+                document.getElementById('uppercaseReq').className = requirements.uppercase ? 
+                    'requirement met' : 'requirement';
+                document.getElementById('lowercaseReq').className = requirements.lowercase ? 
+                    'requirement met' : 'requirement';
+                document.getElementById('numberReq').className = requirements.number ? 
+                    'requirement met' : 'requirement';
+                
+                // Calcular fortaleza
+                if (requirements.length) strength++;
+                if (requirements.uppercase) strength++;
+                if (requirements.lowercase) strength++;
+                if (requirements.number) strength++;
+                
+                // Actualizar barra de fortaleza
+                passwordStrength.className = 'password-strength';
+                if (password.length === 0) {
+                    passwordStrength.className = 'password-strength';
+                } else if (strength <= 1) {
+                    passwordStrength.className = 'password-strength weak';
+                } else if (strength === 2) {
+                    passwordStrength.className = 'password-strength fair';
+                } else if (strength === 3) {
+                    passwordStrength.className = 'password-strength good';
+                } else {
+                    passwordStrength.className = 'password-strength strong';
+                }
+                
+                return strength;
+            }
+            
+            // Paso 1: Solicitar recuperación
+            recoveryForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                hideGeneralError();
+                
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!email) {
+                    showError('email', 'El correo electrónico es obligatorio');
+                    return;
+                } else if (!emailRegex.test(email)) {
+                    showError('email', 'Ingresa un correo electrónico válido');
+                    return;
+                } else {
+                    clearError('email');
+                }
+                
+                // Simular envío de solicitud
+                const submitButton = recoveryForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Enviando...';
+                submitButton.disabled = true;
+                
+                setTimeout(() => {
+                    // Simular respuesta del servidor
+                    const success = Math.random() > 0.1; // 90% de éxito para la simulación
+                    
+                    if (success) {
+                        userEmailValue = email;
+                        userEmail.textContent = email;
+                        goToStep(2);
+                        showInfo('Se ha enviado un código de verificación a tu correo electrónico.');
+                    } else {
+                        showGeneralError('No se pudo enviar el código. Verifica tu correo electrónico e intenta nuevamente.');
+                    }
+                    
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }, 1500);
+            });
+            
+            // Paso 2: Verificar código
+            verificationForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                hideGeneralError();
+                
+                const code = document.getElementById('code').value.trim();
+                
+                if (!code) {
+                    showError('code', 'El código de verificación es obligatorio');
+                    return;
+                } else if (code.length !== 6 || !/^\d+$/.test(code)) {
+                    showError('code', 'El código debe tener 6 dígitos numéricos');
+                    return;
+                } else {
+                    clearError('code');
+                }
+                
+                // Simular verificación de código
+                const submitButton = verificationForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Verificando...';
+                submitButton.disabled = true;
+                
+                setTimeout(() => {
+                    // Simular respuesta del servidor
+                    const success = Math.random() > 0.2; // 80% de éxito para la simulación
+                    
+                    if (success) {
+                        goToStep(3);
+                    } else {
+                        showGeneralError('Código incorrecto. Intenta nuevamente.');
+                    }
+                    
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }, 1500);
+            });
+            
+            // Reenviar código
+            resendCode.addEventListener('click', function() {
+                if (resendCode.disabled) return;
+                
+                // Simular reenvío de código
+                resendCode.disabled = true;
+                startCountdown();
+                
+                setTimeout(() => {
+                    showInfo('Se ha reenviado el código de verificación a tu correo electrónico.');
+                }, 1000);
+            });
+            
+            // Paso 3: Establecer nueva contraseña
+            newPasswordForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                hideGeneralError();
+                
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const passwordStrengthValue = evaluatePasswordStrength(newPassword);
+                
+                let isValid = true;
+                
+                if (!newPassword) {
+                    showError('newPassword', 'La nueva contraseña es obligatoria');
+                    isValid = false;
+                } else if (passwordStrengthValue < 3) {
+                    showError('newPassword', 'La contraseña no cumple con los requisitos de seguridad');
+                    isValid = false;
+                } else {
+                    clearError('newPassword');
+                }
+                
+                if (!confirmPassword) {
+                    showError('confirmPassword', 'Confirma tu contraseña');
+                    isValid = false;
+                } else if (newPassword !== confirmPassword) {
+                    showError('confirmPassword', 'Las contraseñas no coinciden');
+                    isValid = false;
+                } else {
+                    clearError('confirmPassword');
+                }
+                
+                if (!isValid) return;
+                
+                // Simular restablecimiento de contraseña
+                const submitButton = newPasswordForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Restableciendo...';
+                submitButton.disabled = true;
+                
+                setTimeout(() => {
+                    // Simular respuesta del servidor
+                    const success = Math.random() > 0.1; // 90% de éxito para la simulación
+                    
+                    if (success) {
+                        successMessage.textContent = '¡Contraseña restablecida exitosamente! Redirigiendo...';
+                        successMessage.classList.remove('hidden');
+                        
+                        // Redirigir después de 2 segundos
+                        setTimeout(() => {
+                            window.location.href = 'Inicio_Sesion.html';
+                        }, 2000);
+                    } else {
+                        showGeneralError('Error al restablecer la contraseña. Intenta nuevamente.');
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    }
+                }, 1500);
+            });
+            
+            // Evaluar fortaleza de contraseña en tiempo real
+            newPasswordInput.addEventListener('input', function() {
+                evaluatePasswordStrength(this.value);
+                clearError('newPassword');
+            });
+            
+            // Limpiar errores al escribir en los campos
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    clearError(this.id);
+                    hideGeneralError();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

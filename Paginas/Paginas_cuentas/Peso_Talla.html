@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html class lang="en"><head>
+<html lang="es">
+<head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Fit Mex - Configuración</title>
@@ -16,6 +16,34 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .success-message {
+        background-color: #10B981;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .info-card {
+        background-color: rgba(53, 158, 255, 0.1);
+        border-left: 4px solid #359EFF;
+        padding: 16px;
+        border-radius: 8px;
+        margin-top: 16px;
       }
     </style>
   </head>
@@ -60,16 +88,25 @@
             <h2
               class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Configuración
               de peso y talla</h2>
+              
+            <!-- Mensaje de éxito (oculto inicialmente) -->
+            <div id="successMessage" class="success-message fade-in hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>¡Tus datos se han actualizado correctamente!</span>
+            </div>
+            
             <div class="space-y-6">
               <div>
                 <label
                   class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2"
-                  for="weight">Peso</label>
+                  for="weight">Peso (kg)</label>
                 <div class="relative rounded-lg">
                   <input
                     class="form-input block w-full pl-4 pr-12 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-900 dark:text-white"
                     id="weight" name="weight" placeholder="Ej: 75"
-                    type="number" />
+                    type="number" min="20" max="300" step="0.1" />
                   <div
                     class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
                     <svg fill="currentColor" height="24" viewbox="0 0 256 256"
@@ -79,16 +116,17 @@
                     </svg>
                   </div>
                 </div>
+                <p id="weightError" class="text-red-500 text-sm mt-1 hidden">Por favor ingresa un peso válido (20-300 kg)</p>
               </div>
               <div>
                 <label
                   class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2"
-                  for="height">Talla</label>
+                  for="height">Talla (cm)</label>
                 <div class="relative rounded-lg">
                   <input
                     class="form-input block w-full pl-4 pr-12 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-900 dark:text-white"
                     id="height" name="height" placeholder="Ej: 180"
-                    type="number" />
+                    type="number" min="100" max="250" step="0.1" />
                   <div
                     class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
                     <svg fill="currentColor" height="24" viewbox="0 0 256 256"
@@ -98,9 +136,25 @@
                     </svg>
                   </div>
                 </div>
+                <p id="heightError" class="text-red-500 text-sm mt-1 hidden">Por favor ingresa una talla válida (100-250 cm)</p>
               </div>
+              
+              <!-- Información del IMC (se mostrará cuando se ingresen datos válidos) -->
+              <div id="bmiInfo" class="info-card fade-in hidden">
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2">Tu Índice de Masa Corporal (IMC)</h3>
+                <div class="flex justify-between items-center">
+                  <div>
+                    <p class="text-2xl font-bold text-primary" id="bmiValue">-</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400" id="bmiCategory">-</p>
+                  </div>
+                  <div class="w-32 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="bmiBar" class="h-full bg-primary transition-all duration-500"></div>
+                  </div>
+                </div>
+              </div>
+              
               <div class="flex justify-end pt-4">
-                <button
+                <button id="updateButton"
                   class="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary text-background-dark font-bold text-base hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark focus:ring-primary transition-colors">
                   Actualizar
                 </button>
@@ -110,4 +164,151 @@
         </div>
       </main>
     </div>
-  </body></html>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Elementos del DOM
+        const updateButton = document.getElementById('updateButton');
+        const successMessage = document.getElementById('successMessage');
+        const weightInput = document.getElementById('weight');
+        const heightInput = document.getElementById('height');
+        const weightError = document.getElementById('weightError');
+        const heightError = document.getElementById('heightError');
+        const bmiInfo = document.getElementById('bmiInfo');
+        const bmiValue = document.getElementById('bmiValue');
+        const bmiCategory = document.getElementById('bmiCategory');
+        const bmiBar = document.getElementById('bmiBar');
+        
+        // Cargar datos guardados al iniciar
+        loadSavedData();
+        
+        // Evento para actualizar datos
+        updateButton.addEventListener('click', function() {
+          if (validateForm()) {
+            const weight = parseFloat(weightInput.value);
+            const height = parseFloat(heightInput.value) / 100; // Convertir cm a m
+            
+            // Guardar en localStorage
+            const userData = {
+              weight: weight,
+              height: height * 100, // Guardar en cm
+              lastUpdate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('fitMexUserData', JSON.stringify(userData));
+            
+            // Mostrar mensaje de éxito
+            showSuccessMessage();
+            
+            // Calcular y mostrar IMC
+            calculateAndDisplayBMI(weight, height);
+          }
+        });
+        
+        // Eventos para validación en tiempo real
+        weightInput.addEventListener('input', function() {
+          validateWeight();
+          if (validateForm()) {
+            calculateAndDisplayBMI(parseFloat(weightInput.value), parseFloat(heightInput.value) / 100);
+          }
+        });
+        
+        heightInput.addEventListener('input', function() {
+          validateHeight();
+          if (validateForm()) {
+            calculateAndDisplayBMI(parseFloat(weightInput.value), parseFloat(heightInput.value) / 100);
+          }
+        });
+        
+        // Función para cargar datos guardados
+        function loadSavedData() {
+          const saved = localStorage.getItem('fitMexUserData');
+          if (saved) {
+            const userData = JSON.parse(saved);
+            weightInput.value = userData.weight;
+            heightInput.value = userData.height;
+            
+            // Calcular y mostrar IMC si los datos son válidos
+            if (validateForm()) {
+              calculateAndDisplayBMI(userData.weight, userData.height / 100);
+            }
+          }
+        }
+        
+        // Función para validar el formulario completo
+        function validateForm() {
+          return validateWeight() && validateHeight();
+        }
+        
+        // Función para validar peso
+        function validateWeight() {
+          const weight = parseFloat(weightInput.value);
+          if (isNaN(weight) || weight < 20 || weight > 300) {
+            weightError.classList.remove('hidden');
+            weightInput.classList.add('border-red-500');
+            return false;
+          } else {
+            weightError.classList.add('hidden');
+            weightInput.classList.remove('border-red-500');
+            return true;
+          }
+        }
+        
+        // Función para validar talla
+        function validateHeight() {
+          const height = parseFloat(heightInput.value);
+          if (isNaN(height) || height < 100 || height > 250) {
+            heightError.classList.remove('hidden');
+            heightInput.classList.add('border-red-500');
+            return false;
+          } else {
+            heightError.classList.add('hidden');
+            heightInput.classList.remove('border-red-500');
+            return true;
+          }
+        }
+        
+        // Función para mostrar el mensaje de éxito
+        function showSuccessMessage() {
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('fade-in');
+          
+          // Ocultar el mensaje después de 3 segundos
+          setTimeout(function() {
+            successMessage.classList.add('hidden');
+          }, 3000);
+        }
+        
+        // Función para calcular y mostrar el IMC
+        function calculateAndDisplayBMI(weight, height) {
+          const bmi = weight / (height * height);
+          const roundedBMI = bmi.toFixed(1);
+          
+          bmiValue.textContent = roundedBMI;
+          bmiInfo.classList.remove('hidden');
+          
+          // Determinar categoría del IMC
+          let category = '';
+          let barWidth = 0;
+          
+          if (bmi < 18.5) {
+            category = 'Bajo peso';
+            barWidth = 25;
+          } else if (bmi < 25) {
+            category = 'Peso normal';
+            barWidth = 50;
+          } else if (bmi < 30) {
+            category = 'Sobrepeso';
+            barWidth = 75;
+          } else {
+            category = 'Obesidad';
+            barWidth = 100;
+          }
+          
+          bmiCategory.textContent = category;
+          bmiBar.style.width = `${barWidth}%`;
+        }
+      });
+    </script>
+  </body>
+</html>
