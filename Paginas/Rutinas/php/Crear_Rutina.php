@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // ================================================================
         if ($idRutina) {
             // Redirige a la página de ejercicios (puedes pasar el ID por GET)
-            header("Location: ../../Ejercicios/Lista_Ejercicios.html?id_rutina=" . $idRutina);
+            header("Location: ../../Ejercicios/php/ejercicios.php");
             exit();
         } else {
             die("Error al crear la rutina. ID no generado.");

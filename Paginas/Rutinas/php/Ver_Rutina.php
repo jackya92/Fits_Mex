@@ -34,9 +34,8 @@ $ejercicios = $stmt_ejercicios->fetchAll();
 // --- Obtenemos los músculos usados en esta rutina ---
 $stmt_musculos = $pdo->prepare("
     SELECT DISTINCT m.nom_musculo
-    FROM musculo AS m
-    JOIN ejercicio AS e ON e.id_musculo = m.id_musculo
-    JOIN rel_ejer_rutina_musculo AS rel ON rel.id_ejercicio = e.id_ejercicio
+    FROM rel_ejer_rutina_musculo AS rel
+    JOIN musculo AS m ON rel.id_musculo = m.id_musculo
     WHERE rel.id_rutina = ?
 ");
 $stmt_musculos->execute([$id_rutina_actual]);

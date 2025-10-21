@@ -195,7 +195,7 @@
                     const iconContainerStyle = rutina.color_fondo && rutina.color_fondo.startsWith('#') ? `style="background-color: ${rutina.color_fondo};"` : '';
 
                     lista.innerHTML += `
-                        <a href="Ver_Rutina.html?id=${rutina.id}"
+                        <a href="php/Ver_Rutina.php?id=${rutina.id}"
                             class="block bg-white/5 dark:bg-black/10 p-4 rounded-xl shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-lg hover:bg-white/10 dark:hover:bg-black/20">
                             <div class="flex items-center gap-4">
                                 <div class="w-16 h-16 rounded-lg ${iconContainerClass} flex items-center justify-center text-white text-3xl" ${iconContainerStyle}>

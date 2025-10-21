@@ -241,13 +241,13 @@ $conn->close();
             <div class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
                 <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
                     <!-- LOGO AGREGADO AQUÍ -->
-                    <img alt="Fit Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png" />
+                    <img alt="Fit Mex logo" class="h-10 w-10" src="../../Logo_FitsMex.png" />
                     <span class="text-2xl font-bold text-white">Fits - Mex</span>
                 </div>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
-                <a href="../Paginas_principales/Pag_Principal.html"
+                <a href="../../Paginas_principales/Pag_Principal.html"
                     class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary">
                     <span class="material-symbols-outlined">home</span>
                     <span>Inicio</span>
@@ -258,7 +258,7 @@ $conn->close();
                     <span>Ejercicios</span>
                 </a>
 
-                <a href="../Rutinas/Mis_Rutinas.html"
+                <a href="../../Rutinas/Lista_Rutinas.html"
                     class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary">
                     <span class="material-symbols-outlined">library_books</span>
                     <span>Mis Rutinas</span>
@@ -363,7 +363,7 @@ $conn->close();
                                     <div class="flex items-start gap-4">
                                         <?php if (!empty($ejercicio['ejemplo_ejer'])): ?>
                                             <div class="w-20 h-20 bg-center bg-cover rounded-lg flex-shrink-0"
-                                                style='background-image: url("../ejemplos_ejercicios/<?php echo htmlspecialchars($ejercicio['ejemplo_ejer']); ?>");'></div>
+                                                style='background-image: url("../../../ejemplos_ejercicios/<?php echo htmlspecialchars($ejercicio['ejemplo_ejer']); ?>");'></div>
                                         <?php else: ?>
                                             <div class="exercise-image">
                                                 <span class="material-symbols-outlined">fitness_center</span>
@@ -440,7 +440,7 @@ $conn->close();
 
             <!-- NAV MÓVIL -->
             <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2 z-50">
-                <a href="../Paginas_principales/Pag_Principal.html"
+                <a href="../../Paginas_principales/Pag_Principal.html"
                     class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
                     <span class="material-symbols-outlined">home</span>
                     <span class="text-xs font-medium">Inicio</span>
@@ -449,7 +449,7 @@ $conn->close();
                     <span class="material-symbols-outlined">search</span>
                     <span class="text-xs font-medium">Ejercicios</span>
                 </a>
-                <a href="../Rutinas/Mis_Rutinas.html"
+                <a href="../../Rutinas/Lista_Rutinas.html"
                     class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
                     <span class="material-symbols-outlined">library_books</span>
                     <span class="text-xs font-medium">Mis rutinas</span>
