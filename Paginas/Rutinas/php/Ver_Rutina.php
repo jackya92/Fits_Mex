@@ -265,44 +265,91 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // EVENTOS ================================================================
-    openModalBtn.addEventListener('click', e => { e.preventDefault(); addExerciseModal.classList.remove('hidden'); loadAvailableExercises(); });
+    openModalBtn.addEventListener('click', e => { 
+        e.preventDefault(); 
+        addExerciseModal.classList.remove('hidden'); 
+        loadAvailableExercises(); 
+    });
+
     closeModalBtn.addEventListener('click', () => addExerciseModal.classList.add('hidden'));
-    addExerciseModal.addEventListener('click', e => { if (e.target === addExerciseModal) addExerciseModal.classList.add('hidden'); });
 
-    tableBody.addEventListener('click', async e => {
+    addExerciseModal.addEventListener('click', e => { 
+        if (e.target === addExerciseModal) addExerciseModal.classList.add('hidden'); 
+    });
+
+    // CORREGIR ESTA PARTE - Event delegation para botones Agregar
+    document.addEventListener('click', async function(e) {
+        // Manejar botones Agregar del modal
+        if (e.target.classList.contains('add-btn')) {
+            const id = e.target.dataset.id;
+            const name = e.target.dataset.name;
+            
+            console.log('Intentando agregar ejercicio:', id, name);
+            
+            try {
+                const response = await fetch('add_ejercicio.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        id_rutina: rutinaId, 
+                        id_ejercicio: id 
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Respuesta del servidor:', result);
+                
+                if (result.success) {
+                    // Agregar a la tabla
+                    addNewExerciseRow(id, name);
+                    // Remover del modal
+                    e.target.closest('.flex').remove();
+                    // Actualizar músculos
+                    updateMuscleTags();
+                    
+                    // Cerrar modal si no quedan ejercicios
+                    if (exerciseListContainer.children.length === 0) {
+                        addExerciseModal.classList.add('hidden');
+                    }
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al comunicarse con el servidor');
+            }
+        }
+        
+        // Manejar botones Eliminar (mantener tu código actual)
         const deleteBtn = e.target.closest('.delete-btn');
-        const addBtn = e.target.closest('.add-btn');
-
         if (deleteBtn) {
             const row = deleteBtn.closest('tr');
             const ejercicioId = row.dataset.id;
             const ejercicioName = row.querySelector('td:first-child').textContent.trim();
+            
             if (confirm(`¿Eliminar "${ejercicioName}" de la rutina?`)) {
-                const response = await fetch('delete_ejercicio.php', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ id_rutina: rutinaId, id_ejercicio: ejercicioId })
-                });
-                const result = await response.json();
-                if (result.success) { row.remove(); updateMuscleTags(); }
-            }
-        }
-    });
-
-    exerciseListContainer.addEventListener('click', async e => {
-        if (e.target.classList.contains('add-btn')) {
-            const id = e.target.dataset.id;
-            const name = e.target.dataset.name;
-            const response = await fetch('add_ejercicio.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ id_rutina: rutinaId, id_ejercicio: id })
-            });
-            const result = await response.json();
-            if (result.success) {
-                addNewExerciseRow(id, name);
-                e.target.closest('.flex').remove();
-                updateMuscleTags(); // 🔄 Actualiza los músculos
+                try {
+                    const response = await fetch('delete_ejercicio.php', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ 
+                            id_rutina: rutinaId, 
+                            id_ejercicio: ejercicioId 
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) { 
+                        row.remove(); 
+                        updateMuscleTags(); 
+                    } else {
+                        alert('Error: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error al eliminar el ejercicio');
+                }
             }
         }
     });
