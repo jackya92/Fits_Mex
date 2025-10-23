@@ -234,13 +234,9 @@ $conn->close();
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
 
     <div class="flex">
-        <!-- ========================================================= -->
-        <!-- ASIDE / MENÚ LATERAL -->
-        <!-- ========================================================= -->
         <aside class="hidden md:flex flex-col w-64 bg-white dark:bg-black/20 border-r border-primary/20 dark:border-primary/30 min-h-screen fixed top-0 left-0 bottom-0 z-40">
             <div class="flex items-center justify-center h-20 border-b border-primary/20 dark:border-primary/30 px-6">
                 <div class="flex items-center gap-3 bg-primary py-2 px-4 rounded-lg dark:bg-primary/80">
-                    <!-- LOGO AGREGADO AQUÍ -->
                     <img alt="Fit Mex logo" class="h-10 w-10" src="../../Logo_FitsMex.png" />
                     <span class="text-2xl font-bold text-white">Fits - Mex</span>
                 </div>
@@ -274,15 +270,11 @@ $conn->close();
             </div>
         </aside>
 
-        <!-- ========================================================= -->
-        <!-- CONTENIDO PRINCIPAL -->
-        <!-- ========================================================= -->
         <div class="flex-1 flex flex-col min-h-screen md:ml-64">
             <header class="md:hidden border-b border-primary/20 dark:border-primary/30">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16">
                         <div class="flex items-center gap-3">
-                            <!-- LOGO AGREGADO AQUÍ PARA VERSIÓN MÓVIL -->
                             <img alt="Fit Mex logo" class="h-8 w-8" src="../Logo_FitsMex.png" />
                             <span class="text-xl font-bold text-gray-900 dark:text-white">Fit Mex</span>
                         </div>
@@ -303,9 +295,7 @@ $conn->close();
                         <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Ejercicios</h2>
                     </div>
 
-                    <!-- Filtros -->
                     <div class="sticky top-[70px] z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm py-4 mb-6">
-                        <!-- Formulario de búsqueda -->
                         <form method="GET" action="" class="search-form mb-4">
                             <div class="search-input-container">
                                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
@@ -328,7 +318,6 @@ $conn->close();
                             </button>
                         </form>
 
-                        <!-- Información de búsqueda -->
                         <?php if (!empty($busqueda)): ?>
                             <div class="search-info">
                                 <?php if ($resultadosEncontrados): ?>
@@ -340,22 +329,9 @@ $conn->close();
                         <?php endif; ?>
 
                         <div class="flex flex-wrap items-center gap-2">
-                            <button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                                Categoría
-                                <span class="material-symbols-outlined text-base">expand_more</span>
-                            </button>
-                            <button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                                Dificultad
-                                <span class="material-symbols-outlined text-base">expand_more</span>
-                            </button>
-                            <button class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
-                                Músculo
-                                <span class="material-symbols-outlined text-base">expand_more</span>
-                            </button>
-                        </div>
+                            </div>
                     </div>
 
-                    <!-- Lista de Ejercicios -->
                     <div class="space-y-4">
                         <?php if (!empty($ejercicios)): ?>
                             <?php foreach ($ejercicios as $ejercicio): ?>
@@ -372,7 +348,6 @@ $conn->close();
                                         <div class="flex-1">
                                             <h3 class="font-semibold text-lg text-gray-900 dark:text-white"><?php echo htmlspecialchars($ejercicio['nom_ejercicio']); ?></h3>
                                             
-                                            <!-- Descripción corta -->
                                             <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
                                                 <?php 
                                                     $descripcion = htmlspecialchars($ejercicio['descripcion_ejer']);
@@ -381,14 +356,11 @@ $conn->close();
                                                 ?>
                                             </div>
                                             
-                                            <!-- Descripción completa (oculta inicialmente) -->
                                             <div class="description-content text-sm text-gray-600 dark:text-gray-400 mt-2">
                                                 <?php echo $descripcion; ?>
                                             </div>
                                             
-                                            <!-- Botones de acción -->
                                             <div class="action-buttons mt-3">
-                                                <!-- Estado por defecto (no agregado) -->
                                                 <div class="default-state">
                                                     <button class="toggle-description flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
                                                         <span class="toggle-icon material-symbols-outlined text-sm">expand_more</span>
@@ -401,7 +373,6 @@ $conn->close();
                                                     </button>
                                                 </div>
                                                 
-                                                <!-- Estado cuando está agregado -->
                                                 <div class="added-state">
                                                     <span class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
                                                         <span class="material-symbols-outlined text-sm">check</span>
@@ -420,7 +391,6 @@ $conn->close();
                             <?php endforeach; ?>
                         <?php else: ?>
                             <?php if (!empty($busqueda)): ?>
-                                <!-- Mensaje cuando no se encuentran resultados -->
                                 <div class="no-results dark:bg-red-900/20 dark:border-red-800/50 dark:text-red-400">
                                     <span class="material-symbols-outlined text-4xl mb-2">search_off</span>
                                     <h3 class="text-lg font-semibold mb-2">Ejercicio no encontrado</h3>
@@ -438,7 +408,6 @@ $conn->close();
                 </div>
             </main>
 
-            <!-- NAV MÓVIL -->
             <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black/20 border-t border-primary/20 dark:border-primary/30 flex justify-around py-2 z-50">
                 <a href="../../Paginas_principales/Pag_Principal.html"
                     class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">

@@ -105,21 +105,22 @@ if (!$rutina) {
                     <span class="text-2xl font-bold text-white">Fits-Mex</span>
                 </div>
             </div>
-            <nav class="flex-1 px-4 py-6 space-y-2">
-                <a href="/Paginas/Paginas_principales/Pag_Principal.html" class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
-                    <span class="material-symbols-outlined">home</span>
-                    <span>Inicio</span>
-                </a>
-                <a href="/Paginas/Ejercicios/Lista_Ejercicios.html" class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
-                    <span class="material-symbols-outlined">search</span>
-                    <span>Explorar</span>
-                </a>
-                <a href="Lista_Rutinas.html" class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold">
-                    <span class="material-symbols-outlined">library_books</span>
-                    <span>Mis rutinas</span>
-                </a>
-            </nav>
-        </aside>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <a href="../../Paginas_principales/Pag_Principal.html" class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
+                <span class="material-symbols-outlined">home</span>
+                <span>Inicio</span>
+            </a>
+            <a href="../../../Paginas/Ejercicios/php/ejercicios.php" class="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary">
+                <span class="material-symbols-outlined">search</span>
+                <span>Explorar</span>
+            </a>
+            <a href="Lista_Rutinas.html" class="flex items-center gap-3 px-4 py-2 text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary rounded-lg font-semibold">
+                <span class="material-symbols-outlined">library_books</span>
+                <span>Mis rutinas</span>
+            </a>
+        </nav>
+    </aside>
 
         <div class="flex-1 flex flex-col min-h-screen md:ml-64">
             <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-4xl">
