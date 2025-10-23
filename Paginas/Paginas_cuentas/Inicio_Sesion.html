@@ -6,11 +6,8 @@
     <title>Fits Mex - Inicia Sesión</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap"
-      rel="stylesheet" />
-    <script
-      src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
       tailwind.config = {
         darkMode: "class", 
@@ -42,23 +39,16 @@
       };
     </script>
     <style>
-      .form-input::placeholder {
-        color: #6b7280;
-      }
-      .dark .form-input::placeholder {
-        color: #9ca3af;
-      }
-      
+      .form-input::placeholder { color: #6b7280; }
+      .dark .form-input::placeholder { color: #9ca3af; }
+
       .error-message {
         color: #ef4444;
         font-size: 0.875rem;
         margin-top: 0.25rem;
       }
-      
-      .error-field {
-        border-color: #ef4444 !important;
-      }
-      
+      .error-field { border-color: #ef4444 !important; }
+
       .success-message {
         background-color: #d1fae5;
         border: 1px solid #10b981;
@@ -67,68 +57,41 @@
         border-radius: 0.5rem;
         margin-bottom: 1rem;
       }
-      
-      .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-      }
-      
-      .logo-container:hover {
-        opacity: 0.8;
-      }
-      
-      /* Efectos de gradiente y sombras */
-      .gradient-bg {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      }
-      
-      .card-shadow {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-      
-      .input-focus {
-        transition: all 0.3s ease;
-      }
-      
+
+      .logo-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+      .logo-container:hover { opacity: 0.8; }
+
+      .gradient-bg { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+      .card-shadow { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+
+      .input-focus { transition: all 0.3s ease; }
       .input-focus:focus {
-        box-shadow: 0 0 0 3px rgba(53, 158, 255, 0.2);
+        box-shadow: 0 0 0 3px rgba(53,158,255,0.2);
         transform: translateY(-2px);
       }
-      
-      .btn-hover {
-        transition: all 0.3s ease;
-      }
-      
+
+      .btn-hover { transition: all 0.3s ease; }
       .btn-hover:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px -3px rgba(53, 158, 255, 0.3);
+        box-shadow: 0 10px 20px -3px rgba(53,158,255,0.3);
       }
-      
-      /* Animaciones suaves */
+
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
       }
-      
-      .fade-in {
-        animation: fadeIn 0.5s ease-out;
-      }
-      
-      /* Estilo para el fondo decorativo */
+      .fade-in { animation: fadeIn 0.5s ease-out; }
+
       .decorative-bg {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0;
         height: 40%;
         background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         border-bottom-left-radius: 30% 20%;
         border-bottom-right-radius: 30% 20%;
         z-index: -1;
       }
-      
+
       @media (max-width: 768px) {
         .decorative-bg {
           border-bottom-left-radius: 20% 10%;
@@ -137,271 +100,178 @@
         }
       }
     </style>
-  </head>
-  <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-    <div class="flex min-h-screen flex-col relative overflow-hidden">
-      <!-- Fondo decorativo -->
-      <div class="decorative-bg"></div>
-      
-      <header class="relative z-10 w-full py-6">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-center">
-            <a href="index.html" class="logo-container">
-              <!-- Logo de Fits Mex con imagen -->
-              <div class="flex items-center gap-3 bg-white/90 dark:bg-gray-800/90 py-3 px-5 rounded-xl shadow-medium backdrop-blur-sm">
-                <img alt="Fits Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png" />
-                <span class="text-xl font-bold text-gray-800 dark:text-white">Fits - Mex</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </header>
-      
-      <main class="flex flex-1 items-center justify-center py-8 sm:py-12 lg:py-16 relative z-10">
-        <div class="w-full max-w-lg px-4 fade-in">
-          <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl card-shadow p-8 sm:p-10">
-            <div class="text-center mb-8">
-              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Inicia sesión en Fits Mex
-              </h2>
-              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                ¡Bienvenido de nuevo!
-              </p>
-            </div>
-            
-            <!-- Mensaje de éxito (oculto por defecto) -->
-            <div id="successMessage" class="success-message hidden">
-              ¡Inicio de sesión exitoso! Redirigiendo...
-            </div>
-            
-            <!-- Mensaje de error (oculto por defecto) -->
-            <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-              <span id="errorText"></span>
-            </div>
-            
-            <form id="loginForm" class="space-y-6" method="POST">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="email">
-                  Correo electrónico
-                </label>
-                <div>
-                  <input 
-                    autocomplete="email"
-                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
-                    id="email" 
-                    name="email" 
-                    placeholder="tu@ejemplo.com" 
-                    type="email" 
-                  />
-                  <div id="emailError" class="error-message hidden"></div>
-                </div>
-              </div>
-              
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="password">
-                  Contraseña
-                </label>
-                <div>
-                  <input 
-                    autocomplete="current-password"
-                    class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-primary focus:ring-primary input-focus p-3 border"
-                    id="password" 
-                    name="password" 
-                    placeholder="••••••••" 
-                    type="password" 
-                  />
-                  <div id="passwordError" class="error-message hidden"></div>
-                </div>
-              </div>
-              
-              <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                  <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
-                  <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-                    Recordarme
-                  </label>
-                </div>
-                <div class="text-sm">
-                  <a class="font-medium text-primary hover:text-primary-dark transition-colors" href="recuperar-contrasena.html">
-                    ¿Olvidaste tu contraseña?
-                  </a>
-                </div>
-              </div>
-              
-              <div class="pt-2">
-                <button
-                  class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all"
-                  type="submit">
-                  Iniciar sesión
-                </button>
-              </div>
-            </form>
-            
-            <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
-              ¿No tienes una cuenta?
-              <a class="font-medium text-primary hover:text-primary-dark transition-colors" href="Crear_Cuenta_1.html">
-                Regístrate ahora
-              </a>
-            </p>
-            
-            <!-- Separador -->
-            <div class="relative mt-6">
-              <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
-              </div>
-              <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">O continúa con</span>
-              </div>
-            </div>
-            
-            <!-- Botones de inicio de sesión social -->
-            <div class="grid grid-cols-2 gap-3 mt-6">
-              <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors btn-hover">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                <span class="ml-2">Google</span>
-              </button>
-              
-              <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors btn-hover">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-                <span class="ml-2">Twitter</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+</head>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('loginForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const errorText = document.getElementById('errorText');
-        
-        // Función para mostrar errores
-        function showError(fieldId, message) {
-          const field = document.getElementById(fieldId);
-          const errorElement = document.getElementById(fieldId + 'Error');
-          
-          field.classList.add('error-field');
-          errorElement.textContent = message;
-          errorElement.classList.remove('hidden');
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="flex min-h-screen flex-col relative overflow-hidden">
+    <div class="decorative-bg"></div>
+    <header class="relative z-10 w-full py-6">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-center">
+          <a href="index.html" class="logo-container">
+            <div class="flex items-center gap-3 bg-white/90 dark:bg-gray-800/90 py-3 px-5 rounded-xl shadow-medium backdrop-blur-sm">
+              <img alt="Fits Mex logo" class="h-10 w-10" src="../Logo_FitsMex.png" />
+              <span class="text-xl font-bold text-gray-800 dark:text-white">Fits - Mex</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-1 items-center justify-center py-8 sm:py-12 lg:py-16 relative z-10">
+      <div class="w-full max-w-lg px-4 fade-in">
+        <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl card-shadow p-8 sm:p-10">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Inicia sesión en Fits Mex</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">¡Bienvenido de nuevo!</p>
+          </div>
+
+          <div id="successMessage" class="success-message hidden">¡Inicio de sesión exitoso! Redirigiendo...</div>
+          <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <span id="errorText"></span>
+          </div>
+
+          <form id="loginForm" class="space-y-6" method="POST">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Correo electrónico</label>
+              <div>
+                <input id="email" name="email" type="email" placeholder="tu@ejemplo.com"
+                  class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary input-focus p-3 border" />
+                <div id="emailError" class="error-message hidden"></div>
+              </div>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Contraseña</label>
+              <div>
+                <input id="password" name="password" type="password" placeholder="••••••••"
+                  class="w-full rounded-xl border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary input-focus p-3 border" />
+                <div id="passwordError" class="error-message hidden"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember-me" name="remember-me" type="checkbox"
+                  class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
+                <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">Recordarme</label>
+              </div>
+              <div class="text-sm">
+                <a class="font-medium text-primary hover:text-primary-dark transition-colors" href="recuperar-contrasena.html">
+                  ¿Olvidaste tu contraseña?
+                </a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit"
+                class="w-full justify-center rounded-xl gradient-bg px-4 py-3 text-sm font-bold text-white shadow-medium btn-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:ring-offset-background-dark transition-all">
+                Iniciar sesión
+              </button>
+            </div>
+          </form>
+
+          <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+            ¿No tienes una cuenta?
+            <a href="Crear_Cuenta_1.html" class="font-medium text-primary hover:text-primary-dark transition-colors">Regístrate ahora</a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 🚀 SCRIPT ACTUALIZADO CON CONEXIÓN REAL -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('loginForm');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+      const errorText = document.getElementById('errorText');
+      
+      function showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorElement = document.getElementById(fieldId + 'Error');
+        field.classList.add('error-field');
+        errorElement.textContent = message;
+        errorElement.classList.remove('hidden');
+      }
+      function clearError(fieldId) {
+        const field = document.getElementById(fieldId);
+        const errorElement = document.getElementById(fieldId + 'Error');
+        field.classList.remove('error-field');
+        errorElement.textContent = '';
+        errorElement.classList.add('hidden');
+      }
+      function showGeneralError(message) {
+        errorText.textContent = message;
+        errorMessage.classList.remove('hidden');
+      }
+      function hideGeneralError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        hideGeneralError();
+
+        let isValid = true;
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        // Validación básica
+        if (!email) {
+          showError('email', 'El correo electrónico es obligatorio');
+          isValid = false;
+        } else {
+          clearError('email');
         }
-        
-        // Función para limpiar errores
-        function clearError(fieldId) {
-          const field = document.getElementById(fieldId);
-          const errorElement = document.getElementById(fieldId + 'Error');
-          
-          field.classList.remove('error-field');
-          errorElement.textContent = '';
-          errorElement.classList.add('hidden');
+        if (!password) {
+          showError('password', 'La contraseña es obligatoria');
+          isValid = false;
+        } else {
+          clearError('password');
         }
-        
-        // Función para mostrar mensaje de error general
-        function showGeneralError(message) {
-          errorText.textContent = message;
-          errorMessage.classList.remove('hidden');
+
+        if (isValid) {
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalText = submitButton.textContent;
+          submitButton.textContent = 'Iniciando sesión...';
+          submitButton.disabled = true;
+
+          const formData = new FormData(form);
+          fetch("procesamiento/login.php", {
+            method: "POST",
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === "success") {
+              successMessage.classList.remove('hidden');
+              setTimeout(() => {
+                window.location.href = 'procesamiento/dashboard.php';
+              }, 2000);
+            } else {
+              showGeneralError(data.message);
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+            }
+          })
+          .catch(error => {
+            showGeneralError("Error al conectar con el servidor.");
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+          });
         }
-        
-        // Función para ocultar mensaje de error general
-        function hideGeneralError() {
-          errorMessage.classList.add('hidden');
-        }
-        
-        // Validación del formulario
-        form.addEventListener('submit', function(event) {
-          event.preventDefault();
+      });
+
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          clearError(this.id);
           hideGeneralError();
-          
-          let isValid = true;
-          
-          // Validar email
-          const email = document.getElementById('email').value.trim();
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!email) {
-            showError('email', 'El correo electrónico es obligatorio');
-            isValid = false;
-          } else if (!emailRegex.test(email)) {
-            showError('email', 'Ingresa un correo electrónico válido');
-            isValid = false;
-          } else {
-            clearError('email');
-          }
-          
-          // Validar contraseña
-          const password = document.getElementById('password').value;
-          if (!password) {
-            showError('password', 'La contraseña es obligatoria');
-            isValid = false;
-          } else {
-            clearError('password');
-          }
-          
-          // Si el formulario es válido, proceder con el envío
-          if (isValid) {
-            // Simular envío de datos al servidor
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Iniciando sesión...';
-            submitButton.disabled = true;
-            
-            // Simular petición al servidor
-            setTimeout(() => {
-              // Simular respuesta del servidor
-              const success = Math.random() > 0.2; // 80% de éxito para la simulación
-              
-              if (success) {
-                // Éxito
-                successMessage.classList.remove('hidden');
-                
-                // Redirigir después de 2 segundos
-                setTimeout(() => {
-                  window.location.href = 'dashboard.html';
-                }, 2000);
-              } else {
-                // Error
-                showGeneralError('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-              }
-            }, 1500);
-          }
-        });
-        
-        // Limpiar errores al escribir en los campos
-        const inputs = form.querySelectorAll('input');
-        inputs.forEach(input => {
-          input.addEventListener('input', function() {
-            clearError(this.id);
-            hideGeneralError();
-          });
-        });
-        
-        // Funcionalidad para los botones de inicio de sesión social
-        const socialButtons = document.querySelectorAll('button[type="button"]');
-        socialButtons.forEach(button => {
-          button.addEventListener('click', function() {
-            const provider = this.querySelector('span').textContent;
-            alert(`Iniciando sesión con ${provider}. Esta funcionalidad se implementaría con OAuth en un entorno real.`);
-          });
-        });
-        
-        // Funcionalidad para el enlace de recuperación de contraseña
-        const forgotPasswordLink = document.querySelector('a[href="recuperar-contrasena.html"]');
-        forgotPasswordLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          alert('Redirigiendo a la página de recuperación de contraseña. En un entorno real, esto llevaría a un formulario para restablecer la contraseña.');
-          // window.location.href = 'recuperar-contrasena.html'; // Descomentar en implementación real
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

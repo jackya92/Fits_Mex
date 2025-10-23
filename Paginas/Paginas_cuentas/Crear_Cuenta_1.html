@@ -381,17 +381,27 @@
           }
           
           // Si el formulario es válido, proceder con el envío
-          if (isValid) {
-            // Aquí normalmente enviarías los datos al servidor
-            // Por ahora, simulamos el envío exitoso
-            successMessage.classList.remove('hidden');
-            form.reset();
-            
-            // Redirigir después de 2 segundos (simulación)
-            setTimeout(() => {
-              window.location.href = 'Inicio_Sesion.html';
-            }, 2000);
-          }
+           if (isValid) {
+  const formData = new FormData(form);
+  
+  fetch("procesamiento/register.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === "success") {
+      successMessage.classList.remove('hidden');
+      setTimeout(() => {
+        window.location.href = 'Inicio_Sesion.html';
+      }, 2000);
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(error => alert("Error al conectar con el servidor"));
+}
+
         });
         
         // Limpiar errores al escribir en los campos
