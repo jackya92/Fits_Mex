@@ -1,31 +1,33 @@
 <?php
-require_once 'conexion.php';
+// delete_ejercicio.php
+
 header('Content-Type: application/json');
+require_once 'conexion.php'; 
 
-$data = json_decode(file_get_contents('php://input'), true);
+$input = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['id_rutina']) || !isset($data['id_ejercicio'])) {
-    echo json_encode(['success' => false, 'message' => 'Faltan datos.']);
+if (!isset($input['id_rutina']) || !isset($input['id_ejercicio'])) {
+    echo json_encode(['success' => false, 'message' => 'Datos incompletos.']);
     exit;
 }
 
-$id_rutina = $data['id_rutina'];
-$id_ejercicio = $data['id_ejercicio'];
+$id_rutina = (int)$input['id_rutina'];
+$id_ejercicio = (int)$input['id_ejercicio'];
 
 try {
-    // Preparamos y ejecutamos la consulta DELETE
-    $stmt = $pdo->prepare(
-        "DELETE FROM rel_ejer_rutina_musculo WHERE id_ejercicio = ? AND id_rutina = ?"
-    );
-    $stmt->execute([$id_ejercicio, $id_rutina]);
-
-    // Verificamos si se eliminó alguna fila para confirmar el éxito
-    if ($stmt->rowCount() > 0) {
+    // Elimina TODAS las entradas de músculos para este ejercicio en esta rutina.
+    $sql = "DELETE FROM rel_ejer_rutina_musculo 
+            WHERE id_rutina = ? AND id_ejercicio = ?";
+    
+    $stmt = $pdo->prepare($sql);
+    
+    if ($stmt->execute([$id_rutina, $id_ejercicio])) {
         echo json_encode(['success' => true]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'No se encontró el ejercicio en la rutina.']);
+        echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta.']);
     }
 
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => 'Error al eliminar: ' . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => 'Error de BD: ' . $e->getMessage()]);
 }
+?>

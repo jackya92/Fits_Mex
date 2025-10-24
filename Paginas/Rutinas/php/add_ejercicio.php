@@ -1,40 +1,50 @@
 <?php
-require_once 'conexion.php';
+// add_ejercicio.php
+
 header('Content-Type: application/json');
+require_once 'conexion.php'; 
 
-$data = json_decode(file_get_contents('php://input'), true);
+$input = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['id_rutina']) || !isset($data['id_ejercicio'])) {
-    echo json_encode(['success' => false, 'message' => 'Faltan datos.']);
+if (!isset($input['id_rutina']) || !isset($input['id_ejercicio'])) {
+    echo json_encode(['success' => false, 'message' => 'Datos incompletos.']);
     exit;
 }
 
-$id_rutina = $data['id_rutina'];
-$id_ejercicio = $data['id_ejercicio'];
-$segundos_default = 30; 
-$fecha_actual = date('Y-m-d');
-
-// El único cambio está aquí:
-$id_musculo_default = NULL; 
+$id_rutina = (int)$input['id_rutina'];
+$id_ejercicio = (int)$input['id_ejercicio'];
+$default_segundos = 30; // Valor por defecto
 
 try {
-    // Verificamos si ya existe para no duplicarlo
-    $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM rel_ejer_rutina_musculo WHERE id_rutina = ? AND id_ejercicio = ?");
-    $checkStmt->execute([$id_rutina, $id_ejercicio]);
-    if ($checkStmt->fetchColumn() > 0) {
-        echo json_encode(['success' => false, 'message' => 'El ejercicio ya está en la rutina.']);
-        exit;
+    // 1. Obtener todos los IDs de músculos asociados a este ejercicio
+    $stmt_musculos = $pdo->prepare("SELECT id_musculo FROM rel_ejer_musc WHERE id_ejercicio = ?");
+    $stmt_musculos->execute([$id_ejercicio]);
+    $musculos = $stmt_musculos->fetchAll(PDO::FETCH_COLUMN);
+
+    if (empty($musculos)) {
+        // Si el ejercicio no tiene músculos, aún se puede intentar agregarlo (como un 'descanso' o 'ejercicio genérico'),
+        // pero la tabla rel_ejer_rutina_musculo requiere id_musculo.
+        // Por consistencia en el diseño, devolvemos error si no hay músculos asociados.
+         echo json_encode(['success' => false, 'message' => 'El ejercicio no tiene músculos asociados para ser agregado.']);
+         exit;
     }
 
-    // Insertamos el nuevo registro en la tabla relacional
-    $stmt = $pdo->prepare(
-        "INSERT INTO rel_ejer_rutina_musculo (id_ejercicio, id_rutina, id_musculo, segundos, fecha) 
-         VALUES (?, ?, ?, ?, ?)"
-    );
-    $stmt->execute([$id_ejercicio, $id_rutina, $id_musculo_default, $segundos_default, $fecha_actual]);
+    $pdo->beginTransaction();
+    
+    // 2. Insertar una entrada en rel_ejer_rutina_musculo por cada músculo
+    $sql = "INSERT INTO rel_ejer_rutina_musculo (id_rutina, id_ejercicio, id_musculo, segundos) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    
+    foreach ($musculos as $id_musculo) {
+        $stmt->execute([$id_rutina, $id_ejercicio, $id_musculo, $default_segundos]);
+    }
 
-    echo json_encode(['success' => true, 'message' => 'Ejercicio agregado.']);
+    $pdo->commit();
+    echo json_encode(['success' => true]);
 
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => 'Error al agregar: ' . $e->getMessage()]);
+    $pdo->rollBack();
+    echo json_encode(['success' => false, 'message' => 'Error de BD: ' . $e->getMessage()]);
 }
+?>

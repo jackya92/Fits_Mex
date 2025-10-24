@@ -12,9 +12,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
+// Habilitar UTF-8
+$conn->set_charset("utf8");
 
 // ============================================================
-// CONSULTA DE EJERCICIOS CON BÚSQUEDA
+// CONSULTA DE EJERCICIOS (MODIFICADA para incluir IDs y Músculos)
 // ============================================================
 $busqueda = "";
 $resultadosEncontrados = true;
@@ -23,10 +25,18 @@ $resultadosEncontrados = true;
 if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
     $busqueda = trim($_GET['buscar']);
     
-    // Consulta con búsqueda por nombre
-    $sql = "SELECT nom_ejercicio, descripcion_ejer, ejemplo_ejer FROM ejercicio 
-            WHERE nom_ejercicio LIKE ? 
-            ORDER BY nom_ejercicio";
+    // Consulta con búsqueda por nombre, ID y MÚSCULOS ASOCIADOS
+    $sql = "SELECT 
+                e.id_ejercicio, 
+                e.nom_ejercicio, 
+                e.descripcion_ejer, 
+                e.ejemplo_ejer,
+                GROUP_CONCAT(rem.id_musculo) AS muscle_ids
+            FROM ejercicio e
+            LEFT JOIN rel_ejer_musc rem ON e.id_ejercicio = rem.id_ejercicio
+            WHERE e.nom_ejercicio LIKE ?
+            GROUP BY e.id_ejercicio, e.nom_ejercicio, e.descripcion_ejer, e.ejemplo_ejer
+            ORDER BY e.nom_ejercicio";
     
     $stmt = $conn->prepare($sql);
     $terminoBusqueda = "%" . $busqueda . "%";
@@ -35,9 +45,17 @@ if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
     $result = $stmt->get_result();
     
 } else {
-    // Consulta normal sin búsqueda
-    $sql = "SELECT nom_ejercicio, descripcion_ejer, ejemplo_ejer FROM ejercicio 
-            ORDER BY nom_ejercicio";
+    // Consulta normal sin búsqueda, con ID y MÚSCULOS ASOCIADOS
+    $sql = "SELECT 
+                e.id_ejercicio, 
+                e.nom_ejercicio, 
+                e.descripcion_ejer, 
+                e.ejemplo_ejer,
+                GROUP_CONCAT(rem.id_musculo) AS muscle_ids
+            FROM ejercicio e
+            LEFT JOIN rel_ejer_musc rem ON e.id_ejercicio = rem.id_ejercicio
+            GROUP BY e.id_ejercicio, e.nom_ejercicio, e.descripcion_ejer, e.ejemplo_ejer
+            ORDER BY e.nom_ejercicio";
     $result = $conn->query($sql);
 }
 
@@ -48,6 +66,19 @@ if ($result && $result->num_rows > 0) {
     }
 } else {
     $resultadosEncontrados = false;
+}
+
+// ============================================================
+// CONSULTA DE RUTINAS DEL USUARIO (para el modal)
+// ============================================================
+$sql_rutinas = "SELECT id_rutina, nom_rutina, icono FROM rutina ORDER BY nom_rutina";
+$result_rutinas = $conn->query($sql_rutinas);
+
+$rutinas = [];
+if ($result_rutinas && $result_rutinas->num_rows > 0) {
+    while ($row_rutina = $result_rutinas->fetch_assoc()) {
+        $rutinas[] = $row_rutina;
+    }
 }
 
 $conn->close();
@@ -97,78 +128,33 @@ $conn->close();
                 'GRAD' 0,
                 'opsz' 24
         }
-
-        /* Estilos para la descripción expandible */
         .description-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
-        
-        .description-content.expanded {
-            max-height: 500px;
-        }
-        
-        .toggle-icon {
-            transition: transform 0.3s ease;
-        }
-        
-        .toggle-icon.expanded {
-            transform: rotate(180deg);
-        }
-        
-        .add-button {
-            transition: all 0.3s ease;
-        }
-        
+        .description-content.expanded { max-height: 500px; }
+        .toggle-icon { transition: transform 0.3s ease; }
+        .toggle-icon.expanded { transform: rotate(180deg); }
+        .add-button { transition: all 0.3s ease; }
         .add-button:hover {
             transform: scale(1.05);
             background-color: #4c63d9 !important;
         }
-        
-        .add-button.added {
-            background-color: #10b981 !important;
-        }
-        
-        .remove-button {
-            transition: all 0.3s ease;
-        }
-        
+        .remove-button { transition: all 0.3s ease; }
         .remove-button:hover {
             transform: scale(1.05);
             background-color: #dc2626 !important;
         }
+        .action-buttons { display: flex; gap: 0.5rem; align-items: center; }
         
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
+        /* === Lógica de estado de botones === */
+        .added-state { display: none; align-items: center; gap: 0.5rem; }
+        .exercise-added .default-state { display: none; }
+        .exercise-added .added-state { display: flex; }
         
-        .added-state {
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .exercise-added .default-state {
-            display: none;
-        }
-        
-        .exercise-added .added-state {
-            display: flex;
-        }
-        
-        .search-form {
-            display: flex;
-            align-items: center;
-        }
-        
-        .search-input-container {
-            position: relative;
-            flex-grow: 1;
-        }
-        
+        .search-form { display: flex; align-items: center; }
+        .search-input-container { position: relative; flex-grow: 1; }
         .search-button {
             margin-left: 0.5rem;
             background-color: #607AFB;
@@ -179,11 +165,7 @@ $conn->close();
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
-        .search-button:hover {
-            background-color: #4c63d9;
-        }
-        
+        .search-button:hover { background-color: #4c63d9; }
         .clear-search {
             position: absolute;
             right: 3rem;
@@ -197,11 +179,7 @@ $conn->close();
             align-items: center;
             justify-content: center;
         }
-        
-        .clear-search:hover {
-            color: #374151;
-        }
-        
+        .clear-search:hover { color: #374151; }
         .no-results {
             text-align: center;
             padding: 2rem;
@@ -210,13 +188,11 @@ $conn->close();
             border: 1px solid #fecaca;
             color: #dc2626;
         }
-        
         .search-info {
             margin-bottom: 1rem;
             color: #6b7280;
             font-size: 0.875rem;
         }
-        
         .exercise-image {
             width: 80px;
             height: 80px;
@@ -227,6 +203,32 @@ $conn->close();
             justify-content: center;
             color: #9ca3af;
             font-size: 0.875rem;
+        }
+        
+        /* === Estilos para el Modal de Rutinas === */
+        .routine-select-button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+            text-align: left;
+            gap: 0.75rem;
+            background-color: #f5f6f8; /* background-light */
+            color: #1f2937; /* gray-800 */
+        }
+        .dark .routine-select-button {
+            background-color: #0f1323; /* background-dark */
+            color: #f3f4f6; /* gray-100 */
+        }
+        .routine-select-button:hover {
+            background-color: #e0e7ff; /* primary/10 */
+            color: #607AFB; /* primary */
+        }
+        .dark .routine-select-button:hover {
+            background-color: rgba(96, 122, 251, 0.2); /* primary/20 */
+            color: #607AFB; /* primary */
         }
     </style>
 </head>
@@ -327,15 +329,15 @@ $conn->close();
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-
-                        <div class="flex flex-wrap items-center gap-2">
-                            </div>
                     </div>
 
                     <div class="space-y-4">
                         <?php if (!empty($ejercicios)): ?>
                             <?php foreach ($ejercicios as $ejercicio): ?>
-                                <div class="exercise-card bg-white dark:bg-black/10 p-4 rounded-xl shadow-sm hover:shadow-lg transition-all hover:bg-white/10 dark:hover:bg-black/20">
+                                <div class="exercise-card bg-white dark:bg-black/10 p-4 rounded-xl shadow-sm hover:shadow-lg transition-all hover:bg-white/10 dark:hover:bg-black/20"
+                                     data-exercise-id="<?php echo $ejercicio['id_ejercicio']; ?>"
+                                     data-muscle-ids="<?php echo htmlspecialchars($ejercicio['muscle_ids']); ?>">
+                                     
                                     <div class="flex items-start gap-4">
                                         <?php if (!empty($ejercicio['ejemplo_ejer'])): ?>
                                             <div class="w-20 h-20 bg-center bg-cover rounded-lg flex-shrink-0"
@@ -376,7 +378,7 @@ $conn->close();
                                                 <div class="added-state">
                                                     <span class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
                                                         <span class="material-symbols-outlined text-sm">check</span>
-                                                        <span>En tu rutina</span>
+                                                        <span>Agregado</span>
                                                     </span>
                                                     
                                                     <button class="remove-button flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-red-500 text-white hover:bg-red-600 transition-all">
@@ -432,11 +434,34 @@ $conn->close();
         </div>
     </div>
 
+    <div id="routine-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white dark:bg-background-dark rounded-xl shadow-lg w-full max-w-md max-h-[80vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-primary/20 p-4">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white" id="modal-title">...</h3>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-red-500">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            <div id="routine-list-container" class="overflow-y-auto p-4 space-y-2">
+                </div>
+            <div classKA="p-4 border-t border-primary/20">
+                 <a href="../../Rutinas/Creacion_Rutina.html" class="flex items-center justify-center gap-2 w-full text-sm bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-medium py-2 px-4 rounded-lg hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined">add</span>
+                    <span>Crear Nueva Rutina</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
     <script>
-        // Funcionalidad para expandir/contraer descripciones
+        // Pasar las rutinas de PHP a JavaScript
+        const availableRoutines = <?php echo json_encode($rutinas); ?>;
+
         document.addEventListener('DOMContentLoaded', function() {
-            const toggleButtons = document.querySelectorAll('.toggle-description');
             
+            // --- 1. Lógica para expandir descripción ---
+            const toggleButtons = document.querySelectorAll('.toggle-description');
             toggleButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const card = this.closest('.exercise-card');
@@ -454,62 +479,196 @@ $conn->close();
                     }
                 });
             });
+
+            // --- 2. Lógica del Modal (Agregar y Eliminar) ---
             
-            // Funcionalidad para agregar ejercicios
+            const routineModal = document.getElementById('routine-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const routineListContainer = document.getElementById('routine-list-container');
+            const modalTitle = document.getElementById('modal-title');
+            
+            let currentExerciseData = {};
+
+            // A) Asignar evento a TODOS los botones "Agregar"
             const addButtons = document.querySelectorAll('.add-button');
-            
             addButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const card = this.closest('.exercise-card');
-                    const exerciseName = card.querySelector('h3').textContent;
-                    
-                    // Cambiar estado del ejercicio a "agregado"
-                    card.classList.add('exercise-added');
-                    
-                    // Mostrar notificación
-                    showNotification(`"${exerciseName}" agregado a tu rutina`, 'success');
-                    
-                    // Aquí puedes agregar la lógica para guardar en la base de datos
-                    console.log(`Ejercicio agregado: ${exerciseName}`);
+                    currentExerciseData = getExerciseData(card);
+                    // Abrir modal en modo 'add'
+                    showRoutineModal('add');
                 });
             });
             
-            // Funcionalidad para eliminar ejercicios
+            // B) Asignar evento a TODOS los botones "Eliminar"
             const removeButtons = document.querySelectorAll('.remove-button');
-            
             removeButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const card = this.closest('.exercise-card');
-                    const exerciseName = card.querySelector('h3').textContent;
-                    
-                    // Cambiar estado del ejercicio a "no agregado"
-                    card.classList.remove('exercise-added');
-                    
-                    // Mostrar notificación
-                    showNotification(`"${exerciseName}" eliminado de tu rutina`, 'warning');
-                    
-                    // Aquí puedes agregar la lógica para eliminar de la base de datos
-                    console.log(`Ejercicio eliminado: ${exerciseName}`);
+                    currentExerciseData = getExerciseData(card);
+                    // Abrir modal en modo 'remove'
+                    showRoutineModal('remove');
                 });
             });
             
+            /**
+             * Función auxiliar para obtener los datos de la tarjeta
+             */
+            function getExerciseData(cardElement) {
+                return {
+                    exerciseId: cardElement.dataset.exerciseId,
+                    muscleIds: cardElement.dataset.muscleIds,
+                    exerciseName: cardElement.querySelector('h3').textContent.trim(),
+                    cardElement: cardElement
+                };
+            }
+
+            // Cerrar el modal
+            closeModalBtn.addEventListener('click', () => routineModal.classList.add('hidden'));
+            routineModal.addEventListener('click', (e) => {
+                if (e.target === routineModal) {
+                    routineModal.classList.add('hidden');
+                }
+            });
+
+            /**
+             * Muestra y puebla el modal con la lista de rutinas.
+             * @param {string} mode - 'add' o 'remove'
+             */
+            function showRoutineModal(mode) {
+                const { exerciseName } = currentExerciseData;
+                
+                // Configurar título y acción
+                const isAdding = (mode === 'add');
+                modalTitle.textContent = isAdding ? `Agregar "${exerciseName}" a...` : `Eliminar "${exerciseName}" de...`;
+                
+                routineListContainer.innerHTML = ''; // Limpiar lista
+
+                if (availableRoutines.length === 0) {
+                    routineListContainer.innerHTML = '<p class="text-center text-gray-500 p-4">No tienes rutinas creadas.</p>';
+                } else {
+                    // Generar un botón por cada rutina
+                    availableRoutines.forEach(routine => {
+                        const button = document.createElement('button');
+                        button.className = 'routine-select-button';
+                        
+                        button.innerHTML = `
+                            <span class="material-symbols-outlined">${routine.icono || 'fitness_center'}</span>
+                            <span class="font-medium">${routine.nom_rutina}</span>
+                        `;
+                        
+                        // Asignar el manejador de clic correcto (Agregar o Eliminar)
+                        button.addEventListener('click', () => {
+                            if (isAdding) {
+                                handleRoutineSelection(routine.id_rutina, routine.nom_rutina);
+                            } else {
+                                handleRoutineRemoval(routine.id_rutina, routine.nom_rutina);
+                            }
+                        });
+                        
+                        routineListContainer.appendChild(button);
+                    });
+                }
+                // Mostrar el modal
+                routineModal.classList.remove('hidden');
+            }
+
+            /**
+             * Maneja la SELECCIÓN (Agregar) de una rutina.
+             */
+            async function handleRoutineSelection(routineId, routineName) {
+                const { exerciseId, muscleIds, exerciseName, cardElement } = currentExerciseData;
+
+                if (!muscleIds || muscleIds.trim() === "") {
+                    showNotification(`Error: El ejercicio "${exerciseName}" no tiene músculos asignados.`, 'warning');
+                    return;
+                }
+
+                routineListContainer.innerHTML = '<p class="text-center text-primary p-4 animate-pulse">Agregando...</p>';
+
+                try {
+                    const response = await fetch('api_agregar_ejercicio.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            id_ejercicio: exerciseId,
+                            id_rutina: routineId,
+                            muscle_ids: muscleIds
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        routineModal.classList.add('hidden');
+                        cardElement.classList.add('exercise-added'); // Cambia a estado "Agregado"
+                        showNotification(`"${exerciseName}" agregado a "${routineName}"`, 'success');
+                    } else {
+                        routineModal.classList.add('hidden');
+                        showNotification(`Error: ${result.message}`, 'warning');
+                    }
+
+                } catch (error) {
+                    routineModal.classList.add('hidden');
+                    showNotification('Error de conexión con el servidor.', 'warning');
+                }
+            }
+            
+            /**
+             * Maneja la ELIMINACIÓN de una rutina.
+             */
+            async function handleRoutineRemoval(routineId, routineName) {
+                const { exerciseId, muscleIds, exerciseName, cardElement } = currentExerciseData;
+
+                if (!muscleIds || muscleIds.trim() === "") {
+                    showNotification(`Error: El ejercicio "${exerciseName}" no tiene músculos asignados.`, 'warning');
+                    return;
+                }
+                
+                routineListContainer.innerHTML = '<p class="text-center text-red-500 p-4 animate-pulse">Eliminando...</p>';
+
+                try {
+                    const response = await fetch('api_eliminar_ejercicio.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            id_ejercicio: exerciseId,
+                            id_rutina: routineId,
+                            muscle_ids: muscleIds
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        routineModal.classList.add('hidden');
+                        cardElement.classList.remove('exercise-added'); // Revierte a estado "Agregar"
+                        showNotification(`"${exerciseName}" eliminado de "${routineName}"`, 'warning');
+                    } else {
+                        routineModal.classList.add('hidden');
+                        showNotification(`Error: ${result.message}`, 'warning');
+                    }
+
+                } catch (error) {
+                    routineModal.classList.add('hidden');
+                    showNotification('Error de conexión con el servidor.', 'warning');
+                }
+            }
+            
+            // --- 3. Lógica para Notificaciones ---
             function showNotification(message, type = 'success') {
-                // Crear elemento de notificación
                 const notification = document.createElement('div');
-                notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-50 transform transition-transform duration-300 translate-x-full ${
+                notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-[100] transform transition-transform duration-300 translate-x-full ${
                     type === 'success' ? 'bg-green-500 text-white' : 'bg-amber-500 text-white'
                 }`;
                 notification.textContent = message;
                 
-                // Agregar al DOM
                 document.body.appendChild(notification);
                 
-                // Animación de entrada
                 setTimeout(() => {
                     notification.classList.remove('translate-x-full');
                 }, 10);
                 
-                // Eliminar después de 3 segundos
                 setTimeout(() => {
                     notification.classList.add('translate-x-full');
                     setTimeout(() => {
