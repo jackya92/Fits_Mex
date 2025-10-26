@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2025 a las 01:40:02
+-- Tiempo de generación: 26-10-2025 a las 04:43:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -140,6 +140,23 @@ CREATE TABLE `rel_ejer_rutina_musculo` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `rel_ejer_rutina_musculo`
+--
+
+INSERT INTO `rel_ejer_rutina_musculo` (`id_ejercicio`, `id_rutina`, `id_musculo`, `segundos`, `fecha`) VALUES
+(1, 1, 8, 30, '2025-10-24'),
+(1, 1, 9, 30, '2025-10-24'),
+(3, 2, 8, 30, '2025-10-24'),
+(3, 2, 9, 30, '2025-10-24'),
+(2, 6, 4, 30, '2025-10-24'),
+(2, 6, 8, 30, '2025-10-24'),
+(2, 6, 9, 30, '2025-10-24'),
+(1, 7, 8, 30, '2025-10-24'),
+(1, 7, 9, 30, '2025-10-24'),
+(3, 7, 8, 30, '2025-10-24'),
+(3, 7, 9, 30, '2025-10-24');
+
 -- --------------------------------------------------------
 
 --
@@ -157,22 +174,12 @@ CREATE TABLE `rel_usu_herra_ejer` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rel_usu_rutina`
---
-
-CREATE TABLE `rel_usu_rutina` (
-  `id_usuario` int(11) NOT NULL,
-  `id_rutina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `rutina`
 --
 
 CREATE TABLE `rutina` (
   `id_rutina` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nom_rutina` varchar(100) NOT NULL,
   `color` varchar(30) NOT NULL,
   `icono` varchar(30) NOT NULL,
@@ -185,12 +192,14 @@ CREATE TABLE `rutina` (
 -- Volcado de datos para la tabla `rutina`
 --
 
-INSERT INTO `rutina` (`id_rutina`, `nom_rutina`, `color`, `icono`, `nivel`, `puntuacion`, `n_puntuacion`) VALUES
-(1, 'Mi primera rutina', '#DC3545', 'directions_run', 0, 0, 0),
-(2, 'iiiii', '#607AFB', 'weight', 0, 0, 0),
-(3, 'ggg', '#20C997', 'local_fire_department', 0, 0, 0),
-(4, 'jjj', '#6F42C1', 'self_improvement', 0, 0, 0),
-(5, 'ffvvd', '#20C997', 'self_improvement', 0, 0, 0);
+INSERT INTO `rutina` (`id_rutina`, `id_usuario`, `nom_rutina`, `color`, `icono`, `nivel`, `puntuacion`, `n_puntuacion`) VALUES
+(1, 4, 'Rutina 1', '#DC3545', 'directions_run', 0, 0, 0),
+(2, 1, 'iiiii', '#607AFB', 'weight', 0, 0, 0),
+(3, 1, 'ggg', '#20C997', 'local_fire_department', 0, 0, 0),
+(4, 1, 'jjj', '#6F42C1', 'self_improvement', 0, 0, 0),
+(5, 1, 'ffvvd', '#20C997', 'self_improvement', 0, 0, 0),
+(6, 1, 'Rutina x', '#FFC107', 'local_fire_department', 0, 0, 0),
+(7, 1, 'Prueba', '#FFC107', 'local_fire_department', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -208,6 +217,13 @@ CREATE TABLE `usuario` (
   `puntuacion` decimal(5,0) NOT NULL,
   `n_puntuacion` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `correo`, `contra`, `codigo_activacion`, `estado_activacion`, `nivel`, `puntuacion`, `n_puntuacion`) VALUES
+(1, 'jackyaf7584@gmail.com', '$2y$10$WHHCsKdJzEndEjX5AbjCBOUNbYdTtwLNu5pyH.wKvIgYS/sGMjvmK', 'a9fac9aa40d7985558fefbd41d39c8bc', 1, 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -247,17 +263,11 @@ ALTER TABLE `rel_ejer_rutina_musculo`
   ADD KEY `id_musculo` (`id_musculo`);
 
 --
--- Indices de la tabla `rel_usu_rutina`
---
-ALTER TABLE `rel_usu_rutina`
-  ADD KEY `id_usuario` (`id_usuario`,`id_rutina`),
-  ADD KEY `id_rutina` (`id_rutina`);
-
---
 -- Indices de la tabla `rutina`
 --
 ALTER TABLE `rutina`
-  ADD PRIMARY KEY (`id_rutina`);
+  ADD PRIMARY KEY (`id_rutina`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `usuario`
@@ -291,13 +301,13 @@ ALTER TABLE `musculo`
 -- AUTO_INCREMENT de la tabla `rutina`
 --
 ALTER TABLE `rutina`
-  MODIFY `id_rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -317,13 +327,6 @@ ALTER TABLE `rel_ejer_rutina_musculo`
   ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_1` FOREIGN KEY (`id_rutina`) REFERENCES `rutina` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_2` FOREIGN KEY (`id_ejercicio`) REFERENCES `ejercicio` (`id_ejercicio`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rel_ejer_rutina_musculo_ibfk_3` FOREIGN KEY (`id_musculo`) REFERENCES `musculo` (`id_musculo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `rel_usu_rutina`
---
-ALTER TABLE `rel_usu_rutina`
-  ADD CONSTRAINT `rel_usu_rutina_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rel_usu_rutina_ibfk_2` FOREIGN KEY (`id_rutina`) REFERENCES `rutina` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
