@@ -1,4 +1,5 @@
 <?php
+session_start();
 // ============================================================
 // CONFIGURACIÓN DE CONEXIÓN A BASE DE DATOS
 // ============================================================
@@ -69,9 +70,9 @@ if ($result && $result->num_rows > 0) {
 }
 
 // ============================================================
-// CONSULTA DE RUTINAS DEL USUARIO (para el modal)
+// CONSULTA DE RUTINAS DEL USUARIO (para el modal)SELECT id_rutina, nom_rutina, icono FROM rutina WHERE id_usuario = 3 ORDER BY nom_rutina;
 // ============================================================
-$sql_rutinas = "SELECT id_rutina, nom_rutina, icono FROM rutina ORDER BY nom_rutina";
+$sql_rutinas = "SELECT id_rutina, nom_rutina, icono FROM rutina WHERE id_usuario = ".$_SESSION['id_usuario']." ORDER BY nom_rutina";
 $result_rutinas = $conn->query($sql_rutinas);
 
 $rutinas = [];
