@@ -1,4 +1,5 @@
 <?php
+session_start();
 // --- Cabeceras para JSON y CORS ---
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -9,7 +10,9 @@ header('Access-Control-Allow-Origin: *');
 // ============================================================
 require_once 'conexion.php'; // Usa el mismo archivo donde defines $pdo
 
+
 try {
+    
     // ============================================================
     // 2. CONSULTA SQL AVANZADA (rutinas con músculos y herramientas)
     // ============================================================
@@ -33,6 +36,8 @@ try {
             rel_usu_herra_ejer AS rue ON e.id_ejercicio = rue.fk_ejercicio
         LEFT JOIN
             herramienta AS h ON rue.fk_herramienta = h.id_herramienta
+        WHERE 
+            id_usuario = '.$_SESSION['id_usuario'].'
         GROUP BY
             r.id_rutina, r.nom_rutina, r.color, r.icono
     ';

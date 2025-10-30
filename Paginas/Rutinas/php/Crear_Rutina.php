@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // ================================================================
@@ -22,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ================================================================
     // 3. INSERTAR RUTINA Y OBTENER SU ID
     // ================================================================
-    $sql = "INSERT INTO rutina (nom_rutina, color, icono) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO rutina (id_usuario,nom_rutina, color, icono) VALUES (?, ?, ?, ?)";
     
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nombreRutina, $colorPortada, $iconoRutina]);
+        $stmt->execute([$_SESSION['id_usuario'], $nombreRutina, $colorPortada, $iconoRutina]);
         $idRutina = $pdo->lastInsertId();
 
         // ================================================================
