@@ -191,7 +191,9 @@ if (!$rutina) {
                             <button id="open-add-exercise-modal" title="Agregar ejercicio" class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/50 text-white shadow-lg hover:bg-primary transition-transform transform hover:scale-105">
                                 <span class="material-symbols-outlined text-2xl">add</span>
                             </button>
-                            <a title="Comenzar a ejercitarse" href="#" class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
+                           <a title="Comenzar a ejercitarse" 
+                               href="Reproducir_Rutina1.php?id=<?= $id_rutina_actual ?>" 
+                               class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
                                 <span class="material-symbols-outlined text-2xl">play_arrow</span>
                             </a>
                         </div>
