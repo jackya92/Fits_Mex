@@ -364,7 +364,7 @@ if ($total_ejercicios > 0) {
         function finishRoutine() {
             clearInterval(timerInterval);
             // Redirige a la página de Finalizar Rutina
-            window.location.href = '../Finalizar_Rutina.html';
+            window.location.href = 'Finalizar_Rutina.php';
         }
 
         // --- INICIALIZACIÓN ---
