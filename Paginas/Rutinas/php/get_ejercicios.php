@@ -33,7 +33,7 @@ try {
         FROM ejercicio e
         WHERE e.id_ejercicio NOT IN (
             SELECT DISTINCT erm.id_ejercicio
-            FROM rel_ejer_rutina_musculo erm
+            FROM rutina_ejercicio erm
             WHERE erm.id_rutina = ?
         )
         ORDER BY e.nom_ejercicio ASC
@@ -46,10 +46,7 @@ try {
     // ============================================================
     // 3. RESPUESTA EXITOSA
     // ============================================================
-    echo json_encode([
-        'success' => true,
-        'data' => $ejercicios
-    ]);
+    echo json_encode($ejercicios);
 
 } catch (PDOException $e) {
     // ============================================================

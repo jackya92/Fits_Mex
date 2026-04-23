@@ -30,10 +30,15 @@ try {
     // ============================================================
     $sql = "
         SELECT DISTINCT m.nom_musculo
-        FROM rel_ejer_rutina_musculo rel
-        INNER JOIN musculo m ON rel.id_musculo = m.id_musculo
-        WHERE rel.id_rutina = ?
-        ORDER BY m.nom_musculo ASC
+FROM rutina_ejercicio re
+INNER JOIN ejercicio e 
+    ON re.id_ejercicio = e.id_ejercicio
+INNER JOIN rel_ejercicio_musculo rem 
+    ON e.id_ejercicio = rem.id_ejercicio
+INNER JOIN musculo m 
+    ON rem.id_musculo = m.id_musculo
+WHERE re.id_rutina = ?
+ORDER BY m.nom_musculo ASC;
     ";
 
     $stmt = $pdo->prepare($sql);
@@ -44,10 +49,7 @@ try {
     // ============================================================
     // 3. RESPUESTA EXITOSA
     // ============================================================
-    echo json_encode([
-        'success' => true,
-        'data' => $musculos
-    ]);
+    echo json_encode($musculos);
 
 } catch (PDOException $e) {
     // ============================================================
