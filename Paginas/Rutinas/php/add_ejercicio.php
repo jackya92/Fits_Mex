@@ -1,6 +1,4 @@
 <?php
-// add_ejercicio.php
-
 header('Content-Type: application/json');
 require_once 'conexion.php'; 
 
@@ -13,38 +11,29 @@ if (!isset($input['id_rutina']) || !isset($input['id_ejercicio'])) {
 
 $id_rutina = (int)$input['id_rutina'];
 $id_ejercicio = (int)$input['id_ejercicio'];
-$default_segundos = 30; // Valor por defecto
+$default_segundos = 30;
 
 try {
-    // 1. Obtener todos los IDs de músculos asociados a este ejercicio
-    $stmt_musculos = $pdo->prepare("SELECT id_musculo FROM rel_ejer_musc WHERE id_ejercicio = ?");
-    $stmt_musculos->execute([$id_ejercicio]);
-    $musculos = $stmt_musculos->fetchAll(PDO::FETCH_COLUMN);
 
-    if (empty($musculos)) {
-        // Si el ejercicio no tiene músculos, aún se puede intentar agregarlo (como un 'descanso' o 'ejercicio genérico'),
-        // pero la tabla rel_ejer_rutina_musculo requiere id_musculo.
-        // Por consistencia en el diseño, devolvemos error si no hay músculos asociados.
-         echo json_encode(['success' => false, 'message' => 'El ejercicio no tiene músculos asociados para ser agregado.']);
-         exit;
+    // (Opcional) Validar que el ejercicio exista
+    $stmt_check = $pdo->prepare("SELECT id_ejercicio FROM ejercicio WHERE id_ejercicio = ?");
+    $stmt_check->execute([$id_ejercicio]);
+
+    if (!$stmt_check->fetch()) {
+        echo json_encode(['success' => false, 'message' => 'El ejercicio no existe.']);
+        exit;
     }
 
-    $pdo->beginTransaction();
-    
-    // 2. Insertar una entrada en rel_ejer_rutina_musculo por cada músculo
-    $sql = "INSERT INTO rel_ejer_rutina_musculo (id_rutina, id_ejercicio, id_musculo, segundos) 
-            VALUES (?, ?, ?, ?)";
+    // Insertar directamente en rutina_ejercicio
+    $sql = "INSERT INTO rutina_ejercicio (id_rutina, id_ejercicio, segundos, orden) 
+            VALUES (?, ?, ?, NULL)";
+
     $stmt = $pdo->prepare($sql);
-    
-    foreach ($musculos as $id_musculo) {
-        $stmt->execute([$id_rutina, $id_ejercicio, $id_musculo, $default_segundos]);
-    }
+    $stmt->execute([$id_rutina, $id_ejercicio, $default_segundos]);
 
-    $pdo->commit();
     echo json_encode(['success' => true]);
 
 } catch (PDOException $e) {
-    $pdo->rollBack();
     echo json_encode(['success' => false, 'message' => 'Error de BD: ' . $e->getMessage()]);
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost'; // O la IP de tu servidor de BD
-$dbname = 'modular';
+$dbname = 'fits_mex';
 $user = 'root';
 $password = '';
 $charset = 'utf8mb4';

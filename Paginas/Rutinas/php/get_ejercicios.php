@@ -1,45 +1,67 @@
 <?php
+// ============================================================
 // get_ejercicios.php
+// Obtiene ejercicios disponibles (NO agregados a la rutina)
+// ============================================================
 
 header('Content-Type: application/json');
 require_once 'conexion.php'; 
 
-// El ID de rutina se recibe por GET para este listado
+// ============================================================
+// 1. VALIDAR PARÁMETRO
+// ============================================================
 $id_rutina = isset($_GET['id_rutina']) ? (int)$_GET['id_rutina'] : 0;
 
-if ($id_rutina === 0) {
-    echo json_encode([]);
+if ($id_rutina <= 0) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'ID de rutina inválido.',
+        'data' => []
+    ]);
     exit;
 }
 
 try {
-    // Selecciona todos los ejercicios que NO están presentes en la rutina actual.
-    // Usamos el id_ejercicio para la subconsulta, aprovechando el GROUP BY implícito
-    // en la llave primaria de rel_ejer_rutina_musculo.
+    // ============================================================
+    // 2. CONSULTA: EJERCICIOS NO AGREGADOS A LA RUTINA
+    // ============================================================
     $sql = "
         SELECT 
-            id_ejercicio, nom_ejercicio
-        FROM 
-            ejercicio
-        WHERE 
-            id_ejercicio NOT IN (
-                SELECT DISTINCT id_ejercicio 
-                FROM rel_ejer_rutina_musculo 
-                WHERE id_rutina = ?
-            )
-        ORDER BY 
-            nom_ejercicio
+            e.id_ejercicio, 
+            e.nom_ejercicio
+        FROM ejercicio e
+        WHERE e.id_ejercicio NOT IN (
+            SELECT DISTINCT erm.id_ejercicio
+            FROM rel_ejer_rutina_musculo erm
+            WHERE erm.id_rutina = ?
+        )
+        ORDER BY e.nom_ejercicio ASC
     ";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id_rutina]);
     $ejercicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($ejercicios);
+    // ============================================================
+    // 3. RESPUESTA EXITOSA
+    // ============================================================
+    echo json_encode([
+        'success' => true,
+        'data' => $ejercicios
+    ]);
 
 } catch (PDOException $e) {
-    // En caso de error, devuelve un array vacío
-    error_log("Error al obtener ejercicios disponibles: " . $e->getMessage());
-    echo json_encode([]);
+    // ============================================================
+    // 4. MANEJO DE ERRORES
+    // ============================================================
+    error_log("Error en get_ejercicios.php: " . $e->getMessage());
+
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al obtener ejercicios.',
+        'data' => []
+    ]);
 }
 ?>

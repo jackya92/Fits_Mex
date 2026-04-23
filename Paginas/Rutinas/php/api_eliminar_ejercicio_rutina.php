@@ -17,7 +17,7 @@ $id_ejercicio = $input['id_ejercicio'];
 try {
     // Esta consulta elimina TODAS las entradas de músculos para este ejercicio
     // en esta rutina específica.
-    $sql = "DELETE FROM rel_ejer_rutina_musculo 
+    $sql = "DELETE FROM rutina_ejercicio 
             WHERE id_rutina = ? AND id_ejercicio = ?";
     
     $stmt = $pdo->prepare($sql);

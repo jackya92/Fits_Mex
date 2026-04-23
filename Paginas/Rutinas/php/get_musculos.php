@@ -1,35 +1,65 @@
 <?php
+// ============================================================
 // get_musculos.php
+// Obtiene los músculos únicos usados en una rutina
+// ============================================================
 
 header('Content-Type: application/json');
 require_once 'conexion.php'; 
 
+// ============================================================
+// 1. OBTENER DATOS (POST JSON)
+// ============================================================
 $input = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($input['id_rutina'])) {
-    echo json_encode([]);
+if (!isset($input['id_rutina']) || (int)$input['id_rutina'] <= 0) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'ID de rutina inválido.',
+        'data' => []
+    ]);
     exit;
 }
 
 $id_rutina = (int)$input['id_rutina'];
 
 try {
-    // Obtenemos los nombres de los músculos únicos usados en esta rutina
-    $stmt_musculos = $pdo->prepare("
+    // ============================================================
+    // 2. CONSULTA DE MÚSCULOS ÚNICOS
+    // ============================================================
+    $sql = "
         SELECT DISTINCT m.nom_musculo
-        FROM rel_ejer_rutina_musculo AS rel
-        JOIN musculo AS m ON rel.id_musculo = m.id_musculo
+        FROM rel_ejer_rutina_musculo rel
+        INNER JOIN musculo m ON rel.id_musculo = m.id_musculo
         WHERE rel.id_rutina = ?
-        ORDER BY m.nom_musculo
-    ");
-    $stmt_musculos->execute([$id_rutina]);
-    $musculos = $stmt_musculos->fetchAll(PDO::FETCH_COLUMN);
+        ORDER BY m.nom_musculo ASC
+    ";
 
-    echo json_encode($musculos);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id_rutina]);
+
+    $musculos = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // ============================================================
+    // 3. RESPUESTA EXITOSA
+    // ============================================================
+    echo json_encode([
+        'success' => true,
+        'data' => $musculos
+    ]);
 
 } catch (PDOException $e) {
-    // En caso de error, devuelve un array vacío
-    error_log("Error al obtener músculos: " . $e->getMessage());
-    echo json_encode([]);
+    // ============================================================
+    // 4. MANEJO DE ERRORES
+    // ============================================================
+    error_log("Error en get_musculos.php: " . $e->getMessage());
+
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al obtener músculos.',
+        'data' => []
+    ]);
 }
 ?>

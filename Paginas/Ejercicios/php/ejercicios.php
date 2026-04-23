@@ -6,7 +6,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "modular";
+$dbname = "fits_mex";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -28,16 +28,18 @@ if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
     
     // Consulta con búsqueda por nombre, ID y MÚSCULOS ASOCIADOS
     $sql = "SELECT 
-                e.id_ejercicio, 
-                e.nom_ejercicio, 
-                e.descripcion_ejer, 
-                e.ejemplo_ejer,
-                GROUP_CONCAT(rem.id_musculo) AS muscle_ids
-            FROM ejercicio e
-            LEFT JOIN rel_ejer_musc rem ON e.id_ejercicio = rem.id_ejercicio
-            WHERE e.nom_ejercicio LIKE ?
-            GROUP BY e.id_ejercicio, e.nom_ejercicio, e.descripcion_ejer, e.ejemplo_ejer
-            ORDER BY e.nom_ejercicio";
+            e.id_ejercicio, 
+            e.nom_ejercicio, 
+            e.descripcion_ejer, 
+            e.nivel_dificultad,
+            e.ejemplo_ejer,
+            GROUP_CONCAT(DISTINCT rem.id_musculo) AS muscle_ids
+        FROM ejercicio e
+        LEFT JOIN rel_ejercicio_musculo rem 
+            ON e.id_ejercicio = rem.id_ejercicio
+        WHERE e.nom_ejercicio LIKE ?
+        GROUP BY e.id_ejercicio
+        ORDER BY e.nom_ejercicio";
     
     $stmt = $conn->prepare($sql);
     $terminoBusqueda = "%" . $busqueda . "%";
@@ -48,15 +50,17 @@ if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
 } else {
     // Consulta normal sin búsqueda, con ID y MÚSCULOS ASOCIADOS
     $sql = "SELECT 
-                e.id_ejercicio, 
-                e.nom_ejercicio, 
-                e.descripcion_ejer, 
-                e.ejemplo_ejer,
-                GROUP_CONCAT(rem.id_musculo) AS muscle_ids
-            FROM ejercicio e
-            LEFT JOIN rel_ejer_musc rem ON e.id_ejercicio = rem.id_ejercicio
-            GROUP BY e.id_ejercicio, e.nom_ejercicio, e.descripcion_ejer, e.ejemplo_ejer
-            ORDER BY e.nom_ejercicio";
+            e.id_ejercicio, 
+            e.nom_ejercicio, 
+            e.descripcion_ejer, 
+            e.nivel_dificultad,
+            e.ejemplo_ejer,
+            GROUP_CONCAT(DISTINCT rem.id_musculo) AS muscle_ids
+        FROM ejercicio e
+        LEFT JOIN rel_ejercicio_musculo rem 
+            ON e.id_ejercicio = rem.id_ejercicio
+        GROUP BY e.id_ejercicio
+        ORDER BY e.nom_ejercicio";
     $result = $conn->query($sql);
 }
 
@@ -72,7 +76,11 @@ if ($result && $result->num_rows > 0) {
 // ============================================================
 // CONSULTA DE RUTINAS DEL USUARIO (para el modal)SELECT id_rutina, nom_rutina, icono FROM rutina WHERE id_usuario = 3 ORDER BY nom_rutina;
 // ============================================================
-$sql_rutinas = "SELECT id_rutina, nom_rutina, icono FROM rutina WHERE id_usuario = ".$_SESSION['id_usuario']." ORDER BY nom_rutina";
+$sql_rutinas = "SELECT id_rutina, nom_rutina, icono 
+    FROM rutina 
+    WHERE id_usuario = ".$_SESSION['id_usuario']." 
+    ORDER BY nom_rutina";
+    
 $result_rutinas = $conn->query($sql_rutinas);
 
 $rutinas = [];

@@ -43,19 +43,16 @@ if (!$rutina) {
     // --- Obtenemos los ejercicios ---
     $stmt_ejercicios = $pdo->prepare("
         SELECT 
-            ej.id_ejercicio AS id,
-            ej.nom_ejercicio AS nombre, 
-            MAX(rel.segundos) AS segundos
-        FROM 
-            rel_ejer_rutina_musculo AS rel
-        JOIN 
-            ejercicio AS ej ON rel.id_ejercicio = ej.id_ejercicio
-        WHERE 
-            rel.id_rutina = ?
-        GROUP BY
-            ej.id_ejercicio, ej.nom_ejercicio
-        ORDER BY 
-            ej.nom_ejercicio
+    MIN(re.id) AS id_rutina_ejercicio,
+    e.id_ejercicio AS id,
+    e.nom_ejercicio AS nombre,
+    MAX(re.segundos) AS segundos
+FROM rutina_ejercicio re
+JOIN ejercicio e 
+    ON re.id_ejercicio = e.id_ejercicio
+WHERE re.id_rutina = ?
+GROUP BY e.id_ejercicio, e.nom_ejercicio
+ORDER BY e.nom_ejercicio;
     ");
     $stmt_ejercicios->execute([$id_rutina_actual]);
     $ejercicios = $stmt_ejercicios->fetchAll(PDO::FETCH_ASSOC);
@@ -63,9 +60,14 @@ if (!$rutina) {
     // --- Obtenemos los músculos usados ---
     $stmt_musculos = $pdo->prepare("
         SELECT DISTINCT m.nom_musculo
-        FROM rel_ejer_rutina_musculo AS rel
-        JOIN musculo AS m ON rel.id_musculo = m.id_musculo
-        WHERE rel.id_rutina = ?
+FROM rutina_ejercicio re
+JOIN ejercicio e 
+    ON re.id_ejercicio = e.id_ejercicio
+JOIN rel_ejercicio_musculo rem 
+    ON e.id_ejercicio = rem.id_ejercicio
+JOIN musculo m 
+    ON rem.id_musculo = m.id_musculo
+WHERE re.id_rutina = ?;
     ");
     $stmt_musculos->execute([$id_rutina_actual]);
     $musculos = $stmt_musculos->fetchAll(PDO::FETCH_COLUMN);
