@@ -363,7 +363,7 @@ $conn->close();
                                                 <?php 
                                                     $descripcion = htmlspecialchars($ejercicio['descripcion_ejer']);
                                                     $descripcionCorta = strlen($descripcion) > 100 ? substr($descripcion, 0, 100) . '...' : $descripcion;
-                                                    echo $descripcionCorta;
+                                                 
                                                 ?>
                                             </div>
                                             

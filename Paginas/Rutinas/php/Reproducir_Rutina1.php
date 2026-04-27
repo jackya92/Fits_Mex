@@ -245,7 +245,7 @@ if ($total_ejercicios > 0) {
             </main>
         </div>
     </div>
-    <script>
+<script>
     // --- DATOS Y ESTADO ---
     const allExercises = <?php echo json_encode($ejercicios); ?>;
     const routineId = "<?php echo $id_rutina; ?>";
@@ -256,7 +256,9 @@ if ($total_ejercicios > 0) {
     let timeLeft = 0;
     let isPaused = false;
 
-    let totalSecondsElapsed = 0;
+    let tiempoInicioRutina = null;
+    let tiempoPausadoTotal = 0;
+    let tiempoInicioPausa = null;
     let exercisesCompletedCount = 0;
 
     // --- ELEMENTOS ---
@@ -268,8 +270,8 @@ if ($total_ejercicios > 0) {
 
     const pauseButton = document.getElementById('pause-button');
     const nextButton = document.getElementById('next-button');
-    // CORRECCIÓN: Usar el ID exacto que está en el HTML (línea 170 aprox)
-    const startRoutineButton = document.getElementById('start-routine-button'); 
+    const startRoutineButton = document.getElementById('start-routine-button');
+    const finishButton = document.getElementById('finish-button'); // Agregado para el evento click
 
     function updateTimerDisplay() {
         const minutes = Math.floor(timeLeft / 60);
@@ -284,7 +286,6 @@ if ($total_ejercicios > 0) {
             if (!isPaused) {
                 if (timeLeft > 0) {
                     timeLeft--;
-                    totalSecondsElapsed++; 
                     updateTimerDisplay();
                 } else {
                     nextExercise();
@@ -299,13 +300,11 @@ if ($total_ejercicios > 0) {
             return;
         }
 
-        exercisesCompletedCount++; 
+        exercisesCompletedCount++;
         const ex = allExercises[index];
         exerciseNameEl.textContent = ex.nom_ejercicio;
-        
-        // CORRECCIÓN: Uso de backticks (``) para que la variable funcione en la URL
         exerciseImageEl.style.backgroundImage = `url('../../../ejemplos_ejercicios/${ex.ejemplo_ejer}')`;
-        
+
         timeLeft = parseInt(ex.segundos) || 0;
         updateTimerDisplay();
         startTimer();
@@ -313,6 +312,16 @@ if ($total_ejercicios > 0) {
 
     function togglePause() {
         isPaused = !isPaused;
+        
+        if (isPaused) {
+            tiempoInicioPausa = Date.now();
+        } else {
+            if (tiempoInicioPausa) {
+                tiempoPausadoTotal += (Date.now() - tiempoInicioPausa);
+                tiempoInicioPausa = null;
+            }
+        }
+
         pauseButton.textContent = isPaused ? 'Reanudar' : 'Pausar';
         timerLabelEl.textContent = isPaused ? 'Pausado' : 'Tiempo Restante';
     }
@@ -325,8 +334,17 @@ if ($total_ejercicios > 0) {
 
     function finishRoutine() {
         clearInterval(timerInterval);
-        // CORRECCIÓN: Comillas invertidas para construir la URL correctamente
-        window.location.href = `Finalizar_Rutina.php?id=${routineId}&tiempo=${totalSecondsElapsed}&ejercicios=${exercisesCompletedCount}`;
+        
+        let segundosReales = 0;
+        if (tiempoInicioRutina) {
+            let tiempoFin = Date.now();
+            if (isPaused && tiempoInicioPausa) {
+                tiempoPausadoTotal += (tiempoFin - tiempoInicioPausa);
+            }
+            segundosReales = Math.floor((tiempoFin - tiempoInicioRutina - tiempoPausadoTotal) / 1000);
+        }
+
+        window.location.href = `Finalizar_Rutina.php?id=${routineId}&tiempo=${segundosReales}&ejercicios=${exercisesCompletedCount}`;
     }
 
     // --- INICIALIZACIÓN ---
@@ -334,9 +352,19 @@ if ($total_ejercicios > 0) {
         if (totalExercises > 0) {
             pauseButton.addEventListener('click', togglePause);
             nextButton.addEventListener('click', nextExercise);
+            
+            // Prevenir que el enlace de finalizar actúe antes de calcular el tiempo
+            if (finishButton) {
+                finishButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    finishRoutine();
+                });
+            }
 
             if (startRoutineButton) {
                 startRoutineButton.addEventListener('click', () => {
+                    tiempoInicioRutina = Date.now();
+                    
                     startRoutineButton.classList.add('hidden');
                     nextButton.classList.remove('hidden');
                     pauseButton.classList.remove('hidden');
