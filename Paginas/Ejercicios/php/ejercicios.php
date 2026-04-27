@@ -25,42 +25,45 @@ $resultadosEncontrados = true;
 // Verificar si se ha enviado una búsqueda
 if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
     $busqueda = trim($_GET['buscar']);
-    
+
     // Consulta con búsqueda por nombre, ID y MÚSCULOS ASOCIADOS
     $sql = "SELECT 
-            e.id_ejercicio, 
-            e.nom_ejercicio, 
-            e.descripcion_ejer, 
-            e.nivel_dificultad,
-            e.ejemplo_ejer,
-            GROUP_CONCAT(DISTINCT rem.id_musculo) AS muscle_ids
-        FROM ejercicio e
-        LEFT JOIN rel_ejercicio_musculo rem 
-            ON e.id_ejercicio = rem.id_ejercicio
-        WHERE e.nom_ejercicio LIKE ?
-        GROUP BY e.id_ejercicio
-        ORDER BY e.nom_ejercicio";
-    
+    e.id_ejercicio, 
+    e.nom_ejercicio, 
+    e.descripcion_ejer, 
+    e.nivel_dificultad,
+    e.ejemplo_ejer,
+    GROUP_CONCAT(DISTINCT m.nom_musculo ORDER BY m.nom_musculo SEPARATOR ', ') AS muscle_names
+FROM ejercicio e
+LEFT JOIN rel_ejercicio_musculo rem 
+    ON e.id_ejercicio = rem.id_ejercicio
+LEFT JOIN musculo m 
+    ON rem.id_musculo = m.id_musculo
+WHERE e.nom_ejercicio LIKE ?
+GROUP BY e.id_ejercicio
+ORDER BY e.nom_ejercicio;";
+
     $stmt = $conn->prepare($sql);
     $terminoBusqueda = "%" . $busqueda . "%";
     $stmt->bind_param("s", $terminoBusqueda);
     $stmt->execute();
     $result = $stmt->get_result();
-    
 } else {
     // Consulta normal sin búsqueda, con ID y MÚSCULOS ASOCIADOS
     $sql = "SELECT 
-            e.id_ejercicio, 
-            e.nom_ejercicio, 
-            e.descripcion_ejer, 
-            e.nivel_dificultad,
-            e.ejemplo_ejer,
-            GROUP_CONCAT(DISTINCT rem.id_musculo) AS muscle_ids
-        FROM ejercicio e
-        LEFT JOIN rel_ejercicio_musculo rem 
-            ON e.id_ejercicio = rem.id_ejercicio
-        GROUP BY e.id_ejercicio
-        ORDER BY e.nom_ejercicio";
+    e.id_ejercicio, 
+    e.nom_ejercicio, 
+    e.descripcion_ejer, 
+    e.nivel_dificultad,
+    e.ejemplo_ejer,
+    GROUP_CONCAT(DISTINCT m.nom_musculo ORDER BY m.nom_musculo SEPARATOR ', ') AS muscle_names
+FROM ejercicio e
+LEFT JOIN rel_ejercicio_musculo rem 
+    ON e.id_ejercicio = rem.id_ejercicio
+LEFT JOIN musculo m 
+    ON rem.id_musculo = m.id_musculo
+GROUP BY e.id_ejercicio
+ORDER BY e.nom_ejercicio;";
     $result = $conn->query($sql);
 }
 
@@ -78,9 +81,9 @@ if ($result && $result->num_rows > 0) {
 // ============================================================
 $sql_rutinas = "SELECT id_rutina, nom_rutina, icono 
     FROM rutina 
-    WHERE id_usuario = ".$_SESSION['id_usuario']." 
+    WHERE id_usuario = " . $_SESSION['id_usuario'] . " 
     ORDER BY nom_rutina";
-    
+
 $result_rutinas = $conn->query($sql_rutinas);
 
 $rutinas = [];
@@ -137,33 +140,74 @@ $conn->close();
                 'GRAD' 0,
                 'opsz' 24
         }
+
         .description-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
-        .description-content.expanded { max-height: 500px; }
-        .toggle-icon { transition: transform 0.3s ease; }
-        .toggle-icon.expanded { transform: rotate(180deg); }
-        .add-button { transition: all 0.3s ease; }
+
+        .description-content.expanded {
+            max-height: 500px;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .add-button {
+            transition: all 0.3s ease;
+        }
+
         .add-button:hover {
             transform: scale(1.05);
             background-color: #4c63d9 !important;
         }
-        .remove-button { transition: all 0.3s ease; }
+
+        .remove-button {
+            transition: all 0.3s ease;
+        }
+
         .remove-button:hover {
             transform: scale(1.05);
             background-color: #dc2626 !important;
         }
-        .action-buttons { display: flex; gap: 0.5rem; align-items: center; }
-        
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
         /* === Lógica de estado de botones === */
-        .added-state { display: none; align-items: center; gap: 0.5rem; }
-        .exercise-added .default-state { display: none; }
-        .exercise-added .added-state { display: flex; }
-        
-        .search-form { display: flex; align-items: center; }
-        .search-input-container { position: relative; flex-grow: 1; }
+        .added-state {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exercise-added .default-state {
+            display: none;
+        }
+
+        .exercise-added .added-state {
+            display: flex;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-container {
+            position: relative;
+            flex-grow: 1;
+        }
+
         .search-button {
             margin-left: 0.5rem;
             background-color: #607AFB;
@@ -174,7 +218,11 @@ $conn->close();
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .search-button:hover { background-color: #4c63d9; }
+
+        .search-button:hover {
+            background-color: #4c63d9;
+        }
+
         .clear-search {
             position: absolute;
             right: 3rem;
@@ -188,7 +236,11 @@ $conn->close();
             align-items: center;
             justify-content: center;
         }
-        .clear-search:hover { color: #374151; }
+
+        .clear-search:hover {
+            color: #374151;
+        }
+
         .no-results {
             text-align: center;
             padding: 2rem;
@@ -197,11 +249,13 @@ $conn->close();
             border: 1px solid #fecaca;
             color: #dc2626;
         }
+
         .search-info {
             margin-bottom: 1rem;
             color: #6b7280;
             font-size: 0.875rem;
         }
+
         .exercise-image {
             width: 80px;
             height: 80px;
@@ -213,7 +267,7 @@ $conn->close();
             color: #9ca3af;
             font-size: 0.875rem;
         }
-        
+
         /* === Estilos para el Modal de Rutinas === */
         .routine-select-button {
             display: flex;
@@ -224,20 +278,31 @@ $conn->close();
             transition: background-color 0.2s ease;
             text-align: left;
             gap: 0.75rem;
-            background-color: #f5f6f8; /* background-light */
-            color: #1f2937; /* gray-800 */
+            background-color: #f5f6f8;
+            /* background-light */
+            color: #1f2937;
+            /* gray-800 */
         }
+
         .dark .routine-select-button {
-            background-color: #0f1323; /* background-dark */
-            color: #f3f4f6; /* gray-100 */
+            background-color: #0f1323;
+            /* background-dark */
+            color: #f3f4f6;
+            /* gray-100 */
         }
+
         .routine-select-button:hover {
-            background-color: #e0e7ff; /* primary/10 */
-            color: #607AFB; /* primary */
+            background-color: #e0e7ff;
+            /* primary/10 */
+            color: #607AFB;
+            /* primary */
         }
+
         .dark .routine-select-button:hover {
-            background-color: rgba(96, 122, 251, 0.2); /* primary/20 */
-            color: #607AFB; /* primary */
+            background-color: rgba(96, 122, 251, 0.2);
+            /* primary/20 */
+            color: #607AFB;
+            /* primary */
         }
     </style>
 </head>
@@ -286,15 +351,8 @@ $conn->close();
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16">
                         <div class="flex items-center gap-3">
-                            <img alt="Fit Mex logo" class="h-8 w-8" src="../Logo_FitsMex.png" />
+                            <img alt="Fit Mex logo" class="h-8 w-8" src="../../Logo_FitsMex.png" />
                             <span class="text-xl font-bold text-gray-900 dark:text-white">Fit Mex</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20">
-                                <span class="material-symbols-outlined">notifications</span>
-                            </button>
-                            <div class="w-10 h-10 rounded-full bg-cover bg-center"
-                                style='background-image: url("../Img_Usuario.png");'></div>
                         </div>
                     </div>
                 </div>
@@ -310,17 +368,16 @@ $conn->close();
                         <form method="GET" action="" class="search-form mb-4">
                             <div class="search-input-container">
                                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     name="buscar"
                                     value="<?php echo htmlspecialchars($busqueda); ?>"
                                     placeholder="Buscar ejercicios por nombre..."
-                                    class="form-input w-full rounded-lg border bg-gray-50 dark:bg-gray-900/50 border-gray-200/50 dark:border-gray-800/50 focus:ring-primary focus:border-primary pl-10 pr-12 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" 
-                                />
+                                    class="form-input w-full rounded-lg border bg-gray-50 dark:bg-gray-900/50 border-gray-200/50 dark:border-gray-800/50 focus:ring-primary focus:border-primary pl-10 pr-12 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
                                 <?php if (!empty($busqueda)): ?>
-                                <a href="?" class="clear-search">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </a>
+                                    <a href="?" class="clear-search">
+                                        <span class="material-symbols-outlined text-lg">close</span>
+                                    </a>
                                 <?php endif; ?>
                             </div>
                             <button type="submit" class="search-button flex items-center gap-2">
@@ -344,9 +401,9 @@ $conn->close();
                         <?php if (!empty($ejercicios)): ?>
                             <?php foreach ($ejercicios as $ejercicio): ?>
                                 <div class="exercise-card bg-white dark:bg-black/10 p-4 rounded-xl shadow-sm hover:shadow-lg transition-all hover:bg-white/10 dark:hover:bg-black/20"
-                                     data-exercise-id="<?php echo $ejercicio['id_ejercicio']; ?>"
-                                     data-muscle-ids="<?php echo htmlspecialchars($ejercicio['muscle_ids']); ?>">
-                                     
+                                    data-exercise-id="<?php echo $ejercicio['id_ejercicio']; ?>"
+                                    data-muscle-ids="<?php echo htmlspecialchars($ejercicio['muscle_names']); ?>">
+
                                     <div class="flex items-start gap-4">
                                         <?php if (!empty($ejercicio['ejemplo_ejer'])): ?>
                                             <div class="w-20 h-20 bg-center bg-cover rounded-lg flex-shrink-0"
@@ -358,38 +415,52 @@ $conn->close();
                                         <?php endif; ?>
                                         <div class="flex-1">
                                             <h3 class="font-semibold text-lg text-gray-900 dark:text-white"><?php echo htmlspecialchars($ejercicio['nom_ejercicio']); ?></h3>
-                                            
+
+                                            <div class="flex flex-wrap gap-2 mt-1 mb-2">
+                                                <?php
+                                                if (!empty($ejercicio['muscle_names'])) {
+                                                    $tags = explode(', ', $ejercicio['muscle_names']);
+                                                    foreach ($tags as $tag) {
+                                                        echo '<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-primary/10 text-primary dark:bg-primary/20 border border-primary/20">'
+                                                            . htmlspecialchars($tag) .
+                                                            '</span>';
+                                                    }
+                                                } else {
+                                                    echo '<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500">Sin asignar</span>';
+                                                }
+                                                ?>
+                                            </div>
+
                                             <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
                                                 <?php 
                                                     $descripcion = htmlspecialchars($ejercicio['descripcion_ejer']);
                                                     $descripcionCorta = strlen($descripcion) > 100 ? substr($descripcion, 0, 100) . '...' : $descripcion;
-                                                 
                                                 ?>
                                             </div>
-                                            
+
                                             <div class="description-content text-sm text-gray-600 dark:text-gray-400 mt-2">
                                                 <?php echo $descripcion; ?>
                                             </div>
-                                            
+
                                             <div class="action-buttons mt-3">
                                                 <div class="default-state">
                                                     <button class="toggle-description flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
                                                         <span class="toggle-icon material-symbols-outlined text-sm">expand_more</span>
                                                         <span class="toggle-text">Ver más</span>
                                                     </button>
-                                                    
+
                                                     <button class="add-button flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-primary text-white hover:bg-primary/90 transition-all">
                                                         <span class="material-symbols-outlined text-sm">add</span>
                                                         <span>Agregar</span>
                                                     </button>
                                                 </div>
-                                                
+
                                                 <div class="added-state">
                                                     <span class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
                                                         <span class="material-symbols-outlined text-sm">check</span>
                                                         <span>Agregado</span>
                                                     </span>
-                                                    
+
                                                     <button class="remove-button flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full bg-red-500 text-white hover:bg-red-600 transition-all">
                                                         <span class="material-symbols-outlined text-sm">close</span>
                                                         <span>Eliminar</span>
@@ -452,9 +523,9 @@ $conn->close();
                 </button>
             </div>
             <div id="routine-list-container" class="overflow-y-auto p-4 space-y-2">
-                </div>
+            </div>
             <div classKA="p-4 border-t border-primary/20">
-                 <a href="../../Rutinas/Creacion_Rutina.html" class="flex items-center justify-center gap-2 w-full text-sm bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-medium py-2 px-4 rounded-lg hover:bg-primary/20 transition-colors">
+                <a href="../../Rutinas/Creacion_Rutina.html" class="flex items-center justify-center gap-2 w-full text-sm bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-medium py-2 px-4 rounded-lg hover:bg-primary/20 transition-colors">
                     <span class="material-symbols-outlined">add</span>
                     <span>Crear Nueva Rutina</span>
                 </a>
@@ -468,7 +539,7 @@ $conn->close();
         const availableRoutines = <?php echo json_encode($rutinas); ?>;
 
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             // --- 1. Lógica para expandir descripción ---
             const toggleButtons = document.querySelectorAll('.toggle-description');
             toggleButtons.forEach(button => {
@@ -477,10 +548,10 @@ $conn->close();
                     const description = card.querySelector('.description-content');
                     const icon = this.querySelector('.toggle-icon');
                     const text = this.querySelector('.toggle-text');
-                    
+
                     description.classList.toggle('expanded');
                     icon.classList.toggle('expanded');
-                    
+
                     if (description.classList.contains('expanded')) {
                         text.textContent = 'Ver menos';
                     } else {
@@ -490,12 +561,12 @@ $conn->close();
             });
 
             // --- 2. Lógica del Modal (Agregar y Eliminar) ---
-            
+
             const routineModal = document.getElementById('routine-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const routineListContainer = document.getElementById('routine-list-container');
             const modalTitle = document.getElementById('modal-title');
-            
+
             let currentExerciseData = {};
 
             // A) Asignar evento a TODOS los botones "Agregar"
@@ -508,7 +579,7 @@ $conn->close();
                     showRoutineModal('add');
                 });
             });
-            
+
             // B) Asignar evento a TODOS los botones "Eliminar"
             const removeButtons = document.querySelectorAll('.remove-button');
             removeButtons.forEach(button => {
@@ -519,7 +590,7 @@ $conn->close();
                     showRoutineModal('remove');
                 });
             });
-            
+
             /**
              * Función auxiliar para obtener los datos de la tarjeta
              */
@@ -545,12 +616,14 @@ $conn->close();
              * @param {string} mode - 'add' o 'remove'
              */
             function showRoutineModal(mode) {
-                const { exerciseName } = currentExerciseData;
-                
+                const {
+                    exerciseName
+                } = currentExerciseData;
+
                 // Configurar título y acción
                 const isAdding = (mode === 'add');
                 modalTitle.textContent = isAdding ? `Agregar "${exerciseName}" a...` : `Eliminar "${exerciseName}" de...`;
-                
+
                 routineListContainer.innerHTML = ''; // Limpiar lista
 
                 if (availableRoutines.length === 0) {
@@ -560,12 +633,12 @@ $conn->close();
                     availableRoutines.forEach(routine => {
                         const button = document.createElement('button');
                         button.className = 'routine-select-button';
-                        
+
                         button.innerHTML = `
                             <span class="material-symbols-outlined">${routine.icono || 'fitness_center'}</span>
                             <span class="font-medium">${routine.nom_rutina}</span>
                         `;
-                        
+
                         // Asignar el manejador de clic correcto (Agregar o Eliminar)
                         button.addEventListener('click', () => {
                             if (isAdding) {
@@ -574,7 +647,7 @@ $conn->close();
                                 handleRoutineRemoval(routine.id_rutina, routine.nom_rutina);
                             }
                         });
-                        
+
                         routineListContainer.appendChild(button);
                     });
                 }
@@ -586,7 +659,12 @@ $conn->close();
              * Maneja la SELECCIÓN (Agregar) de una rutina.
              */
             async function handleRoutineSelection(routineId, routineName) {
-                const { exerciseId, muscleIds, exerciseName, cardElement } = currentExerciseData;
+                const {
+                    exerciseId,
+                    muscleIds,
+                    exerciseName,
+                    cardElement
+                } = currentExerciseData;
 
                 if (!muscleIds || muscleIds.trim() === "") {
                     showNotification(`Error: El ejercicio "${exerciseName}" no tiene músculos asignados.`, 'warning');
@@ -598,7 +676,9 @@ $conn->close();
                 try {
                     const response = await fetch('api_agregar_ejercicio.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify({
                             id_ejercicio: exerciseId,
                             id_rutina: routineId,
@@ -622,24 +702,31 @@ $conn->close();
                     showNotification('Error de conexión con el servidor.', 'warning');
                 }
             }
-            
+
             /**
              * Maneja la ELIMINACIÓN de una rutina.
              */
             async function handleRoutineRemoval(routineId, routineName) {
-                const { exerciseId, muscleIds, exerciseName, cardElement } = currentExerciseData;
+                const {
+                    exerciseId,
+                    muscleIds,
+                    exerciseName,
+                    cardElement
+                } = currentExerciseData;
 
                 if (!muscleIds || muscleIds.trim() === "") {
                     showNotification(`Error: El ejercicio "${exerciseName}" no tiene músculos asignados.`, 'warning');
                     return;
                 }
-                
+
                 routineListContainer.innerHTML = '<p class="text-center text-red-500 p-4 animate-pulse">Eliminando...</p>';
 
                 try {
                     const response = await fetch('api_eliminar_ejercicio.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify({
                             id_ejercicio: exerciseId,
                             id_rutina: routineId,
@@ -663,7 +750,7 @@ $conn->close();
                     showNotification('Error de conexión con el servidor.', 'warning');
                 }
             }
-            
+
             // --- 3. Lógica para Notificaciones ---
             function showNotification(message, type = 'success') {
                 const notification = document.createElement('div');
@@ -671,13 +758,13 @@ $conn->close();
                     type === 'success' ? 'bg-green-500 text-white' : 'bg-amber-500 text-white'
                 }`;
                 notification.textContent = message;
-                
+
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.classList.remove('translate-x-full');
                 }, 10);
-                
+
                 setTimeout(() => {
                     notification.classList.add('translate-x-full');
                     setTimeout(() => {
@@ -690,4 +777,5 @@ $conn->close();
         });
     </script>
 </body>
+
 </html>

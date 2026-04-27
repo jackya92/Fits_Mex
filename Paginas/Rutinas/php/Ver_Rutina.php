@@ -107,8 +107,13 @@ WHERE re.id_rutina = ?;
         };
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
-        [data-menu].hidden { display: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+
+        [data-menu].hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -152,7 +157,7 @@ WHERE re.id_rutina = ?;
                             <p class="text-sm text-gray-500 dark:text-gray-400 capitalize mb-1">
                                 <?= htmlspecialchars($fecha_de_hoy) ?>
                             </p>
-                            
+
                             <div id="routine-name-container">
                                 <div id="routine-name-display-container" class="flex items-center gap-2 mb-2">
                                     <h2 id="routine-name-display" class="text-3xl font-bold text-gray-900 dark:text-white">
@@ -162,7 +167,7 @@ WHERE re.id_rutina = ?;
                                         <span class="material-symbols-outlined text-base">edit</span>
                                     </button>
                                 </div>
-                                
+
                                 <div id="routine-name-edit-container" class="hidden flex items-center gap-2 mb-2">
                                     <input id="routine-name-input" type="text" value="<?= htmlspecialchars($nombre_rutina) ?>"
                                         class="text-3xl font-bold border-b-2 border-primary bg-transparent text-gray-900 dark:text-white focus:outline-none w-full max-w-xs p-0 focus:ring-0">
@@ -190,12 +195,15 @@ WHERE re.id_rutina = ?;
                         </div>
 
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <button id="open-add-exercise-modal" title="Agregar ejercicio" class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/50 text-white shadow-lg hover:bg-primary transition-transform transform hover:scale-105">
+                            <a href="../../../Paginas/Ejercicios/php/ejercicios.php?id_rutina=<?= $id_rutina_actual ?>"
+                                id="open-add-exercise-modal"
+                                title="Agregar ejercicio"
+                                class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/50 text-white shadow-lg hover:bg-primary transition-transform transform hover:scale-105">
                                 <span class="material-symbols-outlined text-2xl">add</span>
-                            </button>
-                           <a title="Comenzar a ejercitarse" 
-                               href="Reproducir_Rutina1.php?id=<?= $id_rutina_actual ?>" 
-                               class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
+                            </a>
+                            <a title="Comenzar a ejercitarse"
+                                href="Reproducir_Rutina1.php?id=<?= $id_rutina_actual ?>"
+                                class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:opacity-90 transition-transform transform hover:scale-105">
                                 <span class="material-symbols-outlined text-2xl">play_arrow</span>
                             </a>
                         </div>
@@ -221,15 +229,15 @@ WHERE re.id_rutina = ?;
                                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white"><?= htmlspecialchars($ejercicio['nombre']) ?></td>
                                                 <td data-role="segundos-display" class="px-6 py-4 text-center text-gray-600 dark:text-gray-400"><?= htmlspecialchars($ejercicio['segundos']) ?></td>
                                                 <td class="px-6 py-4 text-right relative">
-                                                    
+
                                                     <button data-action="toggle-menu" class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10">
                                                         <span class="material-symbols-outlined text-base">edit</span>
                                                     </button>
-                                                    
+
                                                     <button data-action="delete-exercise" class="text-red-500/70 hover:text-red-500 dark:text-red-500/60 dark:hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-500/10 ml-2">
                                                         <span class="material-symbols-outlined text-base">delete</span>
                                                     </button>
-                                                    
+
                                                     <div data-menu class="hidden absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-primary/20 dark:border-primary/30 p-3 z-10">
                                                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Segundos</label>
                                                         <input data-role="segundos-input" type="number" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:text-white sm:text-sm" value="<?= htmlspecialchars($ejercicio['segundos']) ?>">
@@ -248,7 +256,7 @@ WHERE re.id_rutina = ?;
         </div>
     </div>
 
-    <div id="add-exercise-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <!--<div id="add-exercise-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white dark:bg-background-dark rounded-xl shadow-lg p-6 w-full max-w-lg max-h-[80vh] flex flex-col">
             <div class="flex justify-between items-center border-b border-primary/20 pb-4 mb-4">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Agregar Ejercicio</h3>
@@ -260,7 +268,7 @@ WHERE re.id_rutina = ?;
                 <p class="text-center text-gray-500">Cargando ejercicios...</p>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -278,10 +286,10 @@ WHERE re.id_rutina = ?;
             const saveNameBtn = document.getElementById('save-name-btn');
             const cancelNameBtn = document.getElementById('cancel-name-btn');
             // ----------------------------------------------
-            
+
             // --- Elementos del modal y CRUD de ejercicios ---
             const addExerciseModal = document.getElementById('add-exercise-modal');
-            const openModalBtn = document.getElementById('open-add-exercise-modal');
+            //const openModalBtn = document.getElementById('open-add-exercise-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const exerciseListContainer = document.getElementById('exercise-list-container');
             const muscleTagsContainer = document.getElementById('muscle-tags');
@@ -296,11 +304,13 @@ WHERE re.id_rutina = ?;
                     type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
                 }`;
                 notification.textContent = message;
-                
+
                 document.body.appendChild(notification);
-                
-                setTimeout(() => { notification.classList.remove('translate-x-full'); }, 10);
-                
+
+                setTimeout(() => {
+                    notification.classList.remove('translate-x-full');
+                }, 10);
+
                 setTimeout(() => {
                     notification.classList.add('translate-x-full');
                     setTimeout(() => {
@@ -315,11 +325,15 @@ WHERE re.id_rutina = ?;
                 try {
                     const response = await fetch('get_musculos.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id_rutina: rutinaId })
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id_rutina: rutinaId
+                        })
                     });
                     const muscles = await response.json();
-                    
+
                     muscleTagsContainer.innerHTML = '';
                     if (muscles.length === 0) {
                         muscleTagsContainer.innerHTML = `<span class="px-3 py-1 text-sm font-medium rounded-full bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400">Sin músculos asignados</span>`;
@@ -362,7 +376,7 @@ WHERE re.id_rutina = ?;
                     toggleEditMode(false);
                     return;
                 }
-                
+
                 if (trimmedName.length < 3) {
                     showNotification("El nombre debe tener al menos 3 caracteres.", 'error');
                     routineNameInput.value = currentName; // Restaurar el nombre anterior
@@ -372,10 +386,12 @@ WHERE re.id_rutina = ?;
                 try {
                     const response = await fetch('edit_rutina_nombre.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            id_rutina: rutinaId, 
-                            new_name: trimmedName 
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id_rutina: rutinaId,
+                            new_name: trimmedName
                         })
                     });
 
@@ -426,7 +442,7 @@ WHERE re.id_rutina = ?;
                 try {
                     const response = await fetch(`get_ejercicios.php?id_rutina=${rutinaId}`);
                     const exercises = await response.json();
-                    
+
                     exerciseListContainer.innerHTML = '';
                     if (exercises.length === 0) {
                         exerciseListContainer.innerHTML = '<p class="text-center text-gray-500">No hay más ejercicios para agregar.</p>';
@@ -448,9 +464,9 @@ WHERE re.id_rutina = ?;
             function addNewExerciseRow(id, name) {
                 const emptyRow = document.getElementById('empty-routine-message');
                 if (emptyRow) emptyRow.remove();
-                
+
                 const tr = document.createElement('tr');
-                tr.dataset.exerciseId = id; 
+                tr.dataset.exerciseId = id;
                 tr.innerHTML = `
                     <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">${name}</td>
                     <td data-role="segundos-display" class="px-6 py-4 text-center text-gray-600 dark:text-gray-400">30</td>
@@ -471,10 +487,10 @@ WHERE re.id_rutina = ?;
             }
 
             // Eventos del Modal
-            openModalBtn.addEventListener('click', () => {
+            /*openModalBtn.addEventListener('click', () => {
                 addExerciseModal.classList.remove('hidden');
                 loadAvailableExercises();
-            });
+            });*/
 
             closeModalBtn.addEventListener('click', () => addExerciseModal.classList.add('hidden'));
 
@@ -484,19 +500,23 @@ WHERE re.id_rutina = ?;
 
 
             // --- 3. MANEJADORES PRINCIPALES (Delegación de Eventos y CRUD de ejercicios) (Se mantiene igual) ---
-            
+
             tableBody.addEventListener('click', async function(e) {
-                
+
                 // --- TOGGLE MENU (EDITAR) ---
                 const toggleBtn = e.target.closest('[data-action="toggle-menu"]');
                 if (toggleBtn) {
                     document.querySelectorAll('[data-menu]').forEach(menu => {
-                        if (menu !== toggleBtn.nextElementSibling) { menu.classList.add('hidden'); }
+                        if (menu !== toggleBtn.nextElementSibling) {
+                            menu.classList.add('hidden');
+                        }
                     });
                     const menu = toggleBtn.closest('td').querySelector('[data-menu]');
-                    if (menu) { menu.classList.toggle('hidden'); }
+                    if (menu) {
+                        menu.classList.toggle('hidden');
+                    }
                 }
-                
+
                 // --- SAVE CHANGES (GUARDAR SEGUNDOS) ---
                 const saveBtn = e.target.closest('[data-action="save-changes"]');
                 if (saveBtn) {
@@ -539,8 +559,13 @@ WHERE re.id_rutina = ?;
                     try {
                         const response = await fetch('add_ejercicio.php', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ id_rutina: rutinaId, id_ejercicio: id })
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_rutina: rutinaId,
+                                id_ejercicio: id
+                            })
                         });
 
                         const result = await response.json();
@@ -550,8 +575,10 @@ WHERE re.id_rutina = ?;
                             addNewExerciseRow(id, name);
                             addBtn.closest('.flex').remove();
                             updateMuscleTags();
-                            
-                            if (exerciseListContainer.children.length === 0) { addExerciseModal.classList.add('hidden'); }
+
+                            if (exerciseListContainer.children.length === 0) {
+                                addExerciseModal.classList.add('hidden');
+                            }
 
                         } else {
                             showNotification('Error al agregar: ' + result.message, 'error');
@@ -566,7 +593,7 @@ WHERE re.id_rutina = ?;
                     }
                 }
             });
-            
+
 
             // --- 4. FUNCIONES DE API (CRUD) (Se mantiene igual) ---
 
@@ -574,24 +601,39 @@ WHERE re.id_rutina = ?;
                 try {
                     const response = await fetch('edit_ejercicio_segundos.php', {
                         method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ id_rutina: rutinaId, id_ejercicio: ejercicioId, segundos: segundos })
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id_rutina: rutinaId,
+                            id_ejercicio: ejercicioId,
+                            segundos: segundos
+                        })
                     });
                     const result = await response.json();
                     if (result.success) {
                         rowElement.querySelector('[data-role="segundos-display"]').textContent = segundos;
                         menuElement.classList.add('hidden');
                         showNotification('Segundos actualizados.');
-                    } else { showNotification('Error al actualizar segundos: ' + result.message, 'error'); }
-                } catch (error) { showNotification('Error de conexión al actualizar.', 'error'); }
+                    } else {
+                        showNotification('Error al actualizar segundos: ' + result.message, 'error');
+                    }
+                } catch (error) {
+                    showNotification('Error de conexión al actualizar.', 'error');
+                }
             }
 
             async function handleExerciseDelete(ejercicioId, rutinaId, rowElement) {
                 try {
                     const response = await fetch('delete_ejercicio.php', {
                         method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ id_rutina: rutinaId, id_ejercicio: ejercicioId })
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id_rutina: rutinaId,
+                            id_ejercicio: ejercicioId
+                        })
                     });
                     const result = await response.json();
 
@@ -602,11 +644,16 @@ WHERE re.id_rutina = ?;
                         if (tableBody.children.length === 0) {
                             tableBody.innerHTML = '<tr id="empty-routine-message"><td colspan="3" class="text-center px-6 py-4 text-gray-500 dark:text-gray-400">No hay ejercicios en esta rutina.</td></tr>';
                         }
-                    } else { showNotification('Error al eliminar: ' + result.message, 'error'); }
-                } catch (error) { showNotification('Error de conexión al eliminar.', 'error'); }
+                    } else {
+                        showNotification('Error al eliminar: ' + result.message, 'error');
+                    }
+                } catch (error) {
+                    showNotification('Error de conexión al eliminar.', 'error');
+                }
             }
 
         });
     </script>
 </body>
+
 </html>
