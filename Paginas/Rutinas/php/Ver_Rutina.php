@@ -140,6 +140,14 @@ WHERE re.id_rutina = ?;
                     <span>Mis rutinas</span>
                 </a>
             </nav>
+
+            <div class="p-4 border-t border-primary/20 dark:border-primary/30">
+                <a href="../../../Paginas/Mi_perfil/Mi_Perfil.html"
+                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined">account_circle</span>
+                    <span class="text-sm font-medium truncate">Mi Perfil</span>
+                </a>
+            </div>
         </aside>
 
         <div class="flex-1 flex flex-col min-h-screen md:ml-64">

@@ -101,8 +101,8 @@ if ($user_id > 0 && $id_rutina > 0) {
             </nav>
 
             <div class="p-4 border-t border-primary/20 dark:border-primary/30">
-                <a href="../../Paginas/Perfil/Mi_Perfil.html"
-                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 cursor-pointer">
+                <a href="../../../Paginas/Mi_perfil/Mi_Perfil.html"
+                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-all cursor-pointer">
                     <span class="material-symbols-outlined">account_circle</span>
                     <span class="text-sm font-medium truncate">Mi Perfil</span>
                 </a>
