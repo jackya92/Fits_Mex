@@ -8,6 +8,6 @@ $_SESSION = [];
 session_destroy();
 
 // Redirigir al inicio de sesión
-header("Location: ../Inicio_Sesion.html");
+header("Location: ../Index.html");
 exit();
 ?>
