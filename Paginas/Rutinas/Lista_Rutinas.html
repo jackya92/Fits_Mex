@@ -235,7 +235,7 @@
                 lista.innerHTML = "";
 
 // Elimina la línea incompleta "rutinas.forEach" y pega todo esto:
-      rutinas.forEach(rutina => {
+     rutinas.forEach(rutina => {
                     let nivel = Math.round(rutina.promedio_dificultad || 0);
                     let dificultadTexto = "S/D";
                     let dificultadClase = "bg-gray-100 text-gray-600";
@@ -251,39 +251,41 @@
                         dificultadClase = "bg-red-100 text-red-700 border-red-200";
                     }
 
-                    // Generar etiquetas de músculos
                     const musculosHTML = rutina.musculos 
                         ? rutina.musculos.split(', ').map(m => `<span class="tag-muscle">${m}</span>`).join('') 
                         : '<span class="tag-muscle">General</span>';
 
-                    // Generar etiquetas de herramientas
                     const herramientasHTML = rutina.herramientas 
                         ? rutina.herramientas.split(', ').map(h => `<span class="tag-tool">${h}</span>`).join('') 
                         : '';
 
+                    // INSERTAMOS EL ENLACE <a> ALREDEDOR DE TODO EL CONTENIDO
                     lista.innerHTML += `
-                        <div class="bg-white dark:bg-black/10 p-4 rounded-xl shadow-sm border-l-4 mb-4" style="border-left-color: ${rutina.color}">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white" style="background-color: ${rutina.color}">
-                                        <span class="material-symbols-outlined">${rutina.icono}</span>
-                                    </div>
-                                    <div>
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <h3 class="font-bold text-lg text-gray-900 dark:text-white">${rutina.nom_rutina}</h3>
-                                            <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full border ${dificultadClase}">
-                                                ${dificultadTexto}
-                                            </span>
+                        <a href="php/ver_rutina.php?id=${rutina.id_rutina}" class="block no-underline">
+                            <div class="bg-white dark:bg-black/10 p-4 rounded-xl shadow-sm border-l-4 mb-4 hover:shadow-md transition-all cursor-pointer" style="border-left-color: ${rutina.color}">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white" style="background-color: ${rutina.color}">
+                                            <span class="material-symbols-outlined">${rutina.icono}</span>
                                         </div>
-                                        <div class="flex flex-wrap gap-1">
-                                            ${musculosHTML}
-                                            ${herramientasHTML}
+                                        <div>
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <h3 class="font-bold text-lg text-gray-900 dark:text-white">${rutina.nom_rutina}</h3>
+                                                <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full border ${dificultadClase}">
+                                                    ${dificultadTexto}
+                                                </span>
+                                            </div>
+                                            <div class="flex flex-wrap gap-1">
+                                                ${musculosHTML}
+                                                ${herramientasHTML}
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- Icono de flecha a la derecha -->
+                                    <span class="material-symbols-outlined text-gray-400">chevron_right</span>
                                 </div>
-                                <span class="material-symbols-outlined text-gray-400">chevron_right</span>
                             </div>
-                        </div>
+                        </a>
                     `;
                 });
             } catch (error) {
