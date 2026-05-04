@@ -211,181 +211,217 @@ if ($total_ejercicios > 0) {
                             <div
                                 class="bg-white/5 dark:bg-black/10 p-6 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
                                 <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white">Progreso</h3>
-                                <div class="w-full bg-primary/20 rounded-full h-2.5 mb-2">
-                                    <div id="progress-bar" class="bg-primary h-2.5 rounded-full"
-                                        style="width: <?php echo round($progreso_actual); ?>%"></div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div id="progress-bar" class="bg-primary h-2.5 rounded-full" style="width: 0%"></div>
                                 </div>
-                                <p id="progress-text" class="text-right text-sm font-medium text-primary">
-                                    <?php echo round($progreso_actual); ?>% Completado
-                                </p>
                             </div>
 
                             <div
                                 class="bg-white/5 dark:bg-black/10 p-6 rounded-xl shadow-lg flex-1 border border-primary/20 dark:border-primary/30">
                                 <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white">Próximos</h3>
-                                <ul id="next-up-list" class="space-y-4">
-                                    <?php if (empty($ejercicios_proximos)): ?>
-                                        <li class="text-sm text-gray-500 dark:text-gray-400">¡Último ejercicio!</li>
-                                    <?php else: ?>
-                                        <?php foreach ($ejercicios_proximos as $proximo): ?>
-                                            <li class="flex items-center gap-4">
-                                                <div
-                                                    class="flex items-center justify-center size-12 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary">
-                                                    <span class="material-symbols-outlined text-3xl">fitness_center</span>
-                                                </div>
-                                                <div>
-                                                    <p class="font-semibold text-gray-900 dark:text-white">
-                                                        <?php echo htmlspecialchars($proximo['nom_ejercicio']); ?>
-                                                    </p>
-                                                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                                                        <?php echo htmlspecialchars($proximo['segundos']); ?> segundos
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
+             <div id="next-exercises-list" class="space-y-3">
+    <?php foreach ($ejercicios as $index => $ejercicio): ?>
+        <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-white/5 rounded-2xl">
+            <div class="size-12 rounded-xl bg-gray-200 dark:bg-gray-800 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-gray-400">fitness_center</span>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-sm font-bold text-gray-800 dark:text-white"><?= htmlspecialchars($ejercicio['nom_ejercicio']) ?></h4>
+                <p class="text-xs text-gray-500"><?= htmlspecialchars($ejercicio['segundos']) ?> segundos</p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+                                   
+                                <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
+               
             </main>
         </div>
     </div>
-<script>
-    // --- DATOS Y ESTADO ---
-    const allExercises = <?php echo json_encode($ejercicios); ?>;
-    const routineId = "<?php echo $id_rutina; ?>";
-    const totalExercises = allExercises.length;
+    <script>
+        // --- DATOS Y ESTADO ---
+        const allExercises = <?php echo json_encode($ejercicios); ?>;
+        const routineId = "<?php echo $id_rutina; ?>";
+        const totalExercises = allExercises.length;
 
-    let currentExerciseIndex = 0;
-    let timerInterval = null;
-    let timeLeft = 0;
-    let isPaused = false;
+        let currentExerciseIndex = 0;
+        let timerInterval = null;
+        let timeLeft = 0;
+        let isPaused = false;
 
-    let tiempoInicioRutina = null;
-    let tiempoPausadoTotal = 0;
-    let tiempoInicioPausa = null;
-    let exercisesCompletedCount = 0;
+        let tiempoInicioRutina = null;
+        let tiempoPausadoTotal = 0;
+        let tiempoInicioPausa = null;
+        let exercisesCompletedCount = 0;
 
-    // --- ELEMENTOS ---
-    const timerMinutesEl = document.getElementById('timer-minutes');
-    const timerSecondsEl = document.getElementById('timer-seconds');
-    const timerLabelEl = document.getElementById('timer-label');
-    const exerciseNameEl = document.getElementById('exercise-name');
-    const exerciseImageEl = document.getElementById('exercise-image');
+        // --- ELEMENTOS ---
+        const timerMinutesEl = document.getElementById('timer-minutes');
+        const timerSecondsEl = document.getElementById('timer-seconds');
+        const timerLabelEl = document.getElementById('timer-label');
+        const exerciseNameEl = document.getElementById('exercise-name');
+        const exerciseImageEl = document.getElementById('exercise-image');
 
-    const pauseButton = document.getElementById('pause-button');
-    const nextButton = document.getElementById('next-button');
-    const startRoutineButton = document.getElementById('start-routine-button');
-    const finishButton = document.getElementById('finish-button'); // Agregado para el evento click
+        const pauseButton = document.getElementById('pause-button');
+        const nextButton = document.getElementById('next-button');
+        const startRoutineButton = document.getElementById('start-routine-button');
+        const finishButton = document.getElementById('finish-button'); // Agregado para el evento click
 
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerMinutesEl.textContent = String(minutes).padStart(2, '0');
-        timerSecondsEl.textContent = String(seconds).padStart(2, '0');
-    }
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerMinutesEl.textContent = String(minutes).padStart(2, '0');
+            timerSecondsEl.textContent = String(seconds).padStart(2, '0');
+        }
 
-    function startTimer() {
-        clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
-            if (!isPaused) {
-                if (timeLeft > 0) {
-                    timeLeft--;
-                    updateTimerDisplay();
-                } else {
-                    nextExercise();
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!isPaused) {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        nextExercise();
+                    }
+                }
+            }, 1000);
+        }
+
+        function loadExercise(index) {
+            // 1. Si ya se completaron todos, la barra llega al 100% y finaliza
+            if (index >= totalExercises) {
+                const progressBar = document.getElementById('progress-bar');
+                if (progressBar) progressBar.style.width = "100%";
+
+                finishRoutine();
+                return;
+            }
+
+            const current = allExercises[index];
+
+            // --- ESTO YA LO TENÍAS: Actualiza el ejercicio actual ---
+            exerciseNameEl.textContent = current.nom_ejercicio;
+            exerciseImageEl.style.backgroundImage = `url('../../../ejemplos_ejercicios/${current.ejemplo_ejer}')`;
+            timeLeft = parseInt(current.segundos) || 0;
+            updateTimerDisplay();
+
+            // --- NUEVO: Actualizar la barra de progreso (Inicia en 0%) ---
+            const progressPercentage = (index / totalExercises) * 100;
+            const progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progressPercentage + "%";
+            }
+
+            // --- NUEVO: Actualizar la lista de próximos ejercicios ---
+            const nextExercisesContainer = document.getElementById('next-exercises-list');
+            if (nextExercisesContainer) {
+                nextExercisesContainer.innerHTML = ''; // Limpia la lista
+
+                // Dibuja solo los que faltan (a partir del índice actual + 1)
+               for (let i = index + 1; i < totalExercises; i++) {
+    const nextEx = allExercises[i];
+    nextExercisesContainer.innerHTML += `
+        <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-white/5 rounded-2xl">
+            <div class="size-12 rounded-xl bg-gray-200 dark:bg-gray-800 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-gray-400">fitness_center</span>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-sm font-bold text-gray-800 dark:text-white">${nextEx.nom_ejercicio}</h4>
+                <p class="text-xs text-gray-500">${nextEx.segundos} segundos</p>
+            </div>
+        </div>
+    `;
+}
+                
+
+                // Si ya está en el último ejercicio
+                if (index + 1 >= totalExercises) {
+                    nextExercisesContainer.innerHTML = '<p class="text-xs text-gray-500 text-center py-4">¡Último ejercicio!</p>';
                 }
             }
-        }, 1000);
-    }
+            exercisesCompletedCount++;
+            const ex = allExercises[index];
+            exerciseNameEl.textContent = ex.nom_ejercicio;
+            exerciseImageEl.style.backgroundImage = `url('../../../ejemplos_ejercicios/${ex.ejemplo_ejer}')`;
 
-    function loadExercise(index) {
-        if (index >= totalExercises) {
-            finishRoutine();
-            return;
-        }
-
-        exercisesCompletedCount++;
-        const ex = allExercises[index];
-        exerciseNameEl.textContent = ex.nom_ejercicio;
-        exerciseImageEl.style.backgroundImage = `url('../../../ejemplos_ejercicios/${ex.ejemplo_ejer}')`;
-
-        timeLeft = parseInt(ex.segundos) || 0;
-        updateTimerDisplay();
-        startTimer();
-    }
-
-    function togglePause() {
-        isPaused = !isPaused;
-        
-        if (isPaused) {
-            tiempoInicioPausa = Date.now();
-        } else {
-            if (tiempoInicioPausa) {
-                tiempoPausadoTotal += (Date.now() - tiempoInicioPausa);
-                tiempoInicioPausa = null;
-            }
-        }
-
-        pauseButton.textContent = isPaused ? 'Reanudar' : 'Pausar';
-        timerLabelEl.textContent = isPaused ? 'Pausado' : 'Tiempo Restante';
-    }
-
-    function nextExercise() {
-        clearInterval(timerInterval);
-        currentExerciseIndex++;
-        loadExercise(currentExerciseIndex);
-    }
-
-    function finishRoutine() {
-        clearInterval(timerInterval);
-        
-        let segundosReales = 0;
-        if (tiempoInicioRutina) {
-            let tiempoFin = Date.now();
-            if (isPaused && tiempoInicioPausa) {
-                tiempoPausadoTotal += (tiempoFin - tiempoInicioPausa);
-            }
-            segundosReales = Math.floor((tiempoFin - tiempoInicioRutina - tiempoPausadoTotal) / 1000);
-        }
-
-        window.location.href = `Finalizar_Rutina.php?id=${routineId}&tiempo=${segundosReales}&ejercicios=${exercisesCompletedCount}`;
-    }
-
-    // --- INICIALIZACIÓN ---
-    document.addEventListener('DOMContentLoaded', () => {
-        if (totalExercises > 0) {
-            pauseButton.addEventListener('click', togglePause);
-            nextButton.addEventListener('click', nextExercise);
-            
-            // Prevenir que el enlace de finalizar actúe antes de calcular el tiempo
-            if (finishButton) {
-                finishButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    finishRoutine();
-                });
-            }
-
-            if (startRoutineButton) {
-                startRoutineButton.addEventListener('click', () => {
-                    tiempoInicioRutina = Date.now();
-                    
-                    startRoutineButton.classList.add('hidden');
-                    nextButton.classList.remove('hidden');
-                    pauseButton.classList.remove('hidden');
-
-                    loadExercise(0); 
-                });
-            }
-
-            timeLeft = parseInt(allExercises[0].segundos);
+            timeLeft = parseInt(ex.segundos) || 0;
             updateTimerDisplay();
-            timerLabelEl.textContent = 'Listo para empezar';
+            startTimer();
         }
-    });
-</script>
+
+        function togglePause() {
+            isPaused = !isPaused;
+
+            if (isPaused) {
+                tiempoInicioPausa = Date.now();
+            } else {
+                if (tiempoInicioPausa) {
+                    tiempoPausadoTotal += (Date.now() - tiempoInicioPausa);
+                    tiempoInicioPausa = null;
+                }
+            }
+
+            pauseButton.textContent = isPaused ? 'Reanudar' : 'Pausar';
+            timerLabelEl.textContent = isPaused ? 'Pausado' : 'Tiempo Restante';
+        }
+
+        function nextExercise() {
+            clearInterval(timerInterval);
+            currentExerciseIndex++;
+            loadExercise(currentExerciseIndex);
+        }
+
+        function finishRoutine() {
+            clearInterval(timerInterval);
+
+            let segundosReales = 0;
+            if (tiempoInicioRutina) {
+                let tiempoFin = Date.now();
+                if (isPaused && tiempoInicioPausa) {
+                    tiempoPausadoTotal += (tiempoFin - tiempoInicioPausa);
+                }
+                segundosReales = Math.floor((tiempoFin - tiempoInicioRutina - tiempoPausadoTotal) / 1000);
+            }
+
+            window.location.href = `Finalizar_Rutina.php?id=${routineId}&tiempo=${segundosReales}&ejercicios=${exercisesCompletedCount}`;
+        }
+
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            if (totalExercises > 0) {
+                pauseButton.addEventListener('click', togglePause);
+                nextButton.addEventListener('click', nextExercise);
+
+                // Prevenir que el enlace de finalizar actúe antes de calcular el tiempo
+                if (finishButton) {
+                    finishButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        finishRoutine();
+                    });
+                }
+
+                if (startRoutineButton) {
+                    startRoutineButton.addEventListener('click', () => {
+                        tiempoInicioRutina = Date.now();
+
+                        startRoutineButton.classList.add('hidden');
+                        nextButton.classList.remove('hidden');
+                        pauseButton.classList.remove('hidden');
+
+                        loadExercise(0);
+                    });
+                }
+
+                timeLeft = parseInt(allExercises[0].segundos);
+                updateTimerDisplay();
+                timerLabelEl.textContent = 'Listo para empezar';
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -500,9 +500,9 @@ WHERE re.id_rutina = ?;
                 loadAvailableExercises();
             });*/
 
-            closeModalBtn.addEventListener('click', () => addExerciseModal.classList.add('hidden'));
+            closeModalBtn?.addEventListener('click', () => addExerciseModal.classList.add('hidden'));
 
-            addExerciseModal.addEventListener('click', e => {
+            addExerciseModal?.addEventListener('click', e => {
                 if (e.target === addExerciseModal) addExerciseModal.classList.add('hidden');
             });
 
@@ -555,7 +555,7 @@ WHERE re.id_rutina = ?;
                 }
             });
 
-            exerciseListContainer.addEventListener('click', async function(e) {
+            exerciseListContainer?.addEventListener('click', async function(e) {
                 const addBtn = e.target.closest('.add-btn');
 
                 if (addBtn) {
@@ -633,7 +633,7 @@ WHERE re.id_rutina = ?;
 
             async function handleExerciseDelete(ejercicioId, rutinaId, rowElement) {
                 try {
-                    const response = await fetch('delete_ejercicio.php', {
+                    const response = await fetch('api_eliminar_ejercicio_rutina.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
